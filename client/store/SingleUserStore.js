@@ -24,29 +24,6 @@ export const fetchUser = (id) => {
   };
 };
 
-export const editUser = (user) => {
-  return async (dispatch, history) => {
-    try {
-      const token = window.localStorage.getItem(TOKEN);
-      if (token) {
-        await Axios.put(`/api/users/update/${user.id}`, user, {
-          headers: {
-            authorization: token,
-          },
-        });
-        const { data: userData } = await Axios.get(`/api/users/${user.id}`, {
-          headers: {
-            authorization: token,
-          },
-        });
-        dispatch(_setSingleUser(userData));
-        // history.push(`/user/modify/${user.id}`)
-      }
-    } catch (error) {
-      next(error)
-    }
-  };
-};
 
 const initialState = [];
 export default function singleUserReducer(state = initialState, action) {
