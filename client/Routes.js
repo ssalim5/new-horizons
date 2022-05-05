@@ -28,6 +28,7 @@ class Routes extends Component {
             <Route exact path="/user/:id" component={UserProfile} />
             <Route exact path="/activities" component={AllActivities} />
             <Route exact path="/activities/:id" component={SingleActivity} />
+
           </Switch>
         ) : (
           <Switch>
