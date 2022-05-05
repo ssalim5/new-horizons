@@ -23,19 +23,20 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route exact path="/home" component={Home} />
             <Redirect to="/home" />
-            <Route path="/user/:id" component={UserProfile} />
-            <Route path="/activities" component={AllActivies} />
-            <Route path="/activities/:id" component={SingleActivity} />
+            <Route exact path="/user/:id" component={UserProfile} />
+            <Route exact path="/activities" component={AllActivities} />
+            <Route exact path="/activities/:id" component={SingleActivity} />
           </Switch>
         ) : (
           <Switch>
-            <Route path='/' exact component={ Login } />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/activities" component={AllActivities} />
-            <Route path="/activities/:id" component={SingleActivity} />
+            <Route exact path='/' component={ Login } />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/activities" component={AllActivities} />
+            <Route exact path="/activities/:id" component={SingleActivity} />
+            <Route exact path="/user/:id" component={UserProfile} />
           </Switch>
         )}
       </div>

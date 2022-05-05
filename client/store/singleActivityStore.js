@@ -1,36 +1,45 @@
 import Axios from "axios";
 
-const TOKEN = "token";
-const SET_SINGLE_ACTIVITY = "SET_SINGLE_ACTIVITY";
+const SET_SINGLE = "SET_SINGLE_ACTIVITY";
 
 const _setSingleActivity = (activity) => {
   return {
-    type: SET_SINGLE_ACTIVITY,
+    type: SET_SINGLE,
     activity,
   };
 };
 
-export const fetchActivity = (id) => {
+export const fetchSingleActivity = (id) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem(TOKEN);
-    if (token) {
-      const { data: activity } = await Axios.get(`/api/activities/${id}`, {
-        headers: {
-          authorization: token,
-        },
-      });
-      dispatch(_setSingleActivity(activity));
+    try {
+      const response = await Axios.get(`/api/activities/${id}`);
+      const data = response.data;
+      dispatch(_setSingleActivity(data))
+    } catch (err) {
+      console.log(err)
     }
-  };
+  }
 };
 
 
-const initialState = [];
-export default function singleActivityReducer(state = initialState, action) {
+const initialState = {};
+const singleActivityReducer = (state = initialState, action) => {
+  console.log("Action", action)
   switch (action.type) {
-    case SET_SINGLE_ACTIVITY:
+    case SET_SINGLE:
       return action.activity;
     default:
       return state;
   }
 }
+
+// const initialState = {}
+// export default function singleStudentReducer(state = initialState, action) {
+//   switch (action.type) {
+//     case SET_SINGLE:
+//       return action.student
+//     default:
+//       return state
+// }}
+
+export default  singleActivityReducer
