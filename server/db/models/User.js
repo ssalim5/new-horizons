@@ -7,14 +7,30 @@ const axios = require('axios');
 const SALT_ROUNDS = 5;
 
 const User = db.define('user', {
-  username: {
+  name: {
     type: Sequelize.STRING,
+    allowNull: false,
     unique: true,
-    allowNull: false
+    validate: {
+      notEmpty: true
+    }
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: true,
+      isEmail: true,
+    },
   },
   password: {
     type: Sequelize.STRING,
-  }
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: 'https://static.wikia.nocookie.net/hogwarts-mystery/images/f/fe/Main_character.png/revision/latest?cb=20201103022051',
+  },
 })
 
 module.exports = User
@@ -47,7 +63,11 @@ User.authenticate = async function({ username, password }){
 User.findByToken = async function(token) {
   try {
     const {id} = await jwt.verify(token, process.env.JWT)
-    const user = User.findByPk(id)
+    const user = User.findByPk(id,
+      {attributes:{
+        exclude: ['password']
+      }
+    })
     if (!user) {
       throw 'nooo'
     }
