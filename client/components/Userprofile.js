@@ -5,7 +5,7 @@ import { fetchUser } from "../store/singleUserStore";
 
 class UserProfile extends React.Component {
   componentDidMount() {
-    // this.props.fetchUserData(this.props.match.params.id);
+    this.props.fetchUserData(this.props.match.params.id);
   }
 
   render() {
@@ -16,7 +16,6 @@ class UserProfile extends React.Component {
           <div>
             <h1>USER: {user.name}</h1>
             <h2>USER EMAIL: {user.email}</h2>
-            <h3>DATE OF BIRTH: {user.dateOfBirth}</h3>
             <div><img src= {user.imageUrl}/></div>
            <div> <Link to={`/user/modify/${this.props.match.params.id}`}>Modify {user.name}</Link></div>
            </div>
