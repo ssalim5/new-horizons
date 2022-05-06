@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "/Users/mahdi/Documents/fullstack_academy/Senior_Phase/new-horizons/server/app.py",
+                "FLASK_APP": "server/app.py",
                 "FLASK_ENV": "development"
             },
             "args": [
