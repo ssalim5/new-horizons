@@ -13,6 +13,14 @@ const UserActivities = db.define('useractivities', {
         type: Sequelize.FLOAT,
         defaultValue: -1,
     },
+    userId: {
+        type: Sequelize.INTEGER,
+        unique: false
+    },
+    activityId: {
+        type: Sequelize.INTEGER,
+        unique: false
+    }
 })
 
 

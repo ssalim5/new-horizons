@@ -1,16 +1,31 @@
 const router = require('express').Router()
-const { models: { User }} = require('../db')
+const { models: { User, Activity }} = require('../db')
 module.exports = router
 
 //GET: read all users
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'name', 'email', 'imageUrl']
+      attributes: ['id', 'username', 'email', 'imageUrl']
     })
     res.json(users)
   } catch (err) {
     next(err)
+  }
+})
+
+//GET: read users activities
+router.get("/activities/:userId", async (req,res,next) => {
+  try{
+    console.log(req.params.userId)
+    const userActivities = await User.findByPk(
+      req.params.userId,
+      {include:Activity}
+      )
+    res.send(userActivities.activities)
+  }
+  catch(error){
+    next(error)
   }
 })
 

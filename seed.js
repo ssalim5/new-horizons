@@ -972,56 +972,56 @@ const activitiesCategories = [
 
 const userActivities = [
   {
-    id:1,
+    // id:1,
     userId:1,
     activityId:1,
     score:5,
     visits:1
   },{
-    id:2,
+    // id:2,
     userId:1,
     activityId:2,
     score:2,
     visits:5
   },
   {
-    id:3,
+    // id:3,
     userId:1,
     activityId:3,
     score:1,
     visits:1
   },{
-    id:4,
+    // id:4,
     userId:1,
     activityId:6,
     score:2,
     visits:2
   },{
-    id:5,
+    // id:5,
     userId:2,
     activityId:1,
     score:1,
     visits:1
   },{
-    id:6,
+    // id:6,
     userId:2,
     activityId:2,
     score:1,
     visits:1
   },{
-    id:7,
+    // id:7,
     userId:2,
     activityId:3,
     score:1,
     visits:1
   },{
-    id:8,
+    // id:8,
     userId:3,
     activityId:6,
     score:5,
     visits:4
   },{
-    id:9,
+    // id:9,
     userId:3,
     activityId:4,
     score:5,
@@ -1036,77 +1036,77 @@ const userCategories = [
     categoryId: 1,
     score: 1
   },
-  // {
-  //   id:2,
-  //   userId: 1,
-  //   categoryId: 2,
-  //   score: 1
-  // },{
-  //   id:3,
-  //   userId: 1,
-  //   categoryId: 3,
-  //   score: 2
-  // },{
-  //   id:4,
-  //   userId: 1,
-  //   categoryId: 4,
-  //   score: 5
-  // },{
-  //   id:5,
-  //   userId: 1,
-  //   categoryId: 5,
-  //   score: 5
-  // },{
-  //   id:6,
-  //   userId:2,
-  //   categoryId: 1,
-  //   score: 5
-  // },{
-  //   id:7,
-  //   userId:2,
-  //   categoryId: 2,
-  //   score: 1
-  // },{
-  //   id:8,
-  //   userId:2,
-  //   categoryId: 3,
-  //   score: 1
-  // },{
-  //   id:9,
-  //   userId:2,
-  //   categoryId: 4,
-  //   score: 1
-  // },{
-  //   id:10,
-  //   userId:2,
-  //   categoryId: 5,
-  //   score: 3
-  // },{
-  //   id:11,
-  //   userId:3,
-  //   categoryId: 1,
-  //   score: 2
-  // },{
-  //   id:12,
-  //   userId:3,
-  //   categoryId: 2,
-  //   score: 2
-  // },{
-  //   id:13,
-  //   userId:3,
-  //   categoryId: 3,
-  //   score: 3
-  // },{
-  //   id:14,
-  //   userId:3,
-  //   categoryId: 4,
-  //   score: 3
-  // },{
-  //   id:15,
-  //   userId:3,
-  //   categoryId: 5,
-  //   score: 2
-  // },
+  {
+    id:2,
+    userId: 1,
+    categoryId: 2,
+    score: 1
+  },{
+    id:3,
+    userId: 1,
+    categoryId: 3,
+    score: 2
+  },{
+    id:4,
+    userId: 1,
+    categoryId: 4,
+    score: 5
+  },{
+    id:5,
+    userId: 1,
+    categoryId: 5,
+    score: 5
+  },{
+    id:6,
+    userId:2,
+    categoryId: 1,
+    score: 5
+  },{
+    id:7,
+    userId:2,
+    categoryId: 2,
+    score: 1
+  },{
+    id:8,
+    userId:2,
+    categoryId: 3,
+    score: 1
+  },{
+    id:9,
+    userId:2,
+    categoryId: 4,
+    score: 1
+  },{
+    id:10,
+    userId:2,
+    categoryId: 5,
+    score: 3
+  },{
+    id:11,
+    userId:3,
+    categoryId: 1,
+    score: 2
+  },{
+    id:12,
+    userId:3,
+    categoryId: 2,
+    score: 2
+  },{
+    id:13,
+    userId:3,
+    categoryId: 3,
+    score: 3
+  },{
+    id:14,
+    userId:3,
+    categoryId: 4,
+    score: 3
+  },{
+    id:15,
+    userId:3,
+    categoryId: 5,
+    score: 2
+  },
 ]
 
 

@@ -10,15 +10,15 @@ const UserActivities = require('./models/User-Activities')
 const UserCategories = require('./models/User-Categories')
 
 /* Activity-Category many to many association through ActivityCategory table */
-Activity.belongsToMany(Category, {through: ActivityCategory, foreignKey: "activityId", otherKey: "categoryId"})
-Category.belongsToMany(Activity, {through: ActivityCategory, foreignKey: "categoryId", otherKey: "activityId"})
+Activity.belongsToMany(Category, {through: {model: ActivityCategory, foreignKey: "activityId", otherKey: "categoryId", unique: false}})
+Category.belongsToMany(Activity, {through: {model: ActivityCategory, foreignKey: "categoryId", otherKey: "activityId", unique: false}})
 
 /* User-Activity many to many association through UserActivities table */
-Activity.belongsToMany(User, {through: UserActivities, foreignKey: "activityId", otherKey: "userId"})
-User.belongsToMany(Activity, {through: UserActivities, foreignKey: "userId", otherKey: "activityId"})
+Activity.belongsToMany(User, {through: {model: UserActivities, foreignKey: "activityId", otherKey: "userId", unique: false}})
+User.belongsToMany(Activity, {through: {model: UserActivities, foreignKey: "userId", otherKey: "activityId", unique: false}})
 
-Category.belongsToMany(User, {through: UserCategories, foreignKey: "categoryId", otherKey: "userId"})
-User.belongsToMany(Category, {through: UserCategories, foreignKey: "userId", otherKey: "categoryId"})
+Category.belongsToMany(User, {through: {model: UserCategories, foreignKey: "categoryId", otherKey: "userId", unique: false}})
+User.belongsToMany(Category, {through: {model: UserCategories, foreignKey: "userId", otherKey: "categoryId", unique: false}})
 
 module.exports = {
   db,

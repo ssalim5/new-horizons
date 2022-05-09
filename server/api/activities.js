@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Activity },
+  models: { Activity,User },
 } = require("../db");
 module.exports = router;
 
@@ -14,13 +14,36 @@ const requireToken = async (req, res, next) => {
   }
 };
 
-
+//GET: read all activities
 router.get("/", async (req, res, next) => {
   try {
     const activity= await Activity.findAll();
     res.json(activity);
   } catch (err) {
     next(err);
+  }
+});
+
+//GET: read a single activity - find by activity.Id
+router.get("/:id", async (req, res, next) => {
+  try {
+    const activity = await Activity.findByPk(req.params.id);
+    res.json(activity);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//POST: create a new activity (need to be admin?)
+router.post("/", requireToken, async (req, res, next) => {
+  try {
+    if (req.user.dataValues.admin) {
+      res.status(201).send(await Activity.create(req.body));
+    } else {
+      return res.status(403).send("You shall not pass!");
+    }
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -42,27 +65,8 @@ router.put("/update/:id", requireToken, async (req, res, next) => {
 });
 
 
-router.get("/:id", async (req, res, next) => {
-  try {
-    const activity = await Activity.findByPk(req.params.id);
-    res.json(activity);
-  } catch (err) {
-    next(err);
-  }
-});
 
 
-router.post("/", requireToken, async (req, res, next) => {
-  try {
-    if (req.user.dataValues.admin) {
-      res.status(201).send(await Activity.create(req.body));
-    } else {
-      return res.status(403).send("You shall not pass!");
-    }
-  } catch (error) {
-    next(error);
-  }
-});
 
 
 router.put("/:id", requireToken, async (req, res, next) => {
