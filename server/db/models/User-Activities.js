@@ -11,7 +11,6 @@ const UserActivities = db.define('useractivities', {
     },
     score: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         validate: {
             min: 1,
             max: 5,
@@ -22,7 +21,7 @@ const UserActivities = db.define('useractivities', {
         type: Sequelize.INTEGER,
         defaultValue: 1,
         validate: {
-            min:0
+            min:1
         }
     }
 

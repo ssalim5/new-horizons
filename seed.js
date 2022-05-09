@@ -1,7 +1,7 @@
 const { green, red } = require("chalk");
 const { 
   db,
-  models: {User, Activity, Category, ActivityCategory},
+  models: {User, Activity, Category, ActivityCategory, UserActivities},
 } = require("./server/db");
 
 const users = [{
@@ -232,7 +232,62 @@ const activitiesCategories = [
 ]
 
 const userActivities = [
-  {}
+  {
+    id:1,
+    userId:1,
+    activityId:1,
+    score:5,
+    visits:1
+  },{
+    id:2,
+    userId:1,
+    activityId:2,
+    score:2,
+    visits:5
+  },
+  {
+    id:3,
+    userId:1,
+    activityId:3,
+    score:1,
+    visits:1
+  },{
+    id:4,
+    userId:1,
+    activityId:6,
+    score:2,
+    visits:2
+  },{
+    id:5,
+    userId:2,
+    activityId:1,
+    score:1,
+    visits:1
+  },{
+    id:6,
+    userId:2,
+    activityId:2,
+    score:1,
+    visits:1
+  },{
+    id:7,
+    userId:2,
+    activityId:3,
+    score:1,
+    visits:1
+  },{
+    id:8,
+    userId:3,
+    activityId:6,
+    score:5,
+    visits:4
+  },{
+    id:9,
+    userId:3,
+    activityId:4,
+    score:5,
+    visits:4
+  }
 ]
 
 
@@ -250,8 +305,14 @@ const seed = async () => {
       categories.map((category)=>{
         return Category.create(category)
       }),
+    )
+    /* run the association tables seeding separately due to any sequelize hooks in the non-association table models */
+    await Promise.all(
       activitiesCategories.map((actCat)=>{
         return ActivityCategory.create(actCat)
+      }),
+      userActivities.map((useAct)=>{
+        return UserActivities.create(useAct)
       }),
     )
 
