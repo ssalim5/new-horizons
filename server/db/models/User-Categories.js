@@ -17,4 +17,4 @@ const UserCategories = db.define('usercategories', {
     }
 })
 
-module.exports = UserActivities
+module.exports = UserCategories

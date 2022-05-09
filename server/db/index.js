@@ -7,6 +7,7 @@ const Activity = require('./models/Activity')
 const Category = require('./models/Category')
 const ActivityCategory = require('./models/Activity-Categories')
 const UserActivities = require('./models/User-Activities')
+const UserCategories = require('./models/User-Categories')
 
 /* Activity-Category many to many association through ActivityCategory table */
 Activity.belongsToMany(Category, {through: ActivityCategory, foreignKey: "activityId", otherKey: "categoryId"})
@@ -16,6 +17,8 @@ Category.belongsToMany(Activity, {through: ActivityCategory, foreignKey: "catego
 Activity.belongsToMany(User, {through: UserActivities, foreignKey: "activityId", otherKey: "userId"})
 User.belongsToMany(Activity, {through: UserActivities, foreignKey: "userId", otherKey: "activityId"})
 
+Category.belongsToMany(User, {through: UserCategories, foreignKey: "categoryId", otherKey: "userId"})
+User.belongsToMany(Category, {through: UserCategories, foreignKey: "userId", otherKey: "categoryId"})
 
 module.exports = {
   db,
@@ -24,6 +27,7 @@ module.exports = {
     Activity,
     Category,
     ActivityCategory,
-    UserActivities
+    UserActivities,
+    UserCategories
   },
 }

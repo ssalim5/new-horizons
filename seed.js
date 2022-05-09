@@ -1,8 +1,9 @@
 const { green, red } = require("chalk");
 const { 
   db,
-  models: {User, Activity, Category, ActivityCategory, UserActivities},
+  models: {User, Activity, Category, ActivityCategory, UserActivities,UserCategories},
 } = require("./server/db");
+
 
 const users = [{
   name: "Ryan",
@@ -290,6 +291,85 @@ const userActivities = [
   }
 ]
 
+const userCategories = [
+  {
+    id:1,
+    userId: 1,
+    categoryId: 1,
+    score: 1
+  },{
+    id:2,
+    userId: 1,
+    categoryId: 2,
+    score: 1
+  },{
+    id:3,
+    userId: 1,
+    categoryId: 3,
+    score: 2
+  },{
+    id:4,
+    userId: 1,
+    categoryId: 4,
+    score: 5
+  },{
+    id:5,
+    userId: 1,
+    categoryId: 5,
+    score: 5
+  },{
+    id:6,
+    userId:2,
+    categoryId: 1,
+    score: 5
+  },{
+    id:7,
+    userId:2,
+    categoryId: 2,
+    score: 1
+  },{
+    id:8,
+    userId:2,
+    categoryId: 3,
+    score: 1
+  },{
+    id:9,
+    userId:2,
+    categoryId: 4,
+    score: 1
+  },{
+    id:10,
+    userId:2,
+    categoryId: 5,
+    score: 3
+  },{
+    id:11,
+    userId:3,
+    categoryId: 1,
+    score: 2
+  },{
+    id:12,
+    userId:3,
+    categoryId: 2,
+    score: 2
+  },{
+    id:13,
+    userId:3,
+    categoryId: 3,
+    score: 3
+  },{
+    id:14,
+    userId:3,
+    categoryId: 4,
+    score: 3
+  },{
+    id:15,
+    userId:3,
+    categoryId: 5,
+    score: 2
+  },
+]
+
 
 const seed = async () => {
   try {
@@ -314,6 +394,9 @@ const seed = async () => {
       userActivities.map((useAct)=>{
         return UserActivities.create(useAct)
       }),
+      userCategories.map((useCat)=>{
+        return UserCategories.create(useCat)
+      })
     )
 
     console.log(green('Seeding success!'))
