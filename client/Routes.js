@@ -8,6 +8,8 @@ import UserProfile from './components/UserProfile';
 import AllActivities from './components/AllActivities';
 import SingleActivity from './components/SingleActivity';
 import Registration from './components/Registration';
+import Recommended from './components/Recommended';
+import Friends from './components/Friends';
 
 /**
  * COMPONENT
@@ -24,21 +26,25 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route exact path="/home" component={Home} />
-            <Redirect to="/home" />
+            <Route exact path="/" component={Home} />
+            <Redirect to="/" />
             <Route exact path="/user/:id" component={UserProfile} />
             <Route exact path="/activities" component={AllActivities} />
             <Route exact path="/activities/:id" component={SingleActivity} />
+            <Route exact path="/recommended" component={Recommended} />
+            <Route exact path="/friends" component={Friends} />
 
           </Switch>
         ) : (
           <Switch>
-            <Route exact path='/' component={ Login } />
+            <Route exact path='/' component={ Home } />
             <Route exact path="/login" component={Login} />
             <Route exact path="/activities" component={AllActivities} />
             <Route exact path="/activities/:id" component={SingleActivity} />
             <Route exact path="/user/:id" component={UserProfile} />
             <Route exact path="/registration" component={Registration} />
+            <Route exact path="/recommended" component={Recommended} />
+            <Route exact path="/friends" component={Friends} />
           </Switch>
         )}
       </div>

@@ -54,6 +54,12 @@ class Registration extends Component {
                 <label htmlFor="email">Email:</label>
                 <input name="email" type="email" value={email} onChange={this.handleChange} />
               </div>
+              <div><select onChange={this.handleChange} >
+          <option value="all">All</option>
+          <option value="cats">Cats</option>
+          <option value="dogs">Dogs</option>
+          </select>
+          </div>
               <div >
                 <button type="submit">Submit</button>
                 <Link to="/">Cancel</Link>
