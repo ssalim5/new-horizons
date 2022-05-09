@@ -10,15 +10,10 @@ const ActivityCategory = db.define('activitycategories', {
         unique: true,
     },
     score: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
-        validate: {
-            min: 1,
-            max: 5,
-        },
-        defaultValue: 1,
+        defaultValue: -1,
     }
-
 })
 
 
