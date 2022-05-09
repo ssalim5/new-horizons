@@ -4,13 +4,30 @@ const db = require('./db')
 
 const User = require('./models/User')
 const Activity = require('./models/Activity')
+const Category = require('./models/Category')
+const ActivityCategory = require('./models/Activity-Categories')
+const UserActivities = require('./models/User-Activities')
+const UserCategories = require('./models/User-Categories')
 
-//associations could go here!
+/* Activity-Category many to many association through ActivityCategory table */
+Activity.belongsToMany(Category, {through: ActivityCategory, foreignKey: "activityId", otherKey: "categoryId"})
+Category.belongsToMany(Activity, {through: ActivityCategory, foreignKey: "categoryId", otherKey: "activityId"})
+
+/* User-Activity many to many association through UserActivities table */
+Activity.belongsToMany(User, {through: UserActivities, foreignKey: "activityId", otherKey: "userId"})
+User.belongsToMany(Activity, {through: UserActivities, foreignKey: "userId", otherKey: "activityId"})
+
+Category.belongsToMany(User, {through: UserCategories, foreignKey: "categoryId", otherKey: "userId"})
+User.belongsToMany(Category, {through: UserCategories, foreignKey: "userId", otherKey: "categoryId"})
 
 module.exports = {
   db,
   models: {
     User,
-    Activity
+    Activity,
+    Category,
+    ActivityCategory,
+    UserActivities,
+    UserCategories
   },
 }
