@@ -10,21 +10,9 @@ const UserActivities = db.define('useractivities', {
         unique: true,
     },
     score: {
-        type: Sequelize.INTEGER,
-        validate: {
-            min: 1,
-            max: 5,
-        },
-        defaultValue: 3,
+        type: Sequelize.FLOAT,
+        defaultValue: -1,
     },
-    visits: {
-        type: Sequelize.INTEGER,
-        defaultValue: 1,
-        validate: {
-            min:1
-        }
-    }
-
 })
 
 

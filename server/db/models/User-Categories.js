@@ -9,11 +9,8 @@ const UserCategories = db.define('usercategories', {
         unique: true,
     },
     score: {
-        type: Sequelize.INTEGER,
-        validate: {
-            min: 1,
-            max: 5,
-        },
+        type: Sequelize.FLOAT,
+        defaultValue: -1
     }
 })
 
