@@ -7,7 +7,7 @@ let {pow} = require('mathjs')
 let userRatingArr = require('./generateUserRatingsArr')
 let fs = require('fs')
 
-async function banana(){
+async function calculateRatings(){
 
 let User_Ratings_Arr = await userRatingArr()
   // let User_Ratings_Arr = [[5,3,-1,1,0,3,2,3],
@@ -84,7 +84,7 @@ let User_Ratings_Arr = await userRatingArr()
   let {P,Q,estimatedRatings} = matFactorization(User_Ratings,User_Features,Activity_Features,math.size(User_Features)._data[1])
   /* write to JSON */
   
-  fs.writeFile ("input.json", JSON.stringify(estimatedRatings._data), function(err) {
+  fs.writeFile ("user_ratings_array.json", JSON.stringify(estimatedRatings._data), function(err) {
     if (err) throw err;
     console.log('complete');
     }
@@ -93,4 +93,4 @@ let User_Ratings_Arr = await userRatingArr()
   console.log("---DONE---")
 }
 
-setTimeout(banana,10)
+setTimeout(calculateRatings,10)
