@@ -14,9 +14,8 @@ router.get("/", async (req,res,next) => {
 //POST: add a new activity to useractivities for user
 router.post("/", async (req, res, next) => {
     try {
-        console.log(req.body)
         res.status(201).send(await UserActivities.create(req.body));
     } catch (error) {
         next(error);
     }
-  });
+});

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { User, Activity }} = require('../db')
+const { models: { User, Activity, Category }} = require('../db')
 module.exports = router
 
 //GET: read all users
@@ -20,9 +20,30 @@ router.get("/activities/:userId", async (req,res,next) => {
     console.log(req.params.userId)
     const userActivities = await User.findByPk(
       req.params.userId,
-      {include:Activity}
+      {include:{
+        model: Activity, 
+        through: {attributes: ['score']}
+      }}
       )
     res.send(userActivities.activities)
+  }
+  catch(error){
+    next(error)
+  }
+})
+
+//GET: read users categories
+router.get("/categories/:userId", async (req,res,next) => {
+  try{
+    console.log(req.params.userId)
+    const userCategories = await User.findByPk(
+      req.params.userId,
+      {include:{
+        model: Category, 
+        through: {attributes: ['score']}
+      }}
+      )
+    res.send(userCategories.categories)
   }
   catch(error){
     next(error)
