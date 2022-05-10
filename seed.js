@@ -6,489 +6,489 @@ const {
 
 
 const users = [{
-  name: "Ryan",
+  username: "Ryan",
   email: "test1@gmail.com",
 password: 'test'
 },
 {
- name: "Mason",
+ username: "Mason",
 email: "test2@gmail.com",
 password: 'test'
 },
 {
-  name: 'Sakib',
+  username: 'Sakib',
   email: "test3@gmail.com",
 password: 'test'
 },
 {
-name: 'Mahdi',
+username: 'Mahdi',
 email: "test4@gmail.com",
 password: 'test'
 },
-{name: "Al",
+{username: "Al",
 email: "test5@gmail.com",
 password: 'test'
 },
 {
-name: "Bill",
+username: "Bill",
 email: "test6@gmail.com",
 password: 'test'
 },
 {
-name: 'Bob',
+username: 'Bob',
 email: "test7@gmail.com",
 password: 'test'
 },
 {
-name: 'Bryan',
+username: 'Bryan',
 email: "test8@gmail.com",
 password: 'test'
 },
 {
-  name: "Colin",
+  username: "Colin",
   email: "test9@gmail.com",
 password: 'test'
 },
 {
- name: "Chris",
+ username: "Chris",
 email: "test10@gmail.com",
 password: 'test'
 },
 {
-  name: 'Cristi',
+  username: 'Cristi',
   email: "test11@gmail.com",
 password: 'test'
 },
 {
-name: 'Carren',
+username: 'Carren',
 email: "test12@gmail.com",
 password: 'test'
 },
-{name: "Colby",
+{username: "Colby",
 email: "test13@gmail.com",
 password: 'test'
 },
 {
-name: "David",
+username: "David",
 email: "test14@gmail.com",
 password: 'test'
 },
 {
-name: 'Diana',
+username: 'Diana',
 email: "test15@gmail.com",
 password: 'test'
 },
 {
-name: 'Deb',
+username: 'Deb',
 email: "test16@gmail.com",
 password: 'test'
 },
 {
-  name: "Derrick",
+  username: "Derrick",
   email: "test17@gmail.com",
 password: 'test'
 },
 {
- name: "Don",
+ username: "Don",
 email: "test18@gmail.com",
 password: 'test'
 },
 {
-  name: 'Eve',
+  username: 'Eve',
   email: "test19@gmail.com",
 password: 'test'
 },
 {
-name: 'Evan',
+username: 'Evan',
 email: "test20@gmail.com",
 password: 'test'
 },
-{name: "Frank",
+{username: "Frank",
 email: "test21@gmail.com",
 password: 'test'
 },
 {
-name: "Flora",
+username: "Flora",
 email: "test22@gmail.com",
 password: 'test'
 },
 {
-name: 'Flo',
+username: 'Flo',
 email: "test23@gmail.com",
 password: 'test'
 },
 {
-name: 'Gretchen',
+username: 'Gretchen',
 email: "test24@gmail.com",
 password: 'test'
 },
 {
-  name: "George",
+  username: "George",
   email: "test25@gmail.com",
 password: 'test'
 },
 {
- name: "Harold",
+ username: "Harold",
 email: "test26@gmail.com",
 password: 'test'
 },
 {
-  name: 'Heidi',
+  username: 'Heidi',
   email: "test27@gmail.com",
 password: 'test'
 },
 {
-name: 'Hogan',
+username: 'Hogan',
 email: "test28@gmail.com",
 password: 'test'
 },
-{name: "Ian",
+{username: "Ian",
 email: "test29@gmail.com",
 password: 'test'
 },
 {
-name: "Jess",
+username: "Jess",
 email: "test30@gmail.com",
 password: 'test'
 },
 {
-name: 'Joe',
+username: 'Joe',
 email: "test31@gmail.com",
 password: 'test'
 },
 {
-name: 'Joanna',
+username: 'Joanna',
 email: "test32@gmail.com",
 password: 'test'
 },
 {
-  name: "Kyle",
+  username: "Kyle",
   email: "test33@gmail.com",
 password: 'test'
 },
 {
- name: "Krissy",
+ username: "Krissy",
 email: "test34@gmail.com",
 password: 'test'
 },
 {
-  name: 'Kevin',
+  username: 'Kevin',
   email: "test35@gmail.com",
 password: 'test'
 },
 {
-name: 'Kevon',
+username: 'Kevon',
 email: "test36@gmail.com",
 password: 'test'
 },
-{name: "Jill",
+{username: "Jill",
 email: "test37@gmail.com",
 password: 'test'
 },
 {
-name: "Jack",
+username: "Jack",
 email: "test38@gmail.com",
 password: 'test'
 },
 {
-name: 'Josh',
+username: 'Josh',
 email: "test39@gmail.com",
 password: 'test'
 },
 {
-name: 'Justin',
+username: 'Justin',
 email: "test40@gmail.com",
 password: 'test'
 },
 {
-  name: "Jamal",
+  username: "Jamal",
   email: "test41@gmail.com",
 password: 'test'
 },
 {
- name: "Jackie",
+ username: "Jackie",
 email: "test42@gmail.com",
 password: 'test'
 },
 {
-  name: 'Jaylen',
+  username: 'Jaylen',
   email: "test43@gmail.com",
 password: 'test'
 },
 {
-name: 'Lebron',
+username: 'Lebron',
 email: "test44@gmail.com",
 password: 'test'
 },
-{name: "Lisa",
+{username: "Lisa",
 email: "test45@gmail.com",
 password: 'test'
 },
 {
-name: "Leslie",
+username: "Leslie",
 email: "test46@gmail.com",
 password: 'test'
 },
 {
-name: 'Lydia',
+username: 'Lydia',
 email: "test47@gmail.com",
 password: 'test'
 },
 {
-name: 'Mike',
+username: 'Mike',
 email: "test48@gmail.com",
 password: 'test'
 },
 {
-  name: "Mark",
+  username: "Mark",
   email: "test49@gmail.com",
 password: 'test'
 },
 {
- name: "Molly",
+ username: "Molly",
 email: "test50@gmail.com",
 password: 'test'
 },
 {
-  name: 'Matt',
+  username: 'Matt',
   email: "test51@gmail.com",
 password: 'test'
 },
 {
-name: 'Morgan',
+username: 'Morgan',
 email: "test52@gmail.com",
 password: 'test'
 },
-{name: "Nick",
+{username: "Nick",
 email: "test53@gmail.com",
 password: 'test'
 },
 {
-name: "Nikki",
+username: "Nikki",
 email: "test54@gmail.com",
 password: 'test'
 },
 {
-name: 'OJ',
+username: 'OJ',
 email: "test55@gmail.com",
 password: 'test'
 },
 {
-name: 'Paul',
+username: 'Paul',
 email: "test56@gmail.com",
 password: 'test'
 },
 {
-  name: "Paula",
+  username: "Paula",
   email: "test57@gmail.com",
 password: 'test'
 },
 {
- name: "Pam",
+ username: "Pam",
 email: "test58@gmail.com",
 password: 'test'
 },
 {
-  name: 'Pamela',
+  username: 'Pamela',
   email: "test59@gmail.com",
 password: 'test'
 },
 {
-name: 'Russ',
+username: 'Russ',
 email: "test60@gmail.com",
 password: 'test'
 },
-{name: "Ross",
+{username: "Ross",
 email: "test61@gmail.com",
 password: 'test'
 },
 {
-name: "Ryder",
+username: "Ryder",
 email: "test62@gmail.com",
 password: 'test'
 },
 {
-name: 'Riley',
+username: 'Riley',
 email: "test63@gmail.com",
 password: 'test'
 },
 {
-name: 'Scott',
+username: 'Scott',
 email: "test64@gmail.com",
 password: 'test'
 },
 {
-  name: 'Steve',
+  username: 'Steve',
   email: "test65@gmail.com",
   password: 'test'
   },
-  {name: "Sarah",
+  {username: "Sarah",
   email: "test66@gmail.com",
   password: 'test'
   },
   {
-  name: "Sylvia",
+  username: "Sylvia",
   email: "test67@gmail.com",
   password: 'test'
   },
   {
-  name: 'Shaq',
+  username: 'Shaq',
   email: "test68@gmail.com",
   password: 'test'
   },
   {
-  name: 'Samson',
+  username: 'Samson',
   email: "test69@gmail.com",
   password: 'test'
   },
   {
-    name: "Sully",
+    username: "Sully",
     email: "test70@gmail.com",
   password: 'test'
   },
   {
-   name: "Smart",
+   username: "Smart",
   email: "test71@gmail.com",
   password: 'test'
   },
   {
-    name: 'Susan',
+    username: 'Susan',
     email: "test72@gmail.com",
   password: 'test'
   },
   {
-  name: 'Tanya',
+  username: 'Tanya',
   email: "test73@gmail.com",
   password: 'test'
   },
-  {name: "Tony",
+  {username: "Tony",
   email: "test74@gmail.com",
   password: 'test'
   },
   {
-  name: "Tim",
+  username: "Tim",
   email: "test75@gmail.com",
   password: 'test'
   },
   {
-  name: 'Timmy',
+  username: 'Timmy',
   email: "test76@gmail.com",
   password: 'test'
   },
   {
-  name: 'Tom',
+  username: 'Tom',
   email: "test77@gmail.com",
   password: 'test'
   },
   {
-    name: "Tommy",
+    username: "Tommy",
     email: "test78@gmail.com",
   password: 'test'
   },
   {
-   name: "Tara",
+   username: "Tara",
   email: "test79@gmail.com",
   password: 'test'
   },
   {
-    name: 'Tyrone',
+    username: 'Tyrone',
     email: "test80@gmail.com",
   password: 'test'
   },
   {
-  name: 'Tina',
+  username: 'Tina',
   email: "test81@gmail.com",
   password: 'test'
   },
-  {name: "Veronica",
+  {username: "Veronica",
   email: "test82@gmail.com",
   password: 'test'
   },
   {
-  name: "Vicki",
+  username: "Vicki",
   email: "test83@gmail.com",
   password: 'test'
   },
   {
-  name: 'Van',
+  username: 'Van',
   email: "test84@gmail.com",
   password: 'test'
   },
   {
-  name: 'Waldo',
+  username: 'Waldo',
   email: "test85@gmail.com",
   password: 'test'
   },
   {
-    name: "Walt",
+    username: "Walt",
     email: "test86@gmail.com",
   password: 'test'
   },
   {
-   name: "Wes",
+   username: "Wes",
   email: "test87@gmail.com",
   password: 'test'
   },
   {
-    name: 'Wesley',
+    username: 'Wesley',
     email: "test88@gmail.com",
   password: 'test'
   },
   {
-  name: 'Will',
+  username: 'Will',
   email: "test89@gmail.com",
   password: 'test'
   },
-  {name: "Willy",
+  {username: "Willy",
   email: "test90@gmail.com",
   password: 'test'
   },
   {
-  name: "William",
+  username: "William",
   email: "test91@gmail.com",
   password: 'test'
   },
   {
-  name: 'Yolanda',
+  username: 'Yolanda',
   email: "test92@gmail.com",
   password: 'test'
   },
   {
-  name: 'Yes',
+  username: 'Yes',
   email: "test93@gmail.com",
   password: 'test'
   },
   {
-    name: 'Xander',
+    username: 'Xander',
     email: "test94@gmail.com",
     password: 'test'
     },
-    {name: "Xavier",
+    {username: "Xavier",
     email: "test95@gmail.com",
     password: 'test'
     },
     {
-    name: "Javy",
+    username: "Javy",
     email: "test96@gmail.com",
     password: 'test'
     },
     {
-    name: 'Zarmon',
+    username: 'Zarmon',
     email: "test97@gmail.com",
     password: 'test'
     },
     {
-    name: 'Semi',
+    username: 'Semi',
     email: "test98@gmail.com",
     password: 'test'
     },
     {
-    name: 'Brook',
+    username: 'Brook',
     email: "test99@gmail.com",
     password: 'test'
     },
     {
-    name: 'Robin',
+    username: 'Robin',
     email: "test100@gmail.com",
     password: 'test'
     }]
@@ -972,56 +972,56 @@ const activitiesCategories = [
 
 const userActivities = [
   {
-    id:1,
+    // id:1,
     userId:1,
     activityId:1,
     score:5,
     visits:1
   },{
-    id:2,
+    // id:2,
     userId:1,
     activityId:2,
     score:2,
     visits:5
   },
   {
-    id:3,
+    // id:3,
     userId:1,
     activityId:3,
     score:1,
     visits:1
   },{
-    id:4,
+    // id:4,
     userId:1,
     activityId:6,
     score:2,
     visits:2
   },{
-    id:5,
+    // id:5,
     userId:2,
     activityId:1,
     score:1,
     visits:1
   },{
-    id:6,
+    // id:6,
     userId:2,
     activityId:2,
     score:1,
     visits:1
   },{
-    id:7,
+    // id:7,
     userId:2,
     activityId:3,
     score:1,
     visits:1
   },{
-    id:8,
+    // id:8,
     userId:3,
     activityId:6,
     score:5,
     visits:4
   },{
-    id:9,
+    // id:9,
     userId:3,
     activityId:4,
     score:5,
@@ -1036,77 +1036,77 @@ const userCategories = [
     categoryId: 1,
     score: 1
   },
-  // {
-  //   id:2,
-  //   userId: 1,
-  //   categoryId: 2,
-  //   score: 1
-  // },{
-  //   id:3,
-  //   userId: 1,
-  //   categoryId: 3,
-  //   score: 2
-  // },{
-  //   id:4,
-  //   userId: 1,
-  //   categoryId: 4,
-  //   score: 5
-  // },{
-  //   id:5,
-  //   userId: 1,
-  //   categoryId: 5,
-  //   score: 5
-  // },{
-  //   id:6,
-  //   userId:2,
-  //   categoryId: 1,
-  //   score: 5
-  // },{
-  //   id:7,
-  //   userId:2,
-  //   categoryId: 2,
-  //   score: 1
-  // },{
-  //   id:8,
-  //   userId:2,
-  //   categoryId: 3,
-  //   score: 1
-  // },{
-  //   id:9,
-  //   userId:2,
-  //   categoryId: 4,
-  //   score: 1
-  // },{
-  //   id:10,
-  //   userId:2,
-  //   categoryId: 5,
-  //   score: 3
-  // },{
-  //   id:11,
-  //   userId:3,
-  //   categoryId: 1,
-  //   score: 2
-  // },{
-  //   id:12,
-  //   userId:3,
-  //   categoryId: 2,
-  //   score: 2
-  // },{
-  //   id:13,
-  //   userId:3,
-  //   categoryId: 3,
-  //   score: 3
-  // },{
-  //   id:14,
-  //   userId:3,
-  //   categoryId: 4,
-  //   score: 3
-  // },{
-  //   id:15,
-  //   userId:3,
-  //   categoryId: 5,
-  //   score: 2
-  // },
+  {
+    id:2,
+    userId: 1,
+    categoryId: 2,
+    score: 1
+  },{
+    id:3,
+    userId: 1,
+    categoryId: 3,
+    score: 2
+  },{
+    id:4,
+    userId: 1,
+    categoryId: 4,
+    score: 5
+  },{
+    id:5,
+    userId: 1,
+    categoryId: 5,
+    score: 5
+  },{
+    id:6,
+    userId:2,
+    categoryId: 1,
+    score: 5
+  },{
+    id:7,
+    userId:2,
+    categoryId: 2,
+    score: 1
+  },{
+    id:8,
+    userId:2,
+    categoryId: 3,
+    score: 1
+  },{
+    id:9,
+    userId:2,
+    categoryId: 4,
+    score: 1
+  },{
+    id:10,
+    userId:2,
+    categoryId: 5,
+    score: 3
+  },{
+    id:11,
+    userId:3,
+    categoryId: 1,
+    score: 2
+  },{
+    id:12,
+    userId:3,
+    categoryId: 2,
+    score: 2
+  },{
+    id:13,
+    userId:3,
+    categoryId: 3,
+    score: 3
+  },{
+    id:14,
+    userId:3,
+    categoryId: 4,
+    score: 3
+  },{
+    id:15,
+    userId:3,
+    categoryId: 5,
+    score: 2
+  },
 ]
 
 
