@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { createUser } from "../store/allUsersStore";
 import { connect } from "react-redux";
-import { Link, Dropdown} from "react-router-dom";
+import { Link} from "react-router-dom";
 
 
 class Registration extends Component {
@@ -34,7 +34,7 @@ class Registration extends Component {
   }
 
   render() {
-    const { name, password, email, dateOfBirth } = this.state;
+    const { name, password, email} = this.state;
     const { handleSubmit } = this;
     return (
         <div>
@@ -54,18 +54,70 @@ class Registration extends Component {
                 <label htmlFor="email">Email:</label>
                 <input name="email" type="email" value={email} onChange={this.handleChange} />
               </div>
-              <div><select onChange={this.handleChange} >
-          <option value="all">All</option>
-          <option value="cats">Cats</option>
-          <option value="dogs">Dogs</option>
-          </select>
-          </div>
+              <form onSubmit={this.handleSubmit}>
+      </form>
+
               <div >
                 <button type="submit">Submit</button>
                 <Link to="/">Cancel</Link>
               </div>
 
           </form>
+          <label>
+          Rate Your Interest in Creative Activities :
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="0">Optional</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <label>
+          Rate Your Interest in Athletic Activities :
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="0">Optional</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <label>
+          Rate Your Interest in Logical Activities :
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="0">Optional</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <label>
+          Rate Your Interest in Relaxing Activities :
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="0">Optional</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <label>
+          Rate Your Interest in Entertaining Activities :
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="0"> Optional</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
         </div>
     );
   }

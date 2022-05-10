@@ -10,6 +10,7 @@ import SingleActivity from './components/SingleActivity';
 import Registration from './components/Registration';
 import Recommended from './components/Recommended';
 import Friends from './components/Friends';
+import Graph from './components/Graph';
 
 /**
  * COMPONENT
@@ -45,6 +46,7 @@ class Routes extends Component {
             <Route exact path="/registration" component={Registration} />
             <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
+            <Route exact path="/graph" component={Graph} />
           </Switch>
         )}
       </div>
