@@ -1,3 +1,4 @@
+const { user } = require('pg/lib/defaults')
 const { models: { UserActivities, User, Activity }} = require('../server/db')
 
 async function generateUserRatingsArr(){
@@ -15,9 +16,13 @@ async function generateUserRatingsArr(){
         arr[elem.userId-1][elem.activityId-1]=elem.score
     })
     
-    //console.log(arr)
+
+    //module.exports = arr
     return arr
 }
 
-// generateUserRatingsArr()
-console.log(generateUserRatingsArr())
+const userRatingArr = generateUserRatingsArr()
+//console.log(userRatingArr)
+//console.log(generateUserRatingsArr())
+module.exports = generateUserRatingsArr
+generateUserRatingsArr()
