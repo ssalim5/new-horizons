@@ -4,6 +4,8 @@ const {
   models: {User, Activity, Category, ActivityCategory, UserActivities,UserCategories},
 } = require("./server/db");
 
+const createdUserActivities = require('./script/userActivitiesGenerator')
+
 
 const users = [{
   username: "Ryan",
@@ -1130,7 +1132,7 @@ const seed = async () => {
       activitiesCategories.map((actCat)=>{
         return ActivityCategory.create(actCat)
       }),
-      userActivities.map((useAct)=>{
+      createdUserActivities.map((useAct)=>{
         return UserActivities.create(useAct)
       }),
       userCategories.map((useCat)=>{
