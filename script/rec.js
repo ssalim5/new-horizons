@@ -84,7 +84,7 @@ let User_Ratings_Arr = await userRatingArr()
   let {P,Q,estimatedRatings} = matFactorization(User_Ratings,User_Features,Activity_Features,math.size(User_Features)._data[1])
   /* write to JSON */
   
-  fs.writeFile ("user_ratings_array.json", JSON.stringify(estimatedRatings._data), function(err) {
+  fs.writeFile ("estimatedRatings.json", JSON.stringify(estimatedRatings._data), function(err) {
     if (err) throw err;
     console.log('complete');
     }
