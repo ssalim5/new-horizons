@@ -14,6 +14,22 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//GET: read single user
+router.get('/:id', async (req, res, next) => {
+  try {
+    const singleUser = await User.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ['id', 'username', 'email', 'imageUrl'],
+    });
+    res.json(singleUser);
+  } catch (err) {
+    next(err)
+  }
+})
+
+
 //GET: read users activities
 router.get("/activities/:userId", async (req,res,next) => {
   try{
@@ -21,7 +37,7 @@ router.get("/activities/:userId", async (req,res,next) => {
     const userActivities = await User.findByPk(
       req.params.userId,
       {include:{
-        model: Activity, 
+        model: Activity,
         through: {attributes: ['score']}
       }}
       )
@@ -39,7 +55,7 @@ router.get("/categories/:userId", async (req,res,next) => {
     const userCategories = await User.findByPk(
       req.params.userId,
       {include:{
-        model: Category, 
+        model: Category,
         through: {attributes: ['score']}
       }}
       )

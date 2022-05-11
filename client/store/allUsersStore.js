@@ -36,21 +36,8 @@ export const createUser = (user, history) => {
 
 export const fetchUsers = () => {
   return async (dispatch) => {
-    try {
-      const token = window.localStorage.getItem(TOKEN);
-      if (token) {
-        const response = await Axios.get("/api/users", {
-          headers: {
-            authorization: token,
-          },
-        });
-        const data = response.data;
-        console.log(data)
+        const {data}= await Axios.get("/api/users");
         dispatch(setUsers(data));
-      }
-    } catch (err) {
-      next(err)
-    }
   };
 };
 
@@ -77,6 +64,7 @@ export const removeUser = (id, history) => {
 
 const initialState = [];
 export default function userReducer(state = initialState, action) {
+  console.log("TEST", action)
   switch (action.type) {
     case SET_USERS:
       return action.users;
