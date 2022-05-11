@@ -11,6 +11,7 @@ import Registration from './components/Registration';
 import Recommended from './components/Recommended';
 import Friends from './components/Friends';
 import Graph from './components/Graph';
+import Nearby from './components/Nearby'
 
 /**
  * COMPONENT
@@ -35,6 +36,7 @@ class Routes extends Component {
             <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
             <Route exact path="/graph" component={Graph} />
+            <Route exact path="/nearby" component={Nearby} />
 
           </Switch>
         ) : (
@@ -48,6 +50,7 @@ class Routes extends Component {
             <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
             <Route exact path="/graph" component={Graph} />
+            <Route exact path="/nearby" component={Nearby} />
           </Switch>
         )}
       </div>
