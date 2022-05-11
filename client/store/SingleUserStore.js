@@ -14,19 +14,22 @@ export const fetchUser = (id) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
     if (token) {
-      const { data: user } = await Axios.get(`/api/users/${id}`, {
+      const { data: user } = await Axios.get(`/api/users/${id}`,
+       {
         headers: {
           authorization: token,
         },
-      });
+      }
+      );
       dispatch(_setSingleUser(user));
     }
   };
 };
 
 
-const initialState = [];
+const initialState = {};
 export default function singleUserReducer(state = initialState, action) {
+  console.log("ActionSINGLE", action)
   switch (action.type) {
     case SET_SINGLE_USER:
       return action.userData;
