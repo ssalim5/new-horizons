@@ -16,7 +16,7 @@ function create() {
 
     return newUserActivities.push({userId: userId, activityId: activityId, score: score})
   }
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 10000; i++) {
   createUserActivities()}
   return newUserActivities
 }
