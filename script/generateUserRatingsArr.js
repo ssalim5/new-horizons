@@ -6,7 +6,7 @@ async function generateUserRatingsArr(){
     const useAct = await UserActivities.findAll()
     const userCount = await User.count()
     const activityCount = await Activity.count()
-    
+
     //build a matrix the length of userCount and the width of activityCount (fill with -1)
     let arr = Array(userCount).fill(-1).map(()=>Array(activityCount).fill(-1))
 
@@ -15,8 +15,8 @@ async function generateUserRatingsArr(){
     useAct.forEach((elem)=>{
         arr[elem.userId-1][elem.activityId-1]=elem.score
     })
-    
 
+   
     //module.exports = arr
     return arr
 }
@@ -26,3 +26,4 @@ const userRatingArr = generateUserRatingsArr()
 //console.log(generateUserRatingsArr())
 module.exports = generateUserRatingsArr
 generateUserRatingsArr()
+
