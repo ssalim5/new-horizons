@@ -4,7 +4,7 @@ import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
-import UserProfile from './components/UserProfile';
+import UserProfile from './components/Userprofile';
 import AllActivities from './components/AllActivities';
 import SingleActivity from './components/SingleActivity';
 import Registration from './components/Registration';
