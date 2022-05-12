@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { models: { User, Activity, Category }} = require('../db')
+const jwt = require('jsonwebtoken')
 module.exports = router
 
 //GET: read all users
@@ -14,41 +15,41 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//GET: read single user
-router.get('/:id', async (req, res, next) => {
-  try {
-    const singleUser = await User.findOne({
-      where: {
-        id: req.params.id,
-      },
-      attributes: ['id', 'username', 'email', 'imageUrl'],
-    });
-    res.json(singleUser);
-  } catch (err) {
-    next(err)
-  }
-})
-
-
 //GET: read users activities
-router.get("/activities/:userId", async (req,res,next) => {
+router.get("/activities", async (req,res,next) => {
   try{
-    console.log(req.params.userId)
+    console.log("START")
+    const {id} = await jwt.verify(req.headers.authorization, process.env.JWT)
     const userActivities = await User.findByPk(
-      req.params.userId,
+      id,
       {include:{
         model: Activity,
-        through: {attributes: ['score']}
+        // through: {attributes: ['score']}
       }}
       )
-    res.send(userActivities.activities)
-  }
-  catch(error){
-    next(error)
-  }
-})
+      res.send(userActivities.activities)
+    }
+    catch(error){
+      next(error)
+    }
+  })
 
-//GET: read users categories
+  //GET: read single user
+  router.get('/:id', async (req, res, next) => {
+    try {
+      const singleUser = await User.findOne({
+        where: {
+          id: req.params.id,
+        },
+        attributes: ['id', 'username', 'email', 'imageUrl'],
+      });
+      res.json(singleUser);
+    } catch (err) {
+      next(err)
+    }
+  })
+  
+  //GET: read users categories
 router.get("/categories/:userId", async (req,res,next) => {
   try{
     console.log(req.params.userId)
