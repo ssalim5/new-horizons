@@ -4,7 +4,7 @@ import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
-import UserProfile from './components/UserProfile';
+import UserProfile from './components/Userprofile';
 import AllActivities from './components/AllActivities';
 import SingleActivity from './components/SingleActivity';
 import Registration from './components/Registration';
@@ -12,6 +12,8 @@ import Recommended from './components/Recommended';
 import Friends from './components/Friends';
 import Graph from './components/Graph';
 import Nearby from './components/Nearby'
+import AllUsers from './components/AllUsers';
+import AddFriends from './components/AddFriends'
 
 /**
  * COMPONENT
@@ -36,7 +38,13 @@ class Routes extends Component {
             <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
             <Route exact path="/graph" component={Graph} />
+<<<<<<< HEAD
             <Route exact path="/nearby" component={Nearby} />
+=======
+            <Route exact path="/users" component={AllUsers} />
+            <Route exact path="/users/:id" component={UserProfile} />
+            <Route exact path="/addfriends/:id" component={AddFriends} />
+>>>>>>> main
 
           </Switch>
         ) : (
@@ -50,7 +58,12 @@ class Routes extends Component {
             <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
             <Route exact path="/graph" component={Graph} />
+<<<<<<< HEAD
             <Route exact path="/nearby" component={Nearby} />
+=======
+            <Route exact path="/users" component={AllUsers} />
+            <Route exact path="/addfriends/:id" component={AddFriends} />
+>>>>>>> main
           </Switch>
         )}
       </div>

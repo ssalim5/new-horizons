@@ -1,3 +1,4 @@
+const { user } = require('pg/lib/defaults')
 const { models: { UserActivities, User, Activity }} = require('../server/db')
 
 async function generateUserRatingsArr(){
@@ -5,7 +6,7 @@ async function generateUserRatingsArr(){
     const useAct = await UserActivities.findAll()
     const userCount = await User.count()
     const activityCount = await Activity.count()
-    
+
     //build a matrix the length of userCount and the width of activityCount (fill with -1)
     let arr = Array(userCount).fill(-1).map(()=>Array(activityCount).fill(-1))
 
@@ -14,10 +15,15 @@ async function generateUserRatingsArr(){
     useAct.forEach((elem)=>{
         arr[elem.userId-1][elem.activityId-1]=elem.score
     })
-    
-    //console.log(arr)
+
+   
+    //module.exports = arr
     return arr
 }
 
-// generateUserRatingsArr()
-console.log(generateUserRatingsArr())
+const userRatingArr = generateUserRatingsArr()
+//console.log(userRatingArr)
+//console.log(generateUserRatingsArr())
+module.exports = generateUserRatingsArr
+generateUserRatingsArr()
+
