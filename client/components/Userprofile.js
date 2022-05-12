@@ -17,7 +17,8 @@ class UserProfile extends React.Component {
             <h1>USER: {user.name}</h1>
             <h2>USER EMAIL: {user.email}</h2>
             <div><img src= {user.imageUrl}/></div>
-           <div> <Link to={`/user/modify/${this.props.match.params.id}`}>Modify {user.name}</Link></div>
+           <div> <Link to={`/user/modify/${this.props.match.params.id}`}>Modify </Link></div>
+           <div><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link></div>
            </div>
            )
       : (
@@ -30,7 +31,7 @@ class UserProfile extends React.Component {
 
 const mapState = (state) => {
   return {
-    userData: state.userData,
+    userData: state.user,
   };
 };
 

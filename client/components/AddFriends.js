@@ -4,7 +4,7 @@ import { fetchUsers} from "../store/allUsersStore";
 import { Link } from "react-router-dom";
 import { createFriend } from "../store/friendsStore";
 
-export class AllUsers extends React.Component {
+export class AddFriends extends React.Component {
   constructor() {
     super()
   }
@@ -12,21 +12,33 @@ export class AllUsers extends React.Component {
     this.props.fetchUsers();
   }
 
+  handleFriend(user){
+    const select = {
+      userId: this.props.match.params.id,
+      friendId: `${user.id}`
+    }
+    console.log("FRIEND", select)
+    this.props.createFriend(select)
+  }
+
 
   render() {
     const users = this.props.allUsers
     return (
       <div className="container">
-        <div></div>
+        <div>ADD FRIENDS</div>
         {users.map((user) => {
           return (
             <div className="user" key={user.id}>
-              <Link to={`/users/${user.id}`} key={user.id}>
-                <div key={user.id}>
+
                   <h1 className="name">{user.username}</h1>
-                  {/* <h2>{user.email}</h2> */}
-                </div>
-              </Link>
+                  <form onSubmit={(ev) => ev.preventDefault()}>
+        <button type="submit"
+          onClick={() => {this.handleFriend(user)}}
+        >
+          SELECT FRIEND
+        </button>
+        </form>
             </div>
           );
         })}
@@ -38,13 +50,15 @@ export class AllUsers extends React.Component {
 const mapStateToProps = (state) => {
   return {
     allUsers: state.allUsers,
+    friends: state.friends
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
+    createFriend: (friend) => dispatch(createFriend(friend, history))
   };
 };
 
-export default connect(mapStateToProps, mapDispatch)(AllUsers);
+export default connect(mapStateToProps, mapDispatch)(AddFriends);

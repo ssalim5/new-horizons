@@ -7,13 +7,15 @@ import singleUserReducer from './SingleUserStore'
 import activitiesReducer from './allActivitiesStore'
 import singleActivityReducer from './singleActivityStore'
 import userReducer from './allUsersStore'
+import friendReducer from './friendsStore'
 
 const reducer = combineReducers({
    auth,
   user: singleUserReducer,
   activities: activitiesReducer,
   singleActivity: singleActivityReducer,
-  allUsers: userReducer
+  allUsers: userReducer,
+  friends: friendReducer
   })
 
 const middleware = composeWithDevTools(
