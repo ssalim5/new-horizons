@@ -28,3 +28,40 @@ form div {
   color: white;
   background-color: red;
 }
+
+/* rating modal stars css */
+.ratingStars {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.ratingStars:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.ratingStars:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.ratingStars:not(:checked) > label:before {
+    content: '★ ';
+}
+.ratingStars > input:checked ~ label {
+    color: #ffc700;    
+}
+.ratingStars:not(:checked) > label:hover,
+.ratingStars:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.ratingStars > input:checked + label:hover,
+.ratingStars > input:checked + label:hover ~ label,
+.ratingStars > input:checked ~ label:hover,
+.ratingStars > input:checked ~ label:hover ~ label,
+.ratingStars > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
