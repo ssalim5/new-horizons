@@ -1,7 +1,5 @@
 const router = require('express').Router()
 const { models: { UserActivities, User, Activity }} = require('../db')
-const jwt = require('jsonwebtoken')
-const { is } = require('express/lib/request')
 module.exports = router
 
 router.get("/", async (req,res,next)=>{
@@ -21,22 +19,24 @@ router.get("/", async (req,res,next)=>{
 //POST: add a new activity to useractivities for user
 router.post("/", async (req, res, next) => {
     try {
-        const {id} = await jwt.verify(req.headers.authorization, process.env.JWT)
+        //console.log("---HEADERS---",req.headers.authorization)
+        const user = await User.findByToken(req.headers.authorization)
+        console.log("---ID---",user.id)
         if(await UserActivities.findOne({
             where:{
-                userId:id,
+                userId:user.id,
                 activityId: req.body.activityId
             }
         })){
             return res.status(403).send("this user/activity already exists")
         }else{
             await UserActivities.create({
-                userId: id,
+                userId:user.id,
                 activityId: req.body.activityId,
                 score: req.body.score
             });
             const createdUserActivity = await User.findByPk(
-                id,
+                user.id,
                 {include:{
                     model: Activity,
                     where: {

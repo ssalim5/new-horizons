@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleActivity} from "../store/singleActivityStore"
 import { Link } from 'react-router-dom'
+import RatingsModal from './RatingsModal'
 
 
 
@@ -15,10 +16,12 @@ class SingleActivity extends React.Component{
 
     render(){
         const singleActivity = this.props.singleActivity
-        console.log("ACTIVE", singleActivity)
+        console.log("ACTIVE", singleActivity.id)
         return (
-            <div>{ singleActivity ?
-                (<div>
+            <div>
+                { singleActivity ?
+                (
+                <div>
                     <div><img src= {singleActivity.imageUrl}/></div>
                     <div><h2>ExperienceNeeded: {singleActivity.experienceNeeded}</h2></div>
                     <div><h2>ExertionLevel: {singleActivity.exertionLevel}</h2></div>
@@ -27,9 +30,13 @@ class SingleActivity extends React.Component{
                     <div><h2>Time: {singleActivity.time}</h2></div>
                     <div><h2>Price: {singleActivity.price}</h2></div>
                     <div><h2>Description: {singleActivity.description}</h2></div>
-                </div>)
+                    {window.localStorage.getItem("token") ? <RatingsModal activityId={singleActivity.id} /> : ""}
+                </div>
+                
+                )
                 : 'There is no activity data'
-            }
+                }
+                
             </div>
         )
     };

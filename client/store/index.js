@@ -7,13 +7,15 @@ import singleUserReducer from './SingleUserStore'
 import activitiesReducer from './allActivitiesStore'
 import singleActivityReducer from './singleActivityStore'
 import userReducer from './allUsersStore'
+import userActivitiesReducer from './userActivitiesStore'
 
 const reducer = combineReducers({
-   auth,
+  auth,
   user: singleUserReducer,
   activities: activitiesReducer,
   singleActivity: singleActivityReducer,
-  allUsers: userReducer
+  allUsers: userReducer,
+  userActivities: userActivitiesReducer,
   })
 
 const middleware = composeWithDevTools(
@@ -23,3 +25,4 @@ const store = createStore(reducer, middleware)
 
 export default store
 export * from './auth'
+export * from './userActivitiesStore'

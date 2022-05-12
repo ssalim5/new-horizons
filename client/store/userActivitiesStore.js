@@ -1,7 +1,7 @@
 import axios from 'axios'
-import history from '../history'
 
 /* ACTION TYPES */
+const TOKEN = 'token'
 const GET_USERACTIVITY = "GET_USERACTIVITIES"
 const POST_USERACTIVITY = "POST_USERACTIVITY"
 
@@ -23,17 +23,27 @@ export const _getUserActivities = (userActivities) => {
 /* THUNKS */
 export const getUserActivity = () => {
     return async (dispatch) => {
-        const {data} = await axios.get("/api/users/activities")
+        const {data} = await axios.get("/api/users/useractivities")
         dispatch(_getUserActivities(data))
     }
 }
 
 export const postUserActivity = (activityId,score) => {
+    const token = window.localStorage.getItem(TOKEN)
+    console.log("---TOKEN---",token)
     return async (dispatch) => {
-        const {data} = await axios.post("/api/activities",{
+        const {data} = await axios.post("/api/useractivities",
+        {
             activityId: activityId,
             score: score
-        })
+        },
+        {
+            headers: {
+                authorization: token
+              },
+        },
+        )
+        console.log("DATA: ",data)
         dispatch(_postUserActivity(data))
     }
 }
@@ -46,5 +56,9 @@ const userActivitiesReducer = (state = initialState, action) => {
             return action.userActivity
         case POST_USERACTIVITY:
             return [...state,action.userActivity]
+        default:
+            return state;
     }
 }
+
+export default userActivitiesReducer
