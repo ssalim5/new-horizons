@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchActivities} from "../store/allActivitiesStore";
 import { Link } from 'react-router-dom'
+import RatingsModal from './RatingsModal'
 
 
 export class AllActivities extends React.Component {
@@ -19,12 +20,13 @@ export class AllActivities extends React.Component {
       {this.props.activities.map((activity) => {
         return (
           <div className="activity" key={activity.id}>
-        <Link to ={`/activities/${activity.id}`}key={activity.id}>
-        <div key={activity.id}>
-          <div> Name: {activity.name} </div>
-          <img src={activity.imageUrl} />
-        </div>
-        </Link>
+            <Link to ={`/activities/${activity.id}`}key={activity.id}>
+              <div key={activity.id}>
+                <div> Name: {activity.name} </div>
+                <img src={activity.imageUrl} />
+              </div>
+            </Link>
+            {window.localStorage.getItem("token") ? <RatingsModal activityId={activity.id} /> : ""}
           </div>
         )
       })}

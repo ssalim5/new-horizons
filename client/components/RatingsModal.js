@@ -10,8 +10,19 @@ export default function RatingsModal (props) {
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
 
+    const customStyles = {
+        content: {
+          top: '35%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          width: '60%',
+          transform: 'translate(-40%, -10%)',
+        },
+    };
+
     function onChange(event){
-        console.log("INPUT: ", activityId,Number(event.target.value))
         dispatch(postUserActivity(activityId,event.target.value))
         toggleModal()
     }
@@ -25,8 +36,9 @@ export default function RatingsModal (props) {
         <div>
             <button type="button" onClick={toggleModal}>Add Activity</button>
 
-            <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="ratings menu">
-                <form onChange={onChange}>
+            <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="ratings menu" style={customStyles}>
+                <button type="button" className="close-modal"onClick={toggleModal}>x</button>
+                <form className="ratingStars" onChange={onChange}>
                     <input type="radio" id="star5" name="rate" value="5" />
                     <label htmlFor="star5" title="text">5 stars</label>
 
@@ -42,8 +54,6 @@ export default function RatingsModal (props) {
                     <input type="radio" id="star1" name="rate" value="1" />
                     <label htmlFor="star1" title="text">1 star</label>
                 </form>
-                <button type="button" className="close-modal"onClick={toggleModal}>x</button>
-                <button type="button" onClick={()=>{console.log(rating)}}>check rating</button>
             </Modal>
             
         </div>

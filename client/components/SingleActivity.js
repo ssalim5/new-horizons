@@ -16,7 +16,7 @@ class SingleActivity extends React.Component{
 
     render(){
         const singleActivity = this.props.singleActivity
-        console.log("ACTIVE", singleActivity.id)
+        //console.log("ACTIVE", singleActivity.id)
         return (
             <div>
                 { singleActivity ?

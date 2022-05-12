@@ -64,7 +64,7 @@ export const removeUser = (id, history) => {
 
 const initialState = [];
 export default function userReducer(state = initialState, action) {
-  console.log("TEST", action)
+  //console.log("TEST", action)
   switch (action.type) {
     case SET_USERS:
       return action.users;

@@ -16,7 +16,7 @@ export const _postUserActivity = (userActivity) => {
 export const _getUserActivities = (userActivities) => {
     return{
         type: GET_USERACTIVITY,
-        userActivity
+        userActivities
     }
 }
 
@@ -30,7 +30,6 @@ export const getUserActivity = () => {
 
 export const postUserActivity = (activityId,score) => {
     const token = window.localStorage.getItem(TOKEN)
-    console.log("---TOKEN---",token)
     return async (dispatch) => {
         const {data} = await axios.post("/api/useractivities",
         {
@@ -43,7 +42,6 @@ export const postUserActivity = (activityId,score) => {
               },
         },
         )
-        console.log("DATA: ",data)
         dispatch(_postUserActivity(data))
     }
 }
@@ -53,7 +51,7 @@ const initialState = [];
 const userActivitiesReducer = (state = initialState, action) => {
     switch(action.type){
         case GET_USERACTIVITY:
-            return action.userActivity
+            return action.userActivities
         case POST_USERACTIVITY:
             return [...state,action.userActivity]
         default:
