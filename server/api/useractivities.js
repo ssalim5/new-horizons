@@ -1,19 +1,25 @@
 const router = require('express').Router()
 const { models: { UserActivities }} = require('../db')
+const jwt = require('jsonwebtoken')
 module.exports = router
 
 //POST: add a new activity to useractivities for user
 router.post("/", async (req, res, next) => {
     try {
+        const {id} = await jwt.verify(req.headers.authorization, process.env.JWT)
         if(await UserActivities.findOne({
             where:{
-                userId:req.body.userId,
+                userId:id,
                 activityId: req.body.activityId
             }
         })){
             return res.status(403).send("this user/activity already exists")
         }else{
-            res.status(201).send(await UserActivities.create(req.body));
+            res.status(201).send(await UserActivities.create({
+                userId: id,
+                activityId: req.body.activityId,
+                score: req.body.score
+            }));
         }
     } catch (error) {
         next(error);
