@@ -10,9 +10,9 @@ function randomInt(min, max) {
 function create() {
   let newUserActivities = []
   const createUserActivities = () => {
-    const userId = randomInt(1,100)
+    const userId = randomInt(1,101)
     const activityId = randomInt(1,50)
-    const score = randomInt(-1,5)
+    const score = randomInt(0,5)
 
     return newUserActivities.push({userId: userId, activityId: activityId, score: score})
   }

@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { user } = require('pg/lib/defaults')
 const { models: { User, Activity, Category }} = require('../db')
 module.exports = router
 
@@ -14,6 +15,52 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get("/activities/rec",async(req,res,next)=>{
+  try{ 
+    let {id}= await User.findByToken(req.headers.authorization);
+    let data = require('../../calculated_tables/estimatedRatings.json')
+    let user_data = data[id-1]
+    let allActivities = await Activity.findAll({order:[['id','ASC']]})
+    const userActivities = await User.findByPk(
+      id,
+      {include:{
+        model: Activity, 
+        through: {attributes: ['score']}
+      }}
+    )
+    console.log(id)
+    let indicesToSkip=userActivities.activities.map((element)=>{return element.id-1})
+    console.log(indicesToSkip)
+    console.log(userActivities.activities)
+    let recommendedActivities = []
+    for (let ind=0;ind<allActivities.length;ind++){
+      if (!indicesToSkip.includes(ind)){
+        recommendedActivities.push({...(allActivities[ind].dataValues),score:user_data[ind]})
+      }
+    }
+    res.send(recommendedActivities)
+  }
+  catch(error){
+    next(error)
+  } 
+})
+
+//GET: read single user
+router.get('/:id', async (req, res, next) => {
+  try {
+    const singleUser = await User.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ['id', 'username', 'email', 'imageUrl'],
+    });
+    res.json(singleUser);
+  } catch (err) {
+    next(err)
+  }
+})
+
+
 //GET: read users activities
 router.get("/activities/:userId", async (req,res,next) => {
   try{
@@ -21,7 +68,7 @@ router.get("/activities/:userId", async (req,res,next) => {
     const userActivities = await User.findByPk(
       req.params.userId,
       {include:{
-        model: Activity, 
+        model: Activity,
         through: {attributes: ['score']}
       }}
       )
@@ -31,7 +78,6 @@ router.get("/activities/:userId", async (req,res,next) => {
     next(error)
   }
 })
-
 //GET: read users categories
 router.get("/categories/:userId", async (req,res,next) => {
   try{
@@ -39,7 +85,7 @@ router.get("/categories/:userId", async (req,res,next) => {
     const userCategories = await User.findByPk(
       req.params.userId,
       {include:{
-        model: Category, 
+        model: Category,
         through: {attributes: ['score']}
       }}
       )

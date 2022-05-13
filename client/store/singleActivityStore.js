@@ -24,7 +24,7 @@ export const fetchSingleActivity = (id) => {
 
 const initialState = {};
 const singleActivityReducer = (state = initialState, action) => {
-  console.log("Action", action)
+  //console.log("Action!!", action)
   switch (action.type) {
     case SET_SINGLE:
       return action.activity;

@@ -36,21 +36,8 @@ export const createUser = (user, history) => {
 
 export const fetchUsers = () => {
   return async (dispatch) => {
-    try {
-      const token = window.localStorage.getItem(TOKEN);
-      if (token) {
-        const response = await Axios.get("/api/users", {
-          headers: {
-            authorization: token,
-          },
-        });
-        const data = response.data;
-        console.log(data)
+        const {data}= await Axios.get("/api/users");
         dispatch(setUsers(data));
-      }
-    } catch (err) {
-      next(err)
-    }
   };
 };
 
