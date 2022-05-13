@@ -15,7 +15,9 @@ export class AddFriends extends React.Component {
   handleFriend(user){
     const select = {
       userId: this.props.match.params.id,
+      username: user.username,
       friendId: `${user.id}`
+
     }
     console.log("FRIEND", select)
     this.props.createFriend(select)

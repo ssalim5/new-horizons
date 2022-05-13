@@ -13,6 +13,14 @@ const Friend = db.define('friend', {
         type: Sequelize.INTEGER,
         unique: false
     },
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          notEmpty: true
+        }
+      },
 })
 
 

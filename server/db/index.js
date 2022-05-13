@@ -21,7 +21,10 @@ User.belongsToMany(Activity, {through: {model: UserActivities, foreignKey: "user
 Category.belongsToMany(User, {through: {model: UserCategories, foreignKey: "categoryId", otherKey: "userId", unique: false}})
 User.belongsToMany(Category, {through: {model: UserCategories, foreignKey: "userId", otherKey: "categoryId", unique: false}})
 
-User.belongsToMany(User, { as: 'friends', through: {model:Friend, foreignKey: "friendId", otherKey: "userId", unique: false}})
+// Friend.belongsToMany(User, { as: 'friends', through: {model:Friend, foreignKey: "friendId", otherKey: "userId", unique: false}})
+// User.belongsToMany(Friend, { as: 'friends', through: {model:Friend, foreignKey: "friendId", otherKey: "userId", unique: false}})
+
+// Friend.belongsToMany(User, { as: 'friends', through: {model:Friend, foreignKey: "friendId", unique: false}})
 
 module.exports = {
   db,

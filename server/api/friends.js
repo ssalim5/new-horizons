@@ -10,3 +10,16 @@ router.post("/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const friends = await Friend.findAll({
+      where: {
+        userId: req.params.id
+       },
+  });
+    res.json(friends)
+  } catch (err) {
+    next(err)
+  }
+})
