@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import Modal from 'react-modal'
-import {postUserActivity} from '../../store/userActivitiesStore'
+import {postUserActivity} from '../../store/allActivitiesStore'
 
 Modal.setAppElement("#app")
 
 export default function RatingsModal (props) {
-    let {activityId} = props
+    let {activityId,completed} = props
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
 
@@ -23,10 +23,13 @@ export default function RatingsModal (props) {
     };
 
     function onChange(event){
-        dispatch(postUserActivity(activityId,event.target.value))
+        if(completed){
+        }else{
+            dispatch(postUserActivity(activityId,event.target.value))
+        }
         toggleModal()
     }
-
+    
     function toggleModal() {
         setIsOpen(!isOpen)
     }
@@ -34,7 +37,7 @@ export default function RatingsModal (props) {
 
     return(
         <div>
-            <button type="button" onClick={toggleModal}>Add Activity</button>
+            {completed ? <button type="button" onClick={toggleModal}>Updated Rating</button> : <button type="button" onClick={toggleModal}>Add Activity</button>}
 
             <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="ratings menu" style={customStyles}>
                 <button type="button" className="close-modal"onClick={toggleModal}>x</button>

@@ -30,7 +30,7 @@ class SingleActivity extends React.Component{
                     <div><h2>Time: {singleActivity.time}</h2></div>
                     <div><h2>Price: {singleActivity.price}</h2></div>
                     <div><h2>Description: {singleActivity.description}</h2></div>
-                    {window.localStorage.getItem("token") ? <RatingsModal activityId={singleActivity.id} /> : ""}
+                    {singleActivity.useractivities ? <RatingsModal activityId={singleActivity.id} /> : ""}
                 </div>
                 
                 )

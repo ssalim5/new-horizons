@@ -72,6 +72,41 @@ router.get("/:id",async (req,res,next)=>{
   }
 })
 
+router.post("/useractivity", async (req, res, next) => {
+  try {
+      //console.log("---HEADERS---",req.headers.authorization)
+      const user = await User.findByToken(req.headers.authorization)
+      console.log("---ID---",user.id)
+      if(await UserActivities.findOne({
+          where:{
+              userId:user.id,
+              activityId: req.body.activityId
+          }
+      })){
+          return res.status(403).send("this user/activity already exists")
+      }else{
+          await UserActivities.create({
+              userId:user.id,
+              activityId: req.body.activityId,
+              score: req.body.score
+          });
+          const createdUserActivity = await User.findByPk(
+              user.id,
+              {include:{
+                  model: Activity,
+                  where: {
+                      id: req.body.activityId
+                  },
+                  // through: {attributes: ['score']}
+              }
+          })
+          res.status(201).send(createdUserActivity.activities[0])
+      }
+  } catch (error) {
+      next(error);
+  }
+});
+
 //POST: create a new activity (need to be admin?)
 router.post("/", requireToken, async (req, res, next) => {
   try {
@@ -101,11 +136,6 @@ router.put("/update/:id", requireToken, async (req, res, next) => {
     next(error);
   }
 });
-
-
-
-
-
 
 router.put("/:id", requireToken, async (req, res, next) => {
   try {

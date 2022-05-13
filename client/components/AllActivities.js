@@ -21,8 +21,8 @@ export class AllActivities extends React.Component {
           return(
               
             <div className={activity.useractivities ? 
-            (activity.useractivities.length>0 ? "activity-completed":"activity") 
-              : "activity"} key={activity.id}>
+              (activity.useractivities.length>0 ? "activity-completed":"activity") 
+            : "activity"} key={activity.id}>
 
               <Link to ={`/activities/${activity.id}`}>
                 <div> Name: {activity.name} </div>
@@ -30,7 +30,7 @@ export class AllActivities extends React.Component {
               </Link>
 
               {activity.useractivities ? 
-              (activity.useractivities.length>0 ? <div>score: {activity.useractivities[activity.useractivities.length-1].score}</div> : <RatingsModal activityId={activity.id}/>)
+                (activity.useractivities.length>0 ? <div>score: {activity.useractivities[activity.useractivities.length-1].score}<RatingsModal activityId={activity.id} completed={true} /></div> : <RatingsModal activityId={activity.id} completed={false} />)
               : ""}
               
             </div>
