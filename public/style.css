@@ -19,7 +19,27 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
+.activities-container{
+  display: flex;
+	justify-content: flex-start;
+	border-color: black;
+	margin: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+	background-color: black;
+	border-radius: 10px;
+	/* max-width: ; */
+}
+.activity-container{
+  background-color: gray;
+  border-style: solid;
+	border-color: black;
+  border: 4px;
+  margin:10px
+}
+.activityImage{
+  max-width:20rem;
+}
 .alert {
   color: red;
 }
