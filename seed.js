@@ -499,31 +499,42 @@ const activities = [
   {
     id: 1,
     name: "Basketball",
-    description: 'fun activity'
+    description: 'fun activity',
+    exertion: "HIGH"
   },{
     id:2,
     name: "Bowling",
     description: 'fun activity',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Bowlerbowling.JPG'
+    outside: false,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Bowlerbowling.JPG',
+    exertion: "LOW"
   },{
     id:3,
     name: "Chess",
+    outside: false,
     description: 'fun activity',
-    imageUrl: 'https://media.npr.org/assets/img/2016/10/24/gettyimages-492378344_wide-cfdc4528733d810b7feb5e2a884f987a981920ff.jpg?s=1400'
+    imageUrl: 'https://media.npr.org/assets/img/2016/10/24/gettyimages-492378344_wide-cfdc4528733d810b7feb5e2a884f987a981920ff.jpg?s=1400',
+    exertion: "LOW"
   },{
     id:4,
     name: "Movies",
+    outside: false,
     description: 'fun activity',
+    exertion: "LOW",
     imageUrl: 'https://nofilmschool.com/sites/default/files/styles/facebook/public/movie_theater.png?itok=B2xAaSj-'
   },{
     id:5,
     name: "Cooking Class",
+    exertion: "LOW",
+    outside: false,
     description: 'fun activity',
     imageUrl: 'https://churchillmanor.com/wp-content/uploads/2016/10/Napa-Cooking-Classes.jpg'
   },
   {
     id:6,
     name: "Painting",
+    exertion: "LOW",
+    outside: false,
     description: 'fun activity',
     imageUrl: 'https://pensacolafruitwinery.com/wp-content/uploads/2018/02/Beyond-The-Grape-Onto-the-Canvas-Paint-and-Sip-Classes.jpg'
   },
@@ -549,7 +560,8 @@ const activities = [
   id: 10,
   name: "Volleyball",
   description: 'fun activity',
-  imageUrl: 'https://www.tutorialspoint.com/volleyball/images/ball_moves.jpg'
+  imageUrl: 'https://www.tutorialspoint.com/volleyball/images/ball_moves.jpg',
+  exertion: "HIGH"
   },
   {
   id: 11,
@@ -560,6 +572,7 @@ const activities = [
   {
   id: 12,
   name: "Birdwatching",
+  exertion: "LOW",
   description: 'fun activity',
   imageUrl: 'https://ontarionature.org/wp-content/uploads/2013/04/Annual-Gathering-Bird-Watching-Point-Petre-South-Shore-Safari-Mary-Gingritch-%C2%A9-John-Hassell_v2-4.jpg'
   },
@@ -567,11 +580,13 @@ const activities = [
   id: 13,
   name: "Bodyboarding",
   description: 'fun activity',
-  imageUrl: 'https://media.istockphoto.com/photos/surf-picture-id171591741?k=20&m=171591741&s=612x612&w=0&h=7EGc_BigihKhe1xma3F0q1jxOT53MZzGG1hGTh4qBIE='
+  imageUrl: 'https://media.istockphoto.com/photos/surf-picture-id171591741?k=20&m=171591741&s=612x612&w=0&h=7EGc_BigihKhe1xma3F0q1jxOT53MZzGG1hGTh4qBIE=',
+  exertion: "HIGH"
   },
   {
   id: 14,
   name: "Camping",
+  exertion: "LOW",
   description: 'fun activity',
   imageUrl: 'https://pegsandpitches.co.uk/wild-boar-wood/wp-content/uploads/sites/4/2018/03/Friends-around-the-Campfire-1-776x517.jpg'
   },
@@ -579,13 +594,15 @@ const activities = [
   id: 15,
   name: "Canoeing",
   description: 'fun activity',
-  imageUrl: 'https://www.tutorialspoint.com/canoeing/images/paddle.jpg'
+  imageUrl: 'https://www.tutorialspoint.com/canoeing/images/paddle.jpg',
+  exertion: "HIGH"
   },
   {
   id: 16,
   name: "Capture the Flag",
   description: 'fun activity',
-  imageUrl: 'https://scantechgraphics.com/wp-content/uploads/2019/07/capture-the-flag2.jpg'
+  imageUrl: 'https://scantechgraphics.com/wp-content/uploads/2019/07/capture-the-flag2.jpg',
+  exertion: "HIGH"
   },
   {
   id: 17,
@@ -597,13 +614,15 @@ const activities = [
   id: 18,
   name: "Cross-country Skiing",
   description: 'fun activity',
-  imageUrl: 'https://www.salomon.com/sites/default/files/2021-03/XC-skis-landscape_0.jpg'
+  imageUrl: 'https://www.salomon.com/sites/default/files/2021-03/XC-skis-landscape_0.jpg',
+  exertion: "HIGH"
   },
   {
   id: 19,
   name: "Cycling",
   description: 'fun activity',
-  imageUrl: 'https://images.immediate.co.uk/production/volatile/sites/21/2021/05/How-to-improve-your-average-speed-4-ec96ab1.jpg?quality=90&resize=620,413'
+  imageUrl: 'https://images.immediate.co.uk/production/volatile/sites/21/2021/05/How-to-improve-your-average-speed-4-ec96ab1.jpg?quality=90&resize=620,413',
+  exertion: "HIGH"
   },
   {
   id: 20,
@@ -615,17 +634,20 @@ const activities = [
   id: 21,
   name: "Dodgeball",
   description: 'fun activity',
-  imageUrl: 'https://www.gannett-cdn.com/presto/2019/06/09/USAT/efb48ebc-2c06-47c1-8588-d2e63b292c0a-AP_Dodgeball_Record.JPG?crop=4287,2393,x0,y112&width=3200&height=1787&format=pjpg&auto=webp'
+  imageUrl: 'https://www.gannett-cdn.com/presto/2019/06/09/USAT/efb48ebc-2c06-47c1-8588-d2e63b292c0a-AP_Dodgeball_Record.JPG?crop=4287,2393,x0,y112&width=3200&height=1787&format=pjpg&auto=webp',
+  exertion: "HIGH"
   },
   {
   id: 22,
   name: "Dragon Boat Racing",
   description: 'fun activity',
-  imageUrl: 'https://images.rove.me/w_1920,q_85/w6zo21y4qvvyk5tbofcu/singapore-dragon-boat-festival.jpg'
+  imageUrl: 'https://images.rove.me/w_1920,q_85/w6zo21y4qvvyk5tbofcu/singapore-dragon-boat-festival.jpg',
+  exertion: "HIGH"
   },
   {
   id: 23,
   name: "Fishing",
+  exertion: "LOW",
   description: 'fun activity',
   imageUrl: 'https://slatefallsoutposts.com/wp-content/uploads/2019/11/slid1450.jpg'
   },
@@ -633,7 +655,8 @@ const activities = [
   id: 24,
   name: "Frisbee",
   description: 'fun activity',
-  imageUrl: 'https://centralca.cdn-anvilcms.net/media/images/2020/02/29/images/frisbee_1.max-1200x675.jpg'
+  imageUrl: 'https://centralca.cdn-anvilcms.net/media/images/2020/02/29/images/frisbee_1.max-1200x675.jpg',
+  exertion: "HIGH"
   },
   {
   id: 25,
@@ -657,7 +680,8 @@ const activities = [
   id: 28,
   name: "Hide and Seek",
   description: 'fun activity',
-  imageUrl: 'https://media.istockphoto.com/photos/group-of-children-playing-hide-and-seek-picture-id500491579?k=20&m=500491579&s=612x612&w=0&h=RsxZUfteCiH4uVmgpTo1L2RgtZKLkwCYXu-YRRwY5PI='
+  imageUrl: 'https://media.istockphoto.com/photos/group-of-children-playing-hide-and-seek-picture-id500491579?k=20&m=500491579&s=612x612&w=0&h=RsxZUfteCiH4uVmgpTo1L2RgtZKLkwCYXu-YRRwY5PI=',
+  exertion: "HIGH"
   },
   {
   id: 29,
@@ -693,13 +717,15 @@ const activities = [
   id: 34,
   name: "Kayaking",
   description: 'fun activity',
-  imageUrl: 'https://www.nps.gov/apis/planyourvisit/images/Paddlers-on-calm-water.JPG'
+  imageUrl: 'https://www.nps.gov/apis/planyourvisit/images/Paddlers-on-calm-water.JPG',
+  exertion: "HIGH"
   },
   {
   id: 35,
   name: "Keep Away",
   description: 'fun activity',
-  imageUrl: 'https://i.ytimg.com/vi/JzqqYsTfBVg/maxresdefault.jpg'
+  imageUrl: 'https://i.ytimg.com/vi/JzqqYsTfBVg/maxresdefault.jpg',
+  exertion: "HIGH"
   },
   {
   id: 36,
@@ -710,12 +736,14 @@ const activities = [
   {
   id: 37,
   name: "Landscape Painting",
+  exertion: "LOW",
   description: 'fun activity',
   imageUrl: 'https://www.liveabout.com/thmb/JyBoiDXebwx7NqhWQwyyyYuHbzk=/1900x1069/smart/filters:no_upscale()/10188181-56a6e6d25f9b58b7d0e56963.jpg'
   },
   {
   id: 38,
   name: "Lawn Bowling",
+  exertion: "LOW",
   description: 'fun activity',
   imageUrl: 'https://www.tutorialspoint.com/lawn_bowling/images/how_to_play.jpg'
   },
@@ -723,7 +751,8 @@ const activities = [
   id: 39,
   name: "Tag",
   description: 'fun activity',
-  imageUrl: 'https://icebreakerideas.com/wp-content/uploads/2020/04/Tag-Games-for-PE.png'
+  imageUrl: 'https://icebreakerideas.com/wp-content/uploads/2020/04/Tag-Games-for-PE.png',
+  exertion: "HIGH"
   },
   {
   id: 40,
@@ -734,12 +763,14 @@ const activities = [
   {
   id: 41,
   name: "Photography",
+  exertion: "LOW",
   description: 'fun activity',
   imageUrl: 'https://dvyvvujm9h0uq.cloudfront.net/com/articles/1515135672-shutterstock_284581649.jpg'
   },
   {
   id: 42,
   name: "Picnic",
+  exertion: "LOW",
   description: 'fun activity',
   imageUrl: 'https://learnenglishteens.britishcouncil.org/sites/teens/files/styles/article/public/istock_000017127089small.jpg?itok=GgWk_Uiz'
   },
@@ -747,19 +778,22 @@ const activities = [
   id: 43,
   name: "Rock Climbing",
   description: 'fun activity',
-  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQWx7ssHJRUicihjRP3oGVUj_bLH4ufjTJMw&usqp=CAU'
+  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQWx7ssHJRUicihjRP3oGVUj_bLH4ufjTJMw&usqp=CAU',
+  exertion: "HIGH"
   },
   {
   id: 44,
   name: "Rowing",
   description: 'fun activity',
-  imageUrl: 'https://usrowing.org/images/2019/9/17/Sweep_vs_Sculling.jpg'
+  imageUrl: 'https://usrowing.org/images/2019/9/17/Sweep_vs_Sculling.jpg',
+  exertion: "HIGH"
   },
   {
   id: 45,
   name: "Running",
   description: 'fun activity',
-  imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/female-running-friends-royalty-free-image-1642534924.jpg?crop=0.668xw:1.00xh;0.233xw,0&resize=640:*'
+  imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/female-running-friends-royalty-free-image-1642534924.jpg?crop=0.668xw:1.00xh;0.233xw,0&resize=640:*',
+  exertion: "HIGH"
   },
   {
   id: 46,
@@ -770,6 +804,7 @@ const activities = [
 {
  id: 47,
 name: "Sightseeing",
+exertion: "LOW",
  description: 'fun activity',
 imageUrl: 'https://previews.123rf.com/images/grinvalds/grinvalds1507/grinvalds150700063/42099403-tourists-sightseeing-in-venice.jpg'
 },
@@ -784,7 +819,7 @@ id: 49,
  name: "Snorkelling",
  description: 'fun activity',
 imageUrl: 'https://www.sandals.com/blog/content/images/2019/04/3_islandroutes_38-Adv-Eco.jpg'
-    },
+},
   {
    id: 50,
     name: "Snowboarding",
