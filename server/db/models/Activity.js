@@ -11,35 +11,32 @@ const Activity = db.define('activity', {
       notEmpty: true,
     },
   },
-    exertion: { type: Sequelize.STRING,
-      defaultValue: "low",
+    exertion: { type: Sequelize.DataTypes.ENUM("LOW", "MEDIUM", "HIGH"),
+    defaultValue: "MEDIUM",
+    allowNull: false,
       },
-      experienceNeeded: { type: Sequelize.STRING,
-        defaultValue: "none",
-        },
-       numberOfPeople: {
-      type: Sequelize.STRING,
-      defaultValue: "1",
+      // experienceNeeded: { type: Sequelize.STRING,
+      //   defaultValue: "none",
+      //   },
+      //  numberOfPeople: {
+      // type: Sequelize.STRING,
+      // defaultValue: "1",
+      // },
+      outside: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+      allowNull: false,
       },
-      venue: {
-      type: Sequelize.STRING,
-      defaultValue: "outside",
-      },
-      time: {
-        type: Sequelize.STRING,
-        defaultValue: "one hour",
-        },
+      // time: {
+      //   type: Sequelize.STRING,
+      //   defaultValue: "one hour",
+      //   },
       description: {
         type: Sequelize.TEXT,
         allowNull: false,
         validate: {
           notEmpty: true,
-        }
-        },
-        price: {
-          type: Sequelize.INTEGER,
-          defaultValue: 0,
-          },
+        }},
     imageUrl: {
       type: Sequelize.STRING,
       defaultValue: 'https://www.eatright.org/-/media/eatrightimages/fitness/exercise/benefitsofphysicalactivity/playingbasketball-1062855462.jpg',

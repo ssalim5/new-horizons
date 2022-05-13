@@ -21,7 +21,7 @@ export class AllUsers extends React.Component {
         {users.map((user) => {
           return (
             <div className="user" key={user.id}>
-              <Link to={`/users/${user.id}`} key={user.id}>
+              <Link to={`/usersActivities/${user.id}`} key={user.id}>
                 <div key={user.id}>
                   <h1 className="name">{user.username}</h1>
                   {/* <h2>{user.email}</h2> */}
