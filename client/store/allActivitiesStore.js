@@ -40,17 +40,12 @@ const _updateActivity = (ACTIVITY) => {
 export const fetchActivities = () => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
-    if(token){
-      const { data } = await axios.get("/api/activities/user",{
+      const { data } = await axios.get("/api/activities/",{
         headers: {
           authorization: token
         }
       });
       dispatch(_setActivities(data));
-    }else{
-      const { data } = await axios.get("/api/activities");
-      dispatch(_setActivities(data))
-    }
   };
 };
 

@@ -13,17 +13,17 @@ const requireToken = async (req, res, next) => {
 };
 
 //GET: read all activities (logged out)
-router.get("/", async (req, res, next) => {
-  try {
-    const activity= await Activity.findAll();
-    res.json(activity);
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get("/", async (req, res, next) => {
+//   try {
+//     const activity= await Activity.findAll();
+//     res.json(activity);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 //GET: read all activities (logged in)
-router.get("/user", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization)
     const activity= await Activity.findAll({
@@ -43,17 +43,17 @@ router.get("/user", async (req, res, next) => {
 });
 
 //GET: read a single activity - find by activity.Id (logged out)
-router.get("/:id", async (req, res, next) => {
-  try {
-    const activity = await Activity.findByPk(req.params.id);
-    res.json(activity);
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get("/:id", async (req, res, next) => {
+//   try {
+//     const activity = await Activity.findByPk(req.params.id);
+//     res.json(activity);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 //GET: read a single activity - find by activity.Id (logged in)
-router.get("/user/:id",async (req,res,next)=>{
+router.get("/:id",async (req,res,next)=>{
   try{
     const user = await User.findByToken(req.headers.authorization)
     const activity = await Activity.findByPk(req.params.id,{

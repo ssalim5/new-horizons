@@ -1,5 +1,7 @@
 import Axios from "axios";
 
+const TOKEN = "token";
+
 const SET_SINGLE = "SET_SINGLE_ACTIVITY";
 
 const _setSingleActivity = (activity) => {
@@ -12,7 +14,13 @@ const _setSingleActivity = (activity) => {
 export const fetchSingleActivity = (id) => {
   return async (dispatch) => {
     try {
-      const response = await Axios.get(`/api/activities/${id}`);
+      const token = window.localStorage.getItem(TOKEN);
+      const response = await Axios.get(`/api/activities/${id}`,{
+        headers: {
+          authorization: token
+        }
+      }
+      );
       const data = response.data;
       dispatch(_setSingleActivity(data))
     } catch (err) {

@@ -44,17 +44,17 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
-            <Route exact path='/' component={ Home } />
+            <Route exact path='/' component={ Login } />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/activities" component={AllActivities} />
+            {/* <Route exact path="/activities" component={AllActivities} />
             <Route exact path="/activities/:id" component={SingleActivity} />
-            <Route exact path="/user/:id" component={UserProfile} />
+            <Route exact path="/user/:id" component={UserProfile} /> */}
             <Route exact path="/registration" component={Registration} />
-            <Route exact path="/recommended" component={Recommended} />
+            {/* <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
             <Route exact path="/graph" component={Graph} />
             <Route exact path="/users" component={AllUsers} />
-            <Route exact path="/addfriends/:id" component={AddFriends} />
+            <Route exact path="/addfriends/:id" component={AddFriends} /> */}
           </Switch>
         )}
       </div>
