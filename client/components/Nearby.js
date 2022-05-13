@@ -1,5 +1,6 @@
 import React from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import GeoLocation from './Geolocation';
 
 const mapStyles = {
   width: '100%',
@@ -17,18 +18,18 @@ export class Nearby extends React.Component {
   render() {
     return (
       <div>
-      <div>THIS IS THE NEARBY</div>
-      {<Map
+        <GeoLocation />
+        <Map
           google={this.props.google}
           zoom={14}
           style={mapStyles}
-          initialCenter={
-            {
+          initialCenter={{
               lat: -1.2884,
               lng: 36.8233
-            }
-          }
-        />}
+          }}
+        >
+          <Marker onClick={this.onMarkerClick} name={"test"}/>
+        </Map>
       </div>
     )
   }
