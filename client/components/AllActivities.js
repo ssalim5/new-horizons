@@ -51,7 +51,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch, { history }) => {
   return {
     fetchActivities: () => dispatch(fetchActivities()),
-    fetchActivitiesWithUserInfo: () => dispatch(fetchActivitiesWithUserInfo())
   };
 };
 

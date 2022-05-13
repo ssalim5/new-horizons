@@ -54,18 +54,6 @@ export const fetchActivities = () => {
   };
 };
 
-export const fetchActivitiesWithUserInfo = () => {
-  return async (dispatch) => {
-    const token = window.localStorage.getItem(TOKEN);
-    const { data } = await axios.get("/api/activities/user",{
-      headers: {
-        authorization: token
-      }
-    });
-    dispatch(_setActivities(data));
-  };
-}
-
 export const createActivity = (activity, history) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);

@@ -1,8 +1,5 @@
 const router = require("express").Router();
-const {
-  models: { Activity,User },
-} = require("../db");
-const UserActivities = require("../db/models/User-Activities");
+const {models: { Activity,User,UserActivities }} = require("../db");
 module.exports = router;
 
 const requireToken = async (req, res, next) => {
@@ -15,7 +12,7 @@ const requireToken = async (req, res, next) => {
   }
 };
 
-//GET: read all activities
+//GET: read all activities (logged out)
 router.get("/", async (req, res, next) => {
   try {
     const activity= await Activity.findAll();
@@ -25,7 +22,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//GET: read all activities with additional user information
+//GET: read all activities (logged in)
 router.get("/user", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization)
@@ -37,16 +34,15 @@ router.get("/user", async (req, res, next) => {
         },
         attributes:['score','updatedAt'],
         required: false
-
       }
     });
-    res.json(activity);
+    res.json(activity)
   } catch (err) {
     next(err);
   }
 });
 
-//GET: read a single activity - find by activity.Id
+//GET: read a single activity - find by activity.Id (logged out)
 router.get("/:id", async (req, res, next) => {
   try {
     const activity = await Activity.findByPk(req.params.id);
@@ -55,6 +51,26 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+//GET: read a single activity - find by activity.Id (logged in)
+router.get("/user/:id",async (req,res,next)=>{
+  try{
+    const user = await User.findByToken(req.headers.authorization)
+    const activity = await Activity.findByPk(req.params.id,{
+      include:{
+        model:UserActivities,
+        where:{
+          userId:user.id
+        },
+        attributes:['score','updatedAt'],
+        required: false
+      }
+    })
+    res.json(activity)
+  } catch (error) {
+    next(error)
+  }
+})
 
 //POST: create a new activity (need to be admin?)
 router.post("/", requireToken, async (req, res, next) => {
