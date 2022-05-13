@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleActivity} from "../store/singleActivityStore"
 import { Link } from 'react-router-dom'
-import RatingsModal from './RatingsModal'
+import RatingsModal from './utilities/RatingsModal'
 
 
 

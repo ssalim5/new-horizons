@@ -21,6 +21,8 @@ User.belongsToMany(Activity, {through: {model: UserActivities, foreignKey: "user
 Category.belongsToMany(User, {through: {model: UserCategories, foreignKey: "categoryId", otherKey: "userId", unique: false}})
 User.belongsToMany(Category, {through: {model: UserCategories, foreignKey: "userId", otherKey: "categoryId", unique: false}})
 
+Activity.hasMany(UserActivities)
+
 User.belongsToMany(User, { as: 'friends', through: {model:Friend, foreignKey: "friendId", otherKey: "userId", unique: false}})
 
 module.exports = {

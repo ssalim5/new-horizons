@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchActivities} from "../store/allActivitiesStore";
+import { fetchActivities, fetchActivitiesWithUserInfo} from "../store/allActivitiesStore";
 import { Link } from 'react-router-dom'
-import RatingsModal from './RatingsModal'
+import RatingsModal from './utilities/RatingsModal'
 
 
 export class AllActivities extends React.Component {
@@ -12,26 +12,36 @@ export class AllActivities extends React.Component {
     }
   }
   componentDidMount(){
-    this.props.fetchActivities();
+    if(window.localStorage.getItem("token")){
+      console.log("TOKENFOUND")
+      this.props.fetchActivitiesWithUserInfo();
+    }else{
+      this.props.fetchActivities()
+    }
   }
   render() {
-    return  (
-      <div className="container">
-      {this.props.activities.map((activity) => {
-        return (
-          <div className="activity" key={activity.id}>
-            <Link to ={`/activities/${activity.id}`}key={activity.id}>
-              <div key={activity.id}>
+    return(
+      <div id="allActivities">
+        {this.props.activities.map((activity) => {
+          return(
+              
+            <div className={activity.useractivities ? 
+            (activity.useractivities.length>0 ? "activity-completed":"activity") 
+              : "activity"} key={activity.id}>
+
+              <Link to ={`/activities/${activity.id}`}>
                 <div> Name: {activity.name} </div>
                 <img src={activity.imageUrl} />
-              </div>
-            </Link>
-            {window.localStorage.getItem("token") ? <RatingsModal activityId={activity.id} /> : ""}
-          </div>
-        )
-      })}
-      </div>
+              </Link>
 
+              {activity.useractivities ? 
+              (activity.useractivities.length>0 ? <div>score: {activity.useractivities[activity.useractivities.length-1].score}</div> : <RatingsModal activityId={activity.id}/>)
+              : ""}
+              
+            </div>
+          )
+         })}
+      </div>
     )
   }
 }
@@ -46,6 +56,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch, { history }) => {
   return {
     fetchActivities: () => dispatch(fetchActivities()),
+    fetchActivitiesWithUserInfo: () => dispatch(fetchActivitiesWithUserInfo())
   };
 };
 

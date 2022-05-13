@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import Modal from 'react-modal'
-import {postUserActivity} from '../store/userActivitiesStore'
+import {postUserActivity} from '../../store/userActivitiesStore'
 
 Modal.setAppElement("#app")
 

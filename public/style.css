@@ -20,6 +20,11 @@ form div {
   display: inline-block;
 }
 
+img {
+  max-height: 300px;;
+}
+
+/* alert text and box */
 .alert {
   color: red;
 }

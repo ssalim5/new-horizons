@@ -2,6 +2,7 @@ const router = require("express").Router();
 const {
   models: { Activity,User },
 } = require("../db");
+const UserActivities = require("../db/models/User-Activities");
 module.exports = router;
 
 const requireToken = async (req, res, next) => {
@@ -18,6 +19,27 @@ const requireToken = async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const activity= await Activity.findAll();
+    res.json(activity);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//GET: read all activities with additional user information
+router.get("/user", async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization)
+    const activity= await Activity.findAll({
+      include:{
+        model:UserActivities,
+        where:{
+          userId:user.id
+        },
+        attributes:['score','updatedAt'],
+        required: false
+
+      }
+    });
     res.json(activity);
   } catch (err) {
     next(err);
