@@ -12,12 +12,7 @@ export class AllActivities extends React.Component {
     }
   }
   componentDidMount(){
-    if(window.localStorage.getItem("token")){
-      console.log("TOKENFOUND")
-      this.props.fetchActivitiesWithUserInfo();
-    }else{
       this.props.fetchActivities()
-    }
   }
   render() {
     return(

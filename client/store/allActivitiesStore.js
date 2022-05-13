@@ -39,8 +39,18 @@ const _updateActivity = (ACTIVITY) => {
 //Thunks
 export const fetchActivities = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("/api/activities");
-    dispatch(_setActivities(data));
+    const token = window.localStorage.getItem(TOKEN);
+    if(token){
+      const { data } = await axios.get("/api/activities/user",{
+        headers: {
+          authorization: token
+        }
+      });
+      dispatch(_setActivities(data));
+    }else{
+      const { data } = await axios.get("/api/activities");
+      dispatch(_setActivities(data))
+    }
   };
 };
 
