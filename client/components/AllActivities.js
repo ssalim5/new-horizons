@@ -30,7 +30,7 @@ export class AllActivities extends React.Component {
               </Link>
 
               {activity.useractivities ? 
-                (activity.useractivities.length>0 ? <div>score: {activity.useractivities[activity.useractivities.length-1].score}<RatingsModal activityId={activity.id} completed={true} /></div> : <RatingsModal activityId={activity.id} completed={false} />)
+                (activity.useractivities.length>0 ? <div>score: {activity.useractivities[0].score}<RatingsModal activityId={activity.id} completed={true} /></div> : <RatingsModal activityId={activity.id} completed={false} />)
               : ""}
               
             </div>

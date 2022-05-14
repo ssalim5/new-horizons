@@ -129,7 +129,6 @@ const activitiesReducer = (state = initialState, action) => {
       return action.activities;
     case POST_USERACTIVITY:
       const arr = state.filter(elem=>elem.id !== action.userActivity.id)
-      console.log(arr)
       return [...arr,action.userActivity]
     case CREATE_ACTIVITY:
       return [...state, action.activity];

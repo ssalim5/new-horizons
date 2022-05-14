@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 
 const TOKEN = "token";
 
@@ -15,19 +15,57 @@ export const fetchSingleActivity = (id) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const response = await Axios.get(`/api/activities/${id}`,{
+      const {data} = await axios.get(`/api/activities/${id}`,{
         headers: {
           authorization: token
         }
       }
       );
-      const data = response.data;
+      console.log(data)
       dispatch(_setSingleActivity(data))
     } catch (err) {
       console.log(err)
     }
   }
 };
+
+export const postUserActivity = (activityId,score) => {
+  const token = window.localStorage.getItem(TOKEN)
+  return async (dispatch) => {
+      const {data} = await axios.post("/api/activities/useractivity",
+      {
+          activityId: activityId,
+          score: score
+      },
+      {
+          headers: {
+              authorization: token
+            },
+      },
+      )
+      dispatch(_setSingleActivity(data))
+  }
+}
+
+export const putUserActivity = (activityId,score) => {
+  const token = window.localStorage.getItem(TOKEN)
+  return async (dispatch) => {
+      const {data} = await axios.put("/api/activities/useractivity",
+      {
+          activityId: activityId,
+          score: score
+      },
+      {
+          headers: {
+              authorization: token
+            },
+      },
+      )
+      dispatch(_setSingleActivity(data))
+  }
+}
+
+
 
 
 const initialState = {};

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDispatch} from 'react-redux'
 import Modal from 'react-modal'
 import {postUserActivity} from '../../store/allActivitiesStore'
@@ -9,6 +9,12 @@ export default function RatingsModal (props) {
     let {activityId,completed} = props
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
+
+    useEffect(()=>{
+
+    },[isOpen])
+
+    let complete = completed
 
     const customStyles = {
         content: {
@@ -27,20 +33,26 @@ export default function RatingsModal (props) {
         }else{
             dispatch(postUserActivity(activityId,event.target.value))
         }
-        toggleModal()
+        complete = true
+        setIsOpen(false)
     }
     
-    function toggleModal() {
-        setIsOpen(!isOpen)
+    function openModal() {
+        setIsOpen(true)
     }
 
+    function closeModal() {
+        setIsOpen(false)
+    }
+
+    //console.log(complete)
 
     return(
         <div>
-            {completed ? <button type="button" onClick={toggleModal}>Updated Rating</button> : <button type="button" onClick={toggleModal}>Add Activity</button>}
+            {completed ? <button type="button" onClick={openModal}>Update Rating</button> : <button type="button" onClick={openModal}>Complete Activity</button>}
 
-            <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="ratings menu" style={customStyles}>
-                <button type="button" className="close-modal"onClick={toggleModal}>x</button>
+            <Modal isOpen={isOpen} onRequestClose={closeModal} contentLabel="ratings menu" style={customStyles}>
+                <button type="button" className="close-modal"onClick={closeModal}>x</button>
                 <form className="ratingStars" onChange={onChange}>
                     <input type="radio" id="star5" name="rate" value="5" />
                     <label htmlFor="star5" title="text">5 stars</label>
