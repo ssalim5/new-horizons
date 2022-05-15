@@ -33,6 +33,26 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//GET: all activities for a single user
+router.get("/users", async (req,res,next)=> {
+  console.log("START")
+  try{
+    const user = await User.findByToken(req.headers.authorization)
+    const activity= await Activity.findAll({
+      include:{
+        model:UserActivities,
+        where:{
+          userId:user.id
+        },
+        attributes:['userId','score','updatedAt'],
+      }
+    });
+    res.json(activity)
+  } catch (err) {
+    next(err)
+  }
+})
+
 //GET: read a single activity - find by activity.Id (logged in)
 router.get("/:id",async (req,res,next)=>{
   try{
@@ -54,6 +74,7 @@ router.get("/:id",async (req,res,next)=>{
   }
 })
 
+//POST: post an activity to useractivities table - return that activity from the activities table with user useractivities info
 router.post("/useractivity", async (req, res, next) => {
   try {
       const user = await User.findByToken(req.headers.authorization)

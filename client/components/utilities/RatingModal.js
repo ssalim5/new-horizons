@@ -1,21 +1,16 @@
-import React, {useEffect, useState} from 'react'
-import {useDispatch} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import { postUserActivity, putUserActivity } from '../../store/singleActivityStore'
 import Modal from 'react-modal'
-import {postUserActivity} from '../../store/allActivitiesStore'
 
 Modal.setAppElement("#app")
 
-export default function RatingsModal (props) {
-    let {activityId,completed} = props
+export default function RatingsModal(props){
+    const {activity} = props
+
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
-
-    useEffect(()=>{
-
-    },[isOpen])
-
-    let complete = completed
-
+    
     const customStyles = {
         content: {
           top: '35%',
@@ -29,30 +24,25 @@ export default function RatingsModal (props) {
     };
 
     function onChange(event){
-        if(completed){
+        if(activity.useractivities.length>0){
+            dispatch(putUserActivity(activity.id,event.target.value))
         }else{
-            dispatch(postUserActivity(activityId,event.target.value))
+            dispatch(postUserActivity(activity.id,event.target.value))
         }
-        complete = true
-        setIsOpen(false)
+        toggleModal()
     }
     
-    function openModal() {
-        setIsOpen(true)
+    function toggleModal() {
+        setIsOpen(!isOpen)
     }
-
-    function closeModal() {
-        setIsOpen(false)
-    }
-
-    //console.log(complete)
 
     return(
-        <div>
-            {completed ? <button type="button" onClick={openModal}>Update Rating</button> : <button type="button" onClick={openModal}>Complete Activity</button>}
-
-            <Modal isOpen={isOpen} onRequestClose={closeModal} contentLabel="ratings menu" style={customStyles}>
-                <button type="button" className="close-modal"onClick={closeModal}>x</button>
+        <div>banana
+             {activity.useractivities ? 
+            activity.useractivities.length>0 ? <button type="button" onClick={toggleModal}>Update Rating</button> : <button type="button" onClick={toggleModal}>Complete Activity</button>
+            : ""}
+            <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="ratings menu" style={customStyles}>
+                <button type="button" className="close-modal"onClick={toggleModal}>x</button>
                 <form className="ratingStars" onChange={onChange}>
                     <input type="radio" id="star5" name="rate" value="5" />
                     <label htmlFor="star5" title="text">5 stars</label>
@@ -70,7 +60,6 @@ export default function RatingsModal (props) {
                     <label htmlFor="star1" title="text">1 star</label>
                 </form>
             </Modal>
-            
         </div>
     )
 }

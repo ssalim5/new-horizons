@@ -13,19 +13,13 @@ const _setSingleActivity = (activity) => {
 
 export const fetchSingleActivity = (id) => {
   return async (dispatch) => {
-    try {
-      const token = window.localStorage.getItem(TOKEN);
-      const {data} = await axios.get(`/api/activities/${id}`,{
-        headers: {
-          authorization: token
-        }
+    const token = window.localStorage.getItem(TOKEN);
+    const {data} = await axios.get(`/api/activities/${id}`,{
+      headers: {
+        authorization: token
       }
-      );
-      console.log(data)
-      dispatch(_setSingleActivity(data))
-    } catch (err) {
-      console.log(err)
-    }
+    });
+    dispatch(_setSingleActivity(data))
   }
 };
 

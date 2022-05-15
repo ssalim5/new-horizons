@@ -13,6 +13,7 @@ import Friends from './components/Friends';
 import Graph from './components/Graph';
 import AllUsers from './components/AllUsers';
 import AddFriends from './components/AddFriends'
+import MyActivities from './components/MyActivities';
 
 /**
  * COMPONENT
@@ -40,6 +41,7 @@ class Routes extends Component {
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/users/:id" component={UserProfile} />
             <Route exact path="/addfriends/:id" component={AddFriends} />
+            <Route exact path="/myactivities" component={MyActivities} />
 
           </Switch>
         ) : (
