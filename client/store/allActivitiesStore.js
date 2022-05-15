@@ -1,13 +1,15 @@
 import axios from "axios";
 
-// Action Types
+const TOKEN = "token";
+
+/* ACTION TYPES */
 const SET_ACTIVITIES = "SET_ACTIVITIES";
 const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
-const TOKEN = "token";
+const POST_USERACTIVITY = "POST_USERACTIVITY"
 
-// Action creators
+/* ACTION CREATORS */
 export const _setActivities = (activities) => {
   return {
     type: SET_ACTIVITIES,
@@ -36,13 +38,43 @@ const _updateActivity = (ACTIVITY) => {
   };
 };
 
-//Thunks
+export const _postUserActivity = (userActivity) => {
+  return{
+      type: POST_USERACTIVITY,
+      userActivity,
+  }
+}
+
+/* THUNKS */
 export const fetchActivities = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("/api/activities");
-    dispatch(_setActivities(data));
+    const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.get("/api/activities/",{
+        headers: {
+          authorization: token
+        }
+      });
+      dispatch(_setActivities(data));
   };
 };
+
+export const postUserActivity = (activityId,score) => {
+  const token = window.localStorage.getItem(TOKEN)
+  return async (dispatch) => {
+      const {data} = await axios.post("/api/activities/useractivity",
+      {
+          activityId: activityId,
+          score: score
+      },
+      {
+          headers: {
+              authorization: token
+            },
+      },
+      )
+      dispatch(_postUserActivity(data))
+  }
+}
 
 export const createActivity = (activity, history) => {
   return async (dispatch) => {
@@ -95,6 +127,9 @@ const activitiesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ACTIVITIES:
       return action.activities;
+    case POST_USERACTIVITY:
+      const arr = state.filter(elem=>elem.id !== action.userActivity.id)
+      return [...arr,action.userActivity]
     case CREATE_ACTIVITY:
       return [...state, action.activity];
     case DELETE_ACTIVITY:

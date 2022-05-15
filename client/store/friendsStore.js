@@ -34,7 +34,7 @@ export const fetchFriends= (id) => {
 
 export const createFriend= (friend, history) => {
   return async (dispatch) => {
-    console.log("WORKING", friend)
+    //console.log("WORKING", friend)
       const { data: created } = await Axios.post("/api/friends", friend);
       dispatch(_createFriend(created));
   };
@@ -50,7 +50,7 @@ export const deleteFriend = (id, history) => {
 
 const initialState = [];
 export default function friendReducer(state = initialState, action) {
-  console.log("TEST", action)
+  //console.log("TEST", action)
   switch (action.type) {
     case SET_FRIENDS:
       return action.friends;
