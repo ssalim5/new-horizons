@@ -1165,9 +1165,9 @@ const seed = async () => {
       activitiesCategories.map((actCat)=>{
         return ActivityCategory.create(actCat)
       }),
-      // createdUserActivities.map((useAct)=>{
-      //   return UserActivities.create(useAct)
-      // }),
+      createdUserActivities.map((useAct)=>{
+        return UserActivities.create(useAct)
+      }),
       userCategories.map((useCat)=>{
         return UserCategories.create(useCat)
       })
