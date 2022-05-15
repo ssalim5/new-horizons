@@ -499,31 +499,42 @@ const activities = [
   {
     id: 1,
     name: "Basketball",
-    description: 'fun activity'
+    description: 'fun activity',
+    exertion: "HIGH"
   },{
     id:2,
     name: "Bowling",
     description: 'fun activity',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Bowlerbowling.JPG'
+    outside: false,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Bowlerbowling.JPG',
+    exertion: "LOW"
   },{
     id:3,
     name: "Chess",
+    outside: false,
     description: 'fun activity',
-    imageUrl: 'https://media.npr.org/assets/img/2016/10/24/gettyimages-492378344_wide-cfdc4528733d810b7feb5e2a884f987a981920ff.jpg?s=1400'
+    imageUrl: 'https://media.npr.org/assets/img/2016/10/24/gettyimages-492378344_wide-cfdc4528733d810b7feb5e2a884f987a981920ff.jpg?s=1400',
+    exertion: "LOW"
   },{
     id:4,
     name: "Movies",
+    outside: false,
     description: 'fun activity',
+    exertion: "LOW",
     imageUrl: 'https://nofilmschool.com/sites/default/files/styles/facebook/public/movie_theater.png?itok=B2xAaSj-'
   },{
     id:5,
     name: "Cooking Class",
+    exertion: "LOW",
+    outside: false,
     description: 'fun activity',
     imageUrl: 'https://churchillmanor.com/wp-content/uploads/2016/10/Napa-Cooking-Classes.jpg'
   },
   {
     id:6,
     name: "Painting",
+    exertion: "LOW",
+    outside: false,
     description: 'fun activity',
     imageUrl: 'https://pensacolafruitwinery.com/wp-content/uploads/2018/02/Beyond-The-Grape-Onto-the-Canvas-Paint-and-Sip-Classes.jpg'
   },
@@ -539,237 +550,261 @@ const activities = [
       description: 'fun activity',
       imageUrl: 'https://images.news18.com/ibnlive/uploads/2017/08/badminton_AFP.jpg?impolicy=website&width=510&height=356'
     },
-    {
-      id: 9,
-        name: "Baseball",
-        description: 'fun activity',
-        imageUrl: 'https://www.tompsc.com/ImageRepository/Document?documentId=38976'
-      },
-      {
-        id: 10,
-          name: "Volleyball",
-          description: 'fun activity',
-          imageUrl: 'https://www.tutorialspoint.com/volleyball/images/ball_moves.jpg'
-        },
-        {
-          id: 11,
-            name: "Beekeeping",
-            description: 'fun activity',
-            imageUrl: 'https://beekeepingabc.com/wp-content/uploads/2019/08/beekeeping-guide.jpg'
-          },
-          {
-            id: 12,
-              name: "Birdwatching",
-              description: 'fun activity',
-              imageUrl: 'https://ontarionature.org/wp-content/uploads/2013/04/Annual-Gathering-Bird-Watching-Point-Petre-South-Shore-Safari-Mary-Gingritch-%C2%A9-John-Hassell_v2-4.jpg'
-            },
-            {
-              id: 13,
-                name: "Bodyboarding",
-                description: 'fun activity',
-                imageUrl: 'https://media.istockphoto.com/photos/surf-picture-id171591741?k=20&m=171591741&s=612x612&w=0&h=7EGc_BigihKhe1xma3F0q1jxOT53MZzGG1hGTh4qBIE='
-              },
-              {
-                id: 14,
-                  name: "Camping",
-                  description: 'fun activity',
-                  imageUrl: 'https://pegsandpitches.co.uk/wild-boar-wood/wp-content/uploads/sites/4/2018/03/Friends-around-the-Campfire-1-776x517.jpg'
-                },
-                {
-                  id: 15,
-                    name: "Canoeing",
-                    description: 'fun activity',
-                    imageUrl: 'https://www.tutorialspoint.com/canoeing/images/paddle.jpg'
-                  },
-                  {
-                    id: 16,
-                      name: "Capture the Flag",
-                      description: 'fun activity',
-                      imageUrl: 'https://scantechgraphics.com/wp-content/uploads/2019/07/capture-the-flag2.jpg'
-                    },
-                    {
-                      id: 17,
-                        name: "Cricket",
-                        description: 'fun activity',
-                        imageUrl: 'https://media.newyorker.com/photos/5f2b2b45d4b98d588c5cdf22/16:9/w_2559,h_1439,c_limit/Caesar-Cricket.jpg'
-                      },
-                      {
-                        id: 18,
-                          name: "Cross-country Skiing",
-                          description: 'fun activity',
-                          imageUrl: 'https://www.salomon.com/sites/default/files/2021-03/XC-skis-landscape_0.jpg'
-                        },
-                        {
-                          id: 19,
-                            name: "Cycling",
-                            description: 'fun activity',
-                            imageUrl: 'https://images.immediate.co.uk/production/volatile/sites/21/2021/05/How-to-improve-your-average-speed-4-ec96ab1.jpg?quality=90&resize=620,413'
-                          },
-                          {
-                            id: 20,
-                              name: "Diving",
-                              description: 'fun activity',
-                              imageUrl: 'https://media.istockphoto.com/photos/female-springboard-diver-jump-picture-id1090156570?k=20&m=1090156570&s=612x612&w=0&h=F22yY7pc204x1O8kpNVMFrdfm3JRul_nzpDP8d3-u3U='
-                            },
-                            {
-                              id: 21,
-                                name: "Dodgeball",
-                                description: 'fun activity',
-                                imageUrl: 'https://www.gannett-cdn.com/presto/2019/06/09/USAT/efb48ebc-2c06-47c1-8588-d2e63b292c0a-AP_Dodgeball_Record.JPG?crop=4287,2393,x0,y112&width=3200&height=1787&format=pjpg&auto=webp'
-                              },
-                              {
-                                id: 22,
-                                  name: "Dragon Boat Racing",
-                                  description: 'fun activity',
-                                  imageUrl: 'https://images.rove.me/w_1920,q_85/w6zo21y4qvvyk5tbofcu/singapore-dragon-boat-festival.jpg'
-                                },
-                                {
-                                  id: 23,
-                                    name: "Fishing",
-                                    description: 'fun activity',
-                                    imageUrl: 'https://slatefallsoutposts.com/wp-content/uploads/2019/11/slid1450.jpg'
-                                  },
-                                  {
-                                    id: 24,
-                                      name: "Frisbee",
-                                      description: 'fun activity',
-                                      imageUrl: 'https://centralca.cdn-anvilcms.net/media/images/2020/02/29/images/frisbee_1.max-1200x675.jpg'
-                                    },
-                                    {
-                                      id: 25,
-                                        name: "Free Play",
-                                        description: 'fun activity',
-                                        imageUrl: 'https://media.istockphoto.com/photos/businessman-upside-down-in-playground-picture-id489812735?k=20&m=489812735&s=612x612&w=0&h=WhKxioD52Ns4nkNuQY4mlZZuDpXylviOBDO9F_3ohYM='
-                                      },
-                                      {
-                                        id: 26,
-                                          name: "Gardening",
-                                          description: 'fun activity',
-                                          imageUrl: 'https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/img_2085_2400.jpg?itok=jKO2lOJo'
-                                        },
-                                        {
-                                          id: 27,
-                                            name: "Hacky Sack",
-                                            description: 'fun activity',
-                                            imageUrl: 'https://wasatchmag.com/wp-content/uploads/2019/10/DSC_0032.jpg'
-                                          },
-                                          {
-                                            id: 28,
-                                              name: "Hide and Seek",
-                                              description: 'fun activity',
-                                              imageUrl: 'https://media.istockphoto.com/photos/group-of-children-playing-hide-and-seek-picture-id500491579?k=20&m=500491579&s=612x612&w=0&h=RsxZUfteCiH4uVmgpTo1L2RgtZKLkwCYXu-YRRwY5PI='
-                                            },
-                                            {
-                                              id: 29,
-                                                name: "Hiking",
-                                                description: 'fun activity',
-                                                imageUrl: 'https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155&h=1528'
-                                              },
-                                              {
-                                                id: 30,
-                                                  name: "Hopscotch",
-                                                  description: 'fun activity',
-                                                  imageUrl: 'https://media.istockphoto.com/photos/group-of-people-playing-at-hopscotch-togther-in-the-street-on-the-picture-id1295880687?k=20&m=1295880687&s=612x612&w=0&h=S9FTByXwenERzltfNoidmWEmfuCAYXT3KfysxkSkNis='
-                                                },
-                                                {
-                                                  id: 31,
-                                                    name: "Horseback Riding",
-                                                    description: 'fun activity',
-                                                    imageUrl: 'https://ogden_images.s3.amazonaws.com/www.7springs.com/images/2019/05/stables-1-800x500.jpg'
-                                                  },
-                                                  {
-                                                    id: 32,
-                                                      name: "Ice Skating",
-                                                      description: 'fun activity',
-                                                      imageUrl: 'https://cdn.vox-cdn.com/thumbor/b1X9CTHzqYkGgEAv6DfXg8JlIVM=/0x0:4928x3264/1200x900/filters:focal(2070x1238:2858x2026)/cdn.vox-cdn.com/uploads/chorus_image/image/61532005/shutterstock_193923629.1537870258.6.jpg'
-                                                    },
-                                                    {
-                                                      id: 33,
-                                                        name: "Inline Skating",
-                                                        description: 'fun activity',
-                                                        imageUrl: 'https://i0.heartyhosting.com/www.powder.com/wp-content/uploads/2020/04/Maxxum-Salt-Lake-City-by-Greg-Mirzoyan-L-7811-scaled.jpg?w=1600'
-                                                      },
-                                                      {
-                                                        id: 34,
-                                                          name: "Kayaking",
-                                                          description: 'fun activity',
-                                                          imageUrl: 'https://www.nps.gov/apis/planyourvisit/images/Paddlers-on-calm-water.JPG'
-                                                        },
-                                                        {
-                                                          id: 35,
-                                                            name: "Keep Away",
-                                                            description: 'fun activity',
-                                                            imageUrl: 'https://i.ytimg.com/vi/JzqqYsTfBVg/maxresdefault.jpg'
-                                                          },
-                                                          {
-                                                            id: 36,
-                                                              name: "Kite Flying",
-                                                              description: 'fun activity',
-                                                              imageUrl: 'https://menafn.com/updates/pr/2020-01/25/N_fb978466-0image_story.jpg'
-                                                            },
-                                                            {
-                                                              id: 37,
-                                                                name: "Landscape Painting",
-                                                                description: 'fun activity',
-                                                                imageUrl: 'https://www.liveabout.com/thmb/JyBoiDXebwx7NqhWQwyyyYuHbzk=/1900x1069/smart/filters:no_upscale()/10188181-56a6e6d25f9b58b7d0e56963.jpg'
-                                                              },
-                                                              {
-                                                                id: 38,
-                                                                  name: "Lawn Bowling",
-                                                                  description: 'fun activity',
-                                                                  imageUrl: 'https://www.tutorialspoint.com/lawn_bowling/images/how_to_play.jpg'
-                                                                },
-                                                                {
-                                                                  id: 39,
-                                                                    name: "Tag",
-                                                                    description: 'fun activity',
-                                                                    imageUrl: 'https://icebreakerideas.com/wp-content/uploads/2020/04/Tag-Games-for-PE.png'
-                                                                  },
-                                                                  {
-                                                                    id: 40,
-                                                                      name: "Surfing",
-                                                                      description: 'fun activity',
-                                                                      imageUrl: 'https://www.sixsenses.com/media/1552/fiji-surfing_fiji2_r.jpg?anchor=center&mode=crop&rnd=132266537910000000'
-                                                                    },
-                                                                    {
-                                                                      id: 41,
-                                                                        name: "Photography",
-                                                                        description: 'fun activity',
-                                                                        imageUrl: 'https://dvyvvujm9h0uq.cloudfront.net/com/articles/1515135672-shutterstock_284581649.jpg'
-                                                                      },
-                                                                      {
-                                                                        id: 42,
-                                                                          name: "Picnic",
-                                                                          description: 'fun activity',
-                                                                          imageUrl: 'https://learnenglishteens.britishcouncil.org/sites/teens/files/styles/article/public/istock_000017127089small.jpg?itok=GgWk_Uiz'
-                                                                        },
-                                                                        {
-                                                                        id: 43,
-                                                                          name: "Rock Climbing",
-                                                                          description: 'fun activity',
-                                                                          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQWx7ssHJRUicihjRP3oGVUj_bLH4ufjTJMw&usqp=CAU'
-                                                                        },
-                                                                        {
-                                                                          id: 44,
-                                                                            name: "Rowing",
-                                                                            description: 'fun activity',
-                                                                            imageUrl: 'https://usrowing.org/images/2019/9/17/Sweep_vs_Sculling.jpg'
-                                                                          },
-                                                                          {
-                                                                            id: 45,
-                                                                              name: "Running",
-                                                                              description: 'fun activity',
-                                                                              imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/female-running-friends-royalty-free-image-1642534924.jpg?crop=0.668xw:1.00xh;0.233xw,0&resize=640:*'
-                                                                            },
-                                                                            {
-                                                                              id: 46,
-                                                                                name: "Sailing",
-                                                                                description: 'fun activity',
-                                                                                imageUrl: 'https://www.rssailing.com/wp-content/uploads/2021/05/RS-Feva-Sailing.jpg'
-                                                                              },
-                                                                              {
+  {
+  id: 9,
+  name: "Baseball",
+  description: 'fun activity',
+  imageUrl: 'https://www.tompsc.com/ImageRepository/Document?documentId=38976'
+  },
+  {
+  id: 10,
+  name: "Volleyball",
+  description: 'fun activity',
+  imageUrl: 'https://www.tutorialspoint.com/volleyball/images/ball_moves.jpg',
+  exertion: "HIGH"
+  },
+  {
+  id: 11,
+  name: "Beekeeping",
+  description: 'fun activity',
+  imageUrl: 'https://beekeepingabc.com/wp-content/uploads/2019/08/beekeeping-guide.jpg'
+  },
+  {
+  id: 12,
+  name: "Birdwatching",
+  exertion: "LOW",
+  description: 'fun activity',
+  imageUrl: 'https://ontarionature.org/wp-content/uploads/2013/04/Annual-Gathering-Bird-Watching-Point-Petre-South-Shore-Safari-Mary-Gingritch-%C2%A9-John-Hassell_v2-4.jpg'
+  },
+  {
+  id: 13,
+  name: "Bodyboarding",
+  description: 'fun activity',
+  imageUrl: 'https://media.istockphoto.com/photos/surf-picture-id171591741?k=20&m=171591741&s=612x612&w=0&h=7EGc_BigihKhe1xma3F0q1jxOT53MZzGG1hGTh4qBIE=',
+  exertion: "HIGH"
+  },
+  {
+  id: 14,
+  name: "Camping",
+  exertion: "LOW",
+  description: 'fun activity',
+  imageUrl: 'https://pegsandpitches.co.uk/wild-boar-wood/wp-content/uploads/sites/4/2018/03/Friends-around-the-Campfire-1-776x517.jpg'
+  },
+  {
+  id: 15,
+  name: "Canoeing",
+  description: 'fun activity',
+  imageUrl: 'https://www.tutorialspoint.com/canoeing/images/paddle.jpg',
+  exertion: "HIGH"
+  },
+  {
+  id: 16,
+  name: "Capture the Flag",
+  description: 'fun activity',
+  imageUrl: 'https://scantechgraphics.com/wp-content/uploads/2019/07/capture-the-flag2.jpg',
+  exertion: "HIGH"
+  },
+  {
+  id: 17,
+  name: "Cricket",
+  description: 'fun activity',
+  imageUrl: 'https://media.newyorker.com/photos/5f2b2b45d4b98d588c5cdf22/16:9/w_2559,h_1439,c_limit/Caesar-Cricket.jpg'
+  },
+  {
+  id: 18,
+  name: "Cross-country Skiing",
+  description: 'fun activity',
+  imageUrl: 'https://www.salomon.com/sites/default/files/2021-03/XC-skis-landscape_0.jpg',
+  exertion: "HIGH"
+  },
+  {
+  id: 19,
+  name: "Cycling",
+  description: 'fun activity',
+  imageUrl: 'https://images.immediate.co.uk/production/volatile/sites/21/2021/05/How-to-improve-your-average-speed-4-ec96ab1.jpg?quality=90&resize=620,413',
+  exertion: "HIGH"
+  },
+  {
+  id: 20,
+  name: "Diving",
+  description: 'fun activity',
+  imageUrl: 'https://media.istockphoto.com/photos/female-springboard-diver-jump-picture-id1090156570?k=20&m=1090156570&s=612x612&w=0&h=F22yY7pc204x1O8kpNVMFrdfm3JRul_nzpDP8d3-u3U='
+  },
+  {
+  id: 21,
+  name: "Dodgeball",
+  description: 'fun activity',
+  imageUrl: 'https://www.gannett-cdn.com/presto/2019/06/09/USAT/efb48ebc-2c06-47c1-8588-d2e63b292c0a-AP_Dodgeball_Record.JPG?crop=4287,2393,x0,y112&width=3200&height=1787&format=pjpg&auto=webp',
+  exertion: "HIGH"
+  },
+  {
+  id: 22,
+  name: "Dragon Boat Racing",
+  description: 'fun activity',
+  imageUrl: 'https://images.rove.me/w_1920,q_85/w6zo21y4qvvyk5tbofcu/singapore-dragon-boat-festival.jpg',
+  exertion: "HIGH"
+  },
+  {
+  id: 23,
+  name: "Fishing",
+  exertion: "LOW",
+  description: 'fun activity',
+  imageUrl: 'https://slatefallsoutposts.com/wp-content/uploads/2019/11/slid1450.jpg'
+  },
+  {
+  id: 24,
+  name: "Frisbee",
+  description: 'fun activity',
+  imageUrl: 'https://centralca.cdn-anvilcms.net/media/images/2020/02/29/images/frisbee_1.max-1200x675.jpg',
+  exertion: "HIGH"
+  },
+  {
+  id: 25,
+  name: "Free Play",
+  description: 'fun activity',
+  imageUrl: 'https://media.istockphoto.com/photos/businessman-upside-down-in-playground-picture-id489812735?k=20&m=489812735&s=612x612&w=0&h=WhKxioD52Ns4nkNuQY4mlZZuDpXylviOBDO9F_3ohYM='
+  },
+  {
+  id: 26,
+  name: "Gardening",
+  description: 'fun activity',
+  imageUrl: 'https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/img_2085_2400.jpg?itok=jKO2lOJo'
+  },
+  {
+  id: 27,
+  name: "Hacky Sack",
+  description: 'fun activity',
+  imageUrl: 'https://wasatchmag.com/wp-content/uploads/2019/10/DSC_0032.jpg'
+  },
+  {
+  id: 28,
+  name: "Hide and Seek",
+  description: 'fun activity',
+  imageUrl: 'https://media.istockphoto.com/photos/group-of-children-playing-hide-and-seek-picture-id500491579?k=20&m=500491579&s=612x612&w=0&h=RsxZUfteCiH4uVmgpTo1L2RgtZKLkwCYXu-YRRwY5PI=',
+  exertion: "HIGH"
+  },
+  {
+  id: 29,
+  name: "Hiking",
+  description: 'fun activity',
+  imageUrl: 'https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155&h=1528'
+  },
+  {
+  id: 30,
+  name: "Hopscotch",
+  description: 'fun activity',
+  imageUrl: 'https://media.istockphoto.com/photos/group-of-people-playing-at-hopscotch-togther-in-the-street-on-the-picture-id1295880687?k=20&m=1295880687&s=612x612&w=0&h=S9FTByXwenERzltfNoidmWEmfuCAYXT3KfysxkSkNis='
+  },
+  {
+  id: 31,
+  name: "Horseback Riding",
+  description: 'fun activity',
+  imageUrl: 'https://ogden_images.s3.amazonaws.com/www.7springs.com/images/2019/05/stables-1-800x500.jpg'
+  },
+  {
+  id: 32,
+  name: "Ice Skating",
+  description: 'fun activity',
+  imageUrl: 'https://cdn.vox-cdn.com/thumbor/b1X9CTHzqYkGgEAv6DfXg8JlIVM=/0x0:4928x3264/1200x900/filters:focal(2070x1238:2858x2026)/cdn.vox-cdn.com/uploads/chorus_image/image/61532005/shutterstock_193923629.1537870258.6.jpg'
+  },
+  {
+  id: 33,
+  name: "Inline Skating",
+  description: 'fun activity',
+  imageUrl: 'https://i0.heartyhosting.com/www.powder.com/wp-content/uploads/2020/04/Maxxum-Salt-Lake-City-by-Greg-Mirzoyan-L-7811-scaled.jpg?w=1600'
+  },
+  {
+  id: 34,
+  name: "Kayaking",
+  description: 'fun activity',
+  imageUrl: 'https://www.nps.gov/apis/planyourvisit/images/Paddlers-on-calm-water.JPG',
+  exertion: "HIGH"
+  },
+  {
+  id: 35,
+  name: "Keep Away",
+  description: 'fun activity',
+  imageUrl: 'https://i.ytimg.com/vi/JzqqYsTfBVg/maxresdefault.jpg',
+  exertion: "HIGH"
+  },
+  {
+  id: 36,
+  name: "Kite Flying",
+  description: 'fun activity',
+  imageUrl: 'https://menafn.com/updates/pr/2020-01/25/N_fb978466-0image_story.jpg'
+  },
+  {
+  id: 37,
+  name: "Landscape Painting",
+  exertion: "LOW",
+  description: 'fun activity',
+  imageUrl: 'https://www.liveabout.com/thmb/JyBoiDXebwx7NqhWQwyyyYuHbzk=/1900x1069/smart/filters:no_upscale()/10188181-56a6e6d25f9b58b7d0e56963.jpg'
+  },
+  {
+  id: 38,
+  name: "Lawn Bowling",
+  exertion: "LOW",
+  description: 'fun activity',
+  imageUrl: 'https://www.tutorialspoint.com/lawn_bowling/images/how_to_play.jpg'
+  },
+  {
+  id: 39,
+  name: "Tag",
+  description: 'fun activity',
+  imageUrl: 'https://icebreakerideas.com/wp-content/uploads/2020/04/Tag-Games-for-PE.png',
+  exertion: "HIGH"
+  },
+  {
+  id: 40,
+  name: "Surfing",
+  description: 'fun activity',
+  imageUrl: 'https://www.sixsenses.com/media/1552/fiji-surfing_fiji2_r.jpg?anchor=center&mode=crop&rnd=132266537910000000'
+  },
+  {
+  id: 41,
+  name: "Photography",
+  exertion: "LOW",
+  description: 'fun activity',
+  imageUrl: 'https://dvyvvujm9h0uq.cloudfront.net/com/articles/1515135672-shutterstock_284581649.jpg'
+  },
+  {
+  id: 42,
+  name: "Picnic",
+  exertion: "LOW",
+  description: 'fun activity',
+  imageUrl: 'https://learnenglishteens.britishcouncil.org/sites/teens/files/styles/article/public/istock_000017127089small.jpg?itok=GgWk_Uiz'
+  },
+  {
+  id: 43,
+  name: "Rock Climbing",
+  description: 'fun activity',
+  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQWx7ssHJRUicihjRP3oGVUj_bLH4ufjTJMw&usqp=CAU',
+  exertion: "HIGH"
+  },
+  {
+  id: 44,
+  name: "Rowing",
+  description: 'fun activity',
+  imageUrl: 'https://usrowing.org/images/2019/9/17/Sweep_vs_Sculling.jpg',
+  exertion: "HIGH"
+  },
+  {
+  id: 45,
+  name: "Running",
+  description: 'fun activity',
+  imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/female-running-friends-royalty-free-image-1642534924.jpg?crop=0.668xw:1.00xh;0.233xw,0&resize=640:*',
+  exertion: "HIGH"
+  },
+  {
+  id: 46,
+  name: "Sailing",
+  description: 'fun activity',
+  imageUrl: 'https://www.rssailing.com/wp-content/uploads/2021/05/RS-Feva-Sailing.jpg'
+  },
+{
  id: 47,
 name: "Sightseeing",
+exertion: "LOW",
  description: 'fun activity',
 imageUrl: 'https://previews.123rf.com/images/grinvalds/grinvalds1507/grinvalds150700063/42099403-tourists-sightseeing-in-venice.jpg'
 },
@@ -784,15 +819,13 @@ id: 49,
  name: "Snorkelling",
  description: 'fun activity',
 imageUrl: 'https://www.sandals.com/blog/content/images/2019/04/3_islandroutes_38-Adv-Eco.jpg'
-    },
+},
   {
    id: 50,
     name: "Snowboarding",
     description: 'fun activity',
  imageUrl: 'https://media.istockphoto.com/photos/snowboard-jump-picture-id153551554?k=20&m=153551554&s=612x612&w=0&h=h6sy7MynUD_pFAIvWx6bBjfQwBxYNHKsNuOQgpZZ8dI='
  },
-
-
 ]
 
 const categories = [

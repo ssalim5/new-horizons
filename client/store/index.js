@@ -7,6 +7,7 @@ import singleUserReducer from './SingleUserStore'
 import activitiesReducer from './allActivitiesStore'
 import singleActivityReducer from './singleActivityStore'
 import userReducer from './allUsersStore'
+import recommendationsReducer from './userRecommendations'
 import userActivitiesReducer from './userActivitiesStore'
 import friendReducer from './friendsStore'
 
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   activities: activitiesReducer,
   singleActivity: singleActivityReducer,
   allUsers: userReducer,
+  recommended: recommendationsReducer,
   userActivities: userActivitiesReducer,
   friends: friendReducer
   })

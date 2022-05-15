@@ -1,45 +1,10 @@
-<<<<<<< HEAD
-# new-horizons
-=======
-# FS-App-Template
-
-## Setup
-
-To use this as boilerplate, you'll need to take the following steps:
-
-* Don't fork or clone this repo! Instead, create a new, empty
-  directory on your machine and `git init` (or create an empty repo on
-  Github and clone it to your local machine)
-
-* Now you will have to add the fs-app-template as a remote and merge it into your own repository.
-
-```
-git remote add boilermaker git@github.com:FullstackAcademy/fs-app-template.git
-git fetch boilermaker
-git merge boilermaker/main
-git branch -m master main
-```
-
-## Customize
-
-Now that you've got the code, follow these steps to get acclimated:
-
-* Update project name and description in `package.json`
-* `npm install`
-* Create two postgres databases (`MY_APP_NAME` should match the `name`
-  parameter in `package.json`):
-* These commands will create both your **development** and **test** databases
-
-```
-createdb <YOUR APP NAME HERE FROM package.json>
-createdb <YOUR APP NAME HERE FROM package.json>-test
-```
-
-* By default, running `npm test` will use your test database, while
-  regular development uses development database
+new-horizons is a simple application to get people to expand their horizons and try new things. We wanted to be able to recommend users new activities based on previous activities they've tried. We built a simple collaborative filtering recommendations system with the mathjs library and using user rankings to find new things for users to try that they might like. 
+We have plenty of features we would still like to add like connecting users on our platform so they can try out new activities together and giving feedback to users about the features we think they would like most in an activity. We may also want to suggest new activities to users either at random or specifically against our own recommendations to get people to really push their boundaries and maybe find out that they would like something they might never have even considered. 
+We would also like to expand our database to have even more activities and users to give more and better recommendations. 
 
 ## Start
-
+run npm `run install` to install dependencies from package.json.
+create a local postgres databse called new-horizons
 Sync and seed your database by running `npm run seed`. Running `npm run start:dev` will make great things happen!
 
 - start:dev will both start your server and build your client side files using webpack
@@ -48,34 +13,5 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 
 
 ### Heroku
-
-1.  Set up the [Heroku command line tools][heroku-cli]
-2.  `heroku login`
-3.  Add a git remote for heroku:
-
-[heroku-cli]: https://devcenter.heroku.com/articles/heroku-cli
-
-* **If you are creating a new app...**
-
-  1.  `heroku create` or `heroku create your-app-name` if you have a
-      name in mind.
-  2.  `heroku config:set JWT=<your secret here!>` to set a secret for JWT signing
-
-Database Setup
-
-  3.  `heroku addons:create heroku-postgresql:hobby-dev` to add
-      ("provision") a postgres database to your heroku dyno (This creates your production database)
-
-  4.  `heroku config:set SEED=true` to get heroku to sync and seed your database
-
-  5.   note everytime your app restarts, the database tables will be dropped and re-created. To avoid this you can `config:unset SEED`
-
-
-* **If you already have a Heroku app...**
-
-  1.  `heroku git:remote your-app-name` You'll need to be a
-      collaborator on the app.
-
-
-Now, you should be deployed!
->>>>>>> boilermaker/main
+Deployed but not yet fully set up
+https://new-horizons-app.herokuapp.com/

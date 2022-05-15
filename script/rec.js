@@ -78,18 +78,34 @@ let User_Ratings_Arr = await userRatingArr()
     //     return {P,Q}
     //   }
     }
-    let estimatedRatings = math.multiply(P,Q)
+  let estimatedRatings = math.multiply(P,Q)
+  P.forEach((value,index,matrix)=>{
+    P.subset(math.index(index[0],index[1]),+value.toFixed(2))
+  })
+  Q.forEach((value,index,matrix)=>{
+      Q.subset(math.index(index[0],index[1]),+value.toFixed(2))
+   })
+  estimatedRatings.forEach((value,index,matrix)=>{
+      estimatedRatings.subset(math.index(index[0],index[1]), +value.toFixed(2))
+  })
     return{P,Q,estimatedRatings}
   }
   let {P,Q,estimatedRatings} = matFactorization(User_Ratings,User_Features,Activity_Features,math.size(User_Features)._data[1])
-  /* write to JSON */
-  
+  fs.writeFile ("activityFeatures.json", JSON.stringify(P._data), function(err) {
+  if (err) throw err;
+  console.log('complete');
+  }
+  )
+  fs.writeFile ("userFeatures.json", JSON.stringify(Q._data), function(err) {
+      if (err) throw err;
+      console.log('complete');
+      }
+  )
   fs.writeFile ("estimatedRatings.json", JSON.stringify(estimatedRatings._data), function(err) {
-    if (err) throw err;
-    console.log('complete');
-    }
-);
-
+      if (err) throw err;
+      console.log('complete');
+      }
+  )
   console.log("---DONE---")
 }
 
