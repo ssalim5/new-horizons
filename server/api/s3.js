@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 
 router.post('/', async(req, res) => {
   const s3 = new aws.S3()
-  const filePath = path.join(__dirname, "../../estimatedRatings.json")
+  const filePath = path.join(__dirname, "../../calculated_tables/estimatedRatings.json")
   const file = fs.createReadStream(filePath);
 
   const uploadParams = {
