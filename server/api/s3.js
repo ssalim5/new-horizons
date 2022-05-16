@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
     Bucket: S3_BUCKET,
     Key: "estimatedRatings.json"
   }
+  console.log('got data from aws')
   s3.getObject(s3Params, (error, data) => {
       if (error !== null){
         res.send(error)

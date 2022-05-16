@@ -19,8 +19,8 @@ router.get('/', async (req, res, next) => {
 router.get("/activities/rec",async(req,res,next)=>{
   try{ 
     let {id}= await User.findByToken(req.headers.authorization);
-    let data = require('../../calculated_tables/estimatedRatings.json')
-    // let {data} = await axios.get('http://localhost:8080/api/s3')
+    // let data = require('../../calculated_tables/estimatedRatings.json')
+    let {data} = await axios.get('http://localhost:8080/api/s3')
     let user_data = data[id-1]
     let allActivities = await Activity.findAll({order:[['id','ASC']]})
     const userActivities = await User.findByPk(
