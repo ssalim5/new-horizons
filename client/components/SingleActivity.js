@@ -14,22 +14,30 @@ export default function SingleActivity(){
         dispatch(fetchSingleActivity(params.id))
     },[])
 
-    if(!activity){
+    if(!activity.useractivities){
         return(
             <div>Loading</div>
         )
     }
     return(
-        <div>
-            <div><img src= {activity.imageUrl}/></div>
-            <div><h2>ExperienceNeeded: {activity.experienceNeeded}</h2></div>
-            <div><h2>ExertionLevel: {activity.exertionLevel}</h2></div>
-            <div><h2>Number of People: {activity.numberOfPeople}</h2></div>
-            <div><h2>Venue: {activity.venue}</h2></div>
-            <div><h2>Time: {activity.time}</h2></div>
-            <div><h2>Price: {activity.price}</h2></div>
-            <div><h2>Description: {activity.description}</h2></div>
-            <RatingsModal activity={activity} />
+        <div className="singleActivity">
+            <div className="singleActivity-body">
+                <div className="singleActivity-image">
+                    <img src= {activity.imageUrl}/>
+                </div>
+                <div className="singleActivity-text">
+                    <div className="singleActivityInfo">
+                        <h2>{activity.name}</h2>
+                        <p>Description: {activity.description}</p>
+                        <p>ExertionLevel: {activity.exertionLevel}</p>
+                        <p>{activity.outside ? "Outdoors" : "Indoors"}</p>
+                        <p>Rating: {activity.useractivities.length>0 ? activity.useractivities[0].score : "n/a"}</p>
+                    </div>
+                    <RatingsModal activity={activity} />
+                </div>
+            </div>
+            {/* <div className="map">map</div> */}
+            
         </div>
     )
 }

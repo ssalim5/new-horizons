@@ -37,12 +37,15 @@ export default function RatingsModal(props){
     }
 
     return(
-        <div>banana
+        <div>
              {activity.useractivities ? 
             activity.useractivities.length>0 ? <button type="button" onClick={toggleModal}>Update Rating</button> : <button type="button" onClick={toggleModal}>Complete Activity</button>
             : ""}
-            <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="ratings menu" style={customStyles}>
-                <button type="button" className="close-modal"onClick={toggleModal}>x</button>
+            <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="ratings menu" className="mymodal" overlayClassName="myoverlay" closeTimeoutMS={100}>
+                <div>
+                    <button type="button" className="close-modal"onClick={toggleModal}>x</button>
+                </div>
+                <h2>Rate Your Activity</h2>
                 <form className="ratingStars" onChange={onChange}>
                     <input type="radio" id="star5" name="rate" value="5" />
                     <label htmlFor="star5" title="text">5 stars</label>

@@ -23,10 +23,12 @@ export default function MyActivities(){
         <div>
             {myActivities.map((activity)=>{
                 return(
-                    <div key={activity.id} className={`activity-${activity.useractivities[0].score}`}>
-                        <MappedActivity activity={activity} />
+                    <div key={activity.id} className={activity.useractivities ? 
+                      (activity.useractivities.length>0 ? `rating-${activity.useractivities[0].score} activity`:"rating-x activity") 
+                    : "activity"}>
+                      <MappedActivity activity={activity} />
                     </div>
-                )
+                  )
             })}
         </div>
     )
