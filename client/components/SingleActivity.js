@@ -36,7 +36,7 @@ export default function SingleActivity(){
                     <RatingsModal activity={activity} />
                 </div>
             </div>
-            {/* <div className="map">map</div> */}
+            <div className="map">map</div>
             
         </div>
     )
