@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchActivities} from "../store/allActivitiesStore";
-import { Link } from 'react-router-dom'
-import RatingsModal from './RatingsModal'
+import MappedActivity from "./utilities/MappedActivity";
 
 
 export class AllActivities extends React.Component {
@@ -12,26 +11,21 @@ export class AllActivities extends React.Component {
     }
   }
   componentDidMount(){
-    this.props.fetchActivities();
+      this.props.fetchActivities()
   }
   render() {
-    return  (
-      <div className="container">
-      {this.props.activities.map((activity) => {
-        return (
-          <div className="activity" key={activity.id}>
-            <Link to ={`/activities/${activity.id}`}key={activity.id}>
-              <div key={activity.id}>
-                <div> Name: {activity.name} </div>
-                <img src={activity.imageUrl} />
-              </div>
-            </Link>
-            {window.localStorage.getItem("token") ? <RatingsModal activityId={activity.id} /> : ""}
-          </div>
-        )
-      })}
+    return(
+      <div id="allActivities">
+        {this.props.activities.map((activity) => {
+          return(
+            <div key={activity.id} className={activity.useractivities ? 
+              (activity.useractivities.length>0 ? `activity-${activity.useractivities[0].score}`:"activity-x") 
+            : "activity"}>
+              <MappedActivity activity={activity} />
+            </div>
+          )
+         })}
       </div>
-
     )
   }
 }

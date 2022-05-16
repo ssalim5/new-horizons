@@ -62,11 +62,11 @@ router.get('/:id', async (req, res, next) => {
 
 
 //GET: read users activities
-router.get("/activities/:userId", async (req,res,next) => {
+router.get("/activities", async (req,res,next) => {
   try{
-    console.log(req.params.userId)
+    const user = await User.findByToken(req.headers.authorization)
     const userActivities = await User.findByPk(
-      req.params.userId,
+      user.id,
       {include:{
         model: Activity,
         through: {attributes: ['score']}

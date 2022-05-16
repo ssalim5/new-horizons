@@ -1,15 +1,16 @@
-import React, {useState} from 'react'
-import {useDispatch} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import { postUserActivity, putUserActivity } from '../../store/singleActivityStore'
 import Modal from 'react-modal'
-import {postUserActivity} from '../store/userActivitiesStore'
 
 Modal.setAppElement("#app")
 
-export default function RatingsModal (props) {
-    let {activityId} = props
+export default function RatingsModal(props){
+    const {activity} = props
+
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
-
+    
     const customStyles = {
         content: {
           top: '35%',
@@ -23,19 +24,23 @@ export default function RatingsModal (props) {
     };
 
     function onChange(event){
-        dispatch(postUserActivity(activityId,event.target.value))
+        if(activity.useractivities.length>0){
+            dispatch(putUserActivity(activity.id,event.target.value))
+        }else{
+            dispatch(postUserActivity(activity.id,event.target.value))
+        }
         toggleModal()
     }
-
+    
     function toggleModal() {
         setIsOpen(!isOpen)
     }
 
-
     return(
-        <div>
-            <button type="button" onClick={toggleModal}>Add Activity</button>
-
+        <div>banana
+             {activity.useractivities ? 
+            activity.useractivities.length>0 ? <button type="button" onClick={toggleModal}>Update Rating</button> : <button type="button" onClick={toggleModal}>Complete Activity</button>
+            : ""}
             <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="ratings menu" style={customStyles}>
                 <button type="button" className="close-modal"onClick={toggleModal}>x</button>
                 <form className="ratingStars" onChange={onChange}>
@@ -55,7 +60,6 @@ export default function RatingsModal (props) {
                     <label htmlFor="star1" title="text">1 star</label>
                 </form>
             </Modal>
-            
         </div>
     )
 }
