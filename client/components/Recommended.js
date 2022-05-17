@@ -21,7 +21,6 @@ export class Recommended extends React.Component {
         <div>Based on your previous activity rankings here are some more activities you might like</div>
         <ul className="activities-container">
         {this.props.recommended? this.props.recommended.sort((a,b)=>{
-          console.log ("A",a, "B",b)
           return (a.score>b.score?-1:1)
         }).slice(0,6).
         map((activity) => {

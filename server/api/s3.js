@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
     Bucket: S3_BUCKET,
     Key: "estimatedRatings.json"
   }
+  console.log('got data from aws')
   s3.getObject(s3Params, (error, data) => {
       if (error !== null){
         res.send(error)
@@ -31,7 +32,7 @@ router.get('/', (req, res) => {
 
 router.post('/', async(req, res) => {
   const s3 = new aws.S3()
-  const filePath = path.join(__dirname, "../../estimatedRatings.json")
+  const filePath = path.join(__dirname, "../../calculated_tables/estimatedRatings.json")
   const file = fs.createReadStream(filePath);
 
   const uploadParams = {
