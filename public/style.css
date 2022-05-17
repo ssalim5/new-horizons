@@ -120,6 +120,13 @@ button:hover{
   margin:5%;
 }
 
+/* home */
+#home .offButton{
+  background-color: var(--background);
+  pointer-events: none;
+}
+
+
 /* mapped activity */
 .allActivities{
   width:90%;
@@ -273,6 +280,9 @@ button:hover{
   color: white;
   background-color: red;
 }
+
+
+
 
 /* rating modal stars css */
 .mymodal {

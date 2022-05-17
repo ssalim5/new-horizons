@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeTopFiveAct } from '../store/utilities'
 import TopFive from './utilities/TopFive'
 
 
@@ -7,17 +8,44 @@ export default function Home(){
 
   const myActivities = useSelector((state)=> state.userActivities)
   const myRecommendations = useSelector((state)=> state.recommended)
+  const actStart = useSelector((state)=> state.utilities.fiveAct)
+  const recStart = useSelector((state)=> state.utilities.fiveRec)
+  
+  const dispatch = useDispatch()
+  
+  function changeFive(destination,direction,num){
+    if(direction==="plus"){
+      dispatch(changeTopFiveAct(Number(num)+5,destination))
+    }
+    else  if(direction==="minus"){
+      dispatch(changeTopFiveAct(Number(num)-5,destination))
+    }
+  }
+
 
   if(!myActivities){
       return(
           <div>Loading</div>
       )
   }
-  console.log(myRecommendations)
+
   return(
-      <div className="module home">
-        <TopFive data={myActivities}/>
-        <TopFive data={myRecommendations}/>
+      <div className="module" id="home">
+        <div id="topFive-activities">
+          <div className="topFive-nav">
+            <button className={actStart<=0 ? "offButton" : "onButton"} onClick={(()=>{changeFive("fiveAct","minus",actStart)})}>prev</button>
+            <button className={actStart+5>=myActivities.length ? "offButton" : "onButton"} onClick={(()=>{changeFive("fiveAct","plus",actStart)})}>next</button>
+          </div>
+          <TopFive data={myActivities.slice(actStart,actStart+5)}/>
+        </div>
+        <div id="topFive-activities">
+          <div className="topFive-nav">
+            <button className={recStart<=0 ? "offButton" : "onButton"} onClick={(()=>{changeFive("fiveRec","minus",recStart)})}>prev</button>
+            <button className={recStart+5>=myActivities.length ? "offButton" : "onButton"} onClick={(()=>{changeFive("fiveRec","plus",recStart)})}>next</button>
+          </div>
+          <TopFive data={myRecommendations.slice(recStart,recStart+5)}/>
+        </div>
+        
       </div>
   )
 }
