@@ -4,10 +4,12 @@ const app = require('./app')
 const seed = require('../script/seed');
 const calculatedRatings = require('../script/rec.js')
 const axios = require('axios')
+axios.defaults.baseURL = process.env.baseURL || "htpp://localhost:8080"
+
 
 const  uploadRatingsToAWS = async () =>{
   await calculatedRatings()
-  await axios.post('http://localhost:8080/api/s3')
+  await axios.post('api/s3')
 }
 
 const init = async () => {
