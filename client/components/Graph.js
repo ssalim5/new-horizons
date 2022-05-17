@@ -53,13 +53,34 @@ class Graph extends React.Component {
     outside += 1;
     }
   });
-  console.log("OUT", outside)
   let inside = venue.length - outside
-  console.log("in", inside)
+
+  const creative = activities.map((activity) => (activity.creative))
+  const athletic = activities.map((activity) => (activity.athletic))
+  const adventurous = activities.map((activity) => (activity.adventurous))
+  const relaxing = activities.map((activity) => (activity.relaxing))
+  const social = activities.map((activity) => (activity.social))
+  const totalSocial = social.reduce((a,b) => a + b, 0)
+  const totalRelaxing = relaxing.reduce((a,b) => a + b, 0)
+  const totalAdventurous = adventurous.reduce((a,b) => a + b, 0)
+  const totalAthletic = athletic.reduce((a,b) => a + b, 0)
+  const totalCreative = creative.reduce((a,b) => a + b, 0)
+
 
 
     return (
       <div>
+         <div> Category of Activities</div>
+<VictoryPie
+  colorScale={["tomato", "yellow", "navy", "grey", "green"]}
+  data={[
+    { x: "Creative", y: totalCreative },
+    { x: "Athletic", y: totalAthletic },
+    { x: "Adventurous", y: totalAdventurous },
+    { x: "Social", y: totalSocial },
+    { x: "Relaxing", y: totalRelaxing }
+  ]}
+/>
       <div> Exertion Level of Activities</div>
 <VictoryPie
   colorScale={["tomato", "cyan", "navy" ]}
