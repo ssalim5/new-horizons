@@ -11,7 +11,7 @@ export default function MyActivities(){
     const myActivities = useSelector((state)=> state.userActivities)
     
     useEffect(()=>{
-        dispatch(getUserActivities())
+        // dispatch(getUserActivities())
     },[])
 
     if(!myActivities){

@@ -32,23 +32,93 @@ nav a {
   margin: 1em;
 }
 
-form div {
+/* form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 h2{
-  color: var(--font-color)
+  color: var(--font-color);
 }
 
 p{
-  color: var(--light-detail)
+  color: var(--light-detail);
 }
 
-/* #routes{
+label{
+  color: var(--light-detail);
+}
+
+button{
+  height:auto;
+  border-radius:50px;
+  background-color: var(--nav-color);
+  font-size:20px;
+  border:2px solid var(--dark-detail);
+  padding:5px 20px 5px 20px;
+  margin:20px;
+}
+
+button:hover{
+  opacity:80%;
+  cursor: pointer;
+}
+
+/* module */
+.module{
   display:flex;
+  flex-direction:column;
+  align-items: center;
+  width:94%;
+  margin-top:5%;
+  margin-left:3%;
+  border-top: 2px solid var(--light-detail);
+  background-image: linear-gradient(var(--lighter-background),var(--background));
+  padding-bottom:100px;
+}
+
+/* login/register */
+.login>form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width:100%;
+}
+
+.login div{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width:50%
+}
+
+.login label{
+  font-size:large
+}
+
+.login input{
+  width:100%;
+  background-color: var(--font-color);
+  padding:10px;
+  border-radius: 10px;
+  border: 3px solid var(--nav-color);
+  margin-top:5px;
+}
+
+.login input:focus{
+  border: 3px solid var(--rating03)
+}
+
+#registration-submit-buttons{
+  display:flex;
+  flex-direction:row;
   justify-content: center;
-} */
+  align-items:stretch;
+}
+
+#registration-submit-buttons button{
+  margin:5%;
+}
 
 /* mapped activity */
 .allActivities{
@@ -79,7 +149,6 @@ p{
 
 .activity:active{
   opacity: 60%;
-
 }
 
 .activity>a{
@@ -124,16 +193,6 @@ p{
 }
 
 /* single activity */
-.singleActivity{
-  display:flex;
-  flex-direction:column;
-  align-items: center;
-  width:94%;
-  margin-top:5%;
-  margin-left:3%;
-  border-top: 2px solid var(--light-detail);
-  background-image: linear-gradient(var(--lighter-background),var(--background))
-}
 
 .singleActivity-body{
   width:100%;
@@ -261,7 +320,6 @@ p{
 
 .ReactModal__Overlay {
   opacity: 0;
-  /* transition: opacity 500ms ease-in-out; */
 }
 
 .ReactModal__Overlay--after-open {

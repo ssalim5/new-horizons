@@ -1,9 +1,11 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
+
+import {me, getUserActivities, fetchUserRecommendations} from './store'
+
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import {me} from './store'
 import UserProfile from './components/Userprofile';
 import AllActivities from './components/AllActivities';
 import SingleActivity from './components/SingleActivity';
@@ -22,10 +24,16 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
   }
+  componentDidUpdate() {
+    if(this.props.isLoggedIn){
+      this.props.getUserActivities()
+      this.props.fetchRecommended()
+    }
+  }
 
   render() {
     const {isLoggedIn} = this.props
-
+    console.log(this.props)
     return (
       <div id="routes">
         {isLoggedIn ? (
@@ -79,7 +87,9 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-    }
+    },
+    getUserActivities: () => dispatch(getUserActivities()),
+    fetchRecommended: () => dispatch(fetchUserRecommendations()),
   }
 }
 

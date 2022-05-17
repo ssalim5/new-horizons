@@ -20,7 +20,7 @@ export default function SingleActivity(){
         )
     }
     return(
-        <div className="singleActivity">
+        <div className="singleActivity module">
             <div className="singleActivity-body">
                 <div className="singleActivity-image">
                     <img src= {activity.imageUrl}/>

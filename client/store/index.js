@@ -31,3 +31,4 @@ export default store
 export * from './auth'
 export * from './userActivitiesStore'
 export * from './singleActivityStore'
+export * from './userRecommendations'

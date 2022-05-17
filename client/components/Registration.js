@@ -56,7 +56,7 @@ function Registration(){
   }
   
   return(
-      <div id='user-create'>
+      <div className="module login">
         <h2>Signup</h2>
         <form onSubmit={handleSubmit}>
             {matchPasswords ? "" : <div className = "alertbox"> passwords do not match</div>}
@@ -84,7 +84,7 @@ function Registration(){
             {hideRequiredFlag ? "" : <div className = "alert">required field</div>}
           </div>
 
-          <div className="submit-buttons">
+          <div id="registration-submit-buttons">
             <button type='submit'>submit</button>
             <button type='button'><Link to='/'>cancel</Link></button>
           </div>
