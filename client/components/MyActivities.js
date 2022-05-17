@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Modal from 'react-modal'
-import { fetchActivities} from "../store/allActivitiesStore";
 import { getUserActivities } from '../store';
 import MappedActivity from './utilities/MappedActivity'
 
@@ -12,7 +11,7 @@ export default function MyActivities(){
     const myActivities = useSelector((state)=> state.userActivities)
     
     useEffect(()=>{
-        dispatch(getUserActivities())
+        // dispatch(getUserActivities())
     },[])
 
     if(!myActivities){
@@ -24,10 +23,12 @@ export default function MyActivities(){
         <div>
             {myActivities.map((activity)=>{
                 return(
-                    <div key={activity.id} className={`activity-${activity.useractivities[0].score}`}>
-                        <MappedActivity activity={activity} />
+                    <div key={activity.id} className={activity.useractivities ? 
+                      (activity.useractivities.length>0 ? `rating-${activity.useractivities[0].score} activity`:"rating-x activity") 
+                    : "activity"}>
+                      <MappedActivity activity={activity} />
                     </div>
-                )
+                  )
             })}
         </div>
     )

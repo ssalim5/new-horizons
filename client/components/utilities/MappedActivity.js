@@ -9,8 +9,11 @@ export default function MappedActivity (props) {
     
     return(
         <Link to ={`/activities/${activity.id}`}>
+            <img src= {activity.imageUrl} className = "activityImage"/>
+            <div>
             <h2>{activity.name}</h2>
-            <img src= {activity.imageUrl}/>
+            <p>rating: {activity.useractivities ? (activity.useractivities.length>0 ? activity.useractivities[0].score:"n/a") : "loading"}</p>
+            </div>
         </Link>
     )
 }

@@ -12,7 +12,7 @@ export class Recommended extends React.Component {
     }
   }
   componentDidMount(){
-    this.props.fetchRecommended();  
+    // this.props.fetchRecommended();  
   }
   render() {
     console.log("RENDERING",this.props.recommended)
