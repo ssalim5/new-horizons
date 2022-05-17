@@ -23,17 +23,12 @@ import MyActivities from './components/MyActivities';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
-  }
-  componentDidUpdate() {
-    if(this.props.isLoggedIn){
-      this.props.getUserActivities()
+    this.props.getUserActivities()
       this.props.fetchRecommended()
-    }
   }
 
   render() {
     const {isLoggedIn} = this.props
-    console.log(this.props)
     return (
       <div id="routes">
         {isLoggedIn ? (
