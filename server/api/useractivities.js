@@ -1,19 +1,51 @@
 const router = require('express').Router()
-const { models: { UserActivities }} = require('../db')
+const { models: { UserActivities, User, Activity }} = require('../db')
 module.exports = router
 
+router.get("/", async (req,res,next)=>{
+    const {id} = await jwt.verify(req.headers.authorization, process.env.JWT)
+    const test = await User.findByPk(
+        id,
+        {include:{
+            model: Activity,
+            where: {
+                id: req.body.activityId
+            },
+            // through: {attributes: ['score']}
+        }
+    })
+    res.send(test.activities)
+})
 //POST: add a new activity to useractivities for user
-router.post("/", async (req, res, next) => {
+router.post("/userActivity", async (req, res, next) => {
     try {
+        //console.log("---HEADERS---",req.headers.authorization)
+        const user = await User.findByToken(req.headers.authorization)
+        console.log("---ID---",user.id)
         if(await UserActivities.findOne({
             where:{
-                userId:req.body.userId,
+                userId:user.id,
                 activityId: req.body.activityId
             }
         })){
             return res.status(403).send("this user/activity already exists")
         }else{
-            res.status(201).send(await UserActivities.create(req.body));
+            await UserActivities.create({
+                userId:user.id,
+                activityId: req.body.activityId,
+                score: req.body.score
+            });
+            const createdUserActivity = await User.findByPk(
+                user.id,
+                {include:{
+                    model: Activity,
+                    where: {
+                        id: req.body.activityId
+                    },
+                    // through: {attributes: ['score']}
+                }
+            })
+            res.status(201).send(createdUserActivity.activities[0])
         }
     } catch (error) {
         next(error);

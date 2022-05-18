@@ -15,7 +15,9 @@ export class AddFriends extends React.Component {
   handleFriend(user){
     const select = {
       userId: this.props.match.params.id,
+      username: user.username,
       friendId: `${user.id}`
+
     }
     console.log("FRIEND", select)
     this.props.createFriend(select)
@@ -31,7 +33,7 @@ export class AddFriends extends React.Component {
           return (
             <div className="user" key={user.id}>
 
-                  <h1 className="name">{user.username}</h1>
+                  <h2 className="name">{user.username}</h2>
                   <form onSubmit={(ev) => ev.preventDefault()}>
         <button type="submit"
           onClick={() => {this.handleFriend(user)}}

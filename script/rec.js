@@ -31,6 +31,7 @@ let User_Ratings_Arr = await userRatingArr()
     let user_features = []
     for (let j=0;j<numFeatures;j++){
           user_features.push(5*Math.random())
+          // user_features.push(0) //no longer random
     }
         User_Features_Arr.push(user_features)
   }
@@ -39,6 +40,7 @@ let User_Ratings_Arr = await userRatingArr()
     let activity_features = []
     for (let j=0;j<numFeatures;j++){
           activity_features.push(Math.random()*5)
+          // activity_features.push(0) //no longer random 
     }
         Activity_Features_Arr.push(activity_features)
   }
@@ -48,7 +50,7 @@ let User_Ratings_Arr = await userRatingArr()
   let User_Ratings = math.matrix(User_Ratings_Arr)
   let User_Features = math.matrix(User_Features_Arr)
   let Activity_Features = math.matrix(Activity_Features_Arr)
-  const matFactorization =  (R,P,Q,FeatureSize,numSteps=1000,alpha=0.0002,beta=0.02) =>{
+  const matFactorization =  (R,P,Q,FeatureSize,numSteps=1000,alpha=0.0004,beta=0.04) =>{
     Q = math.transpose(Q)
     for (let step = 0;step<numSteps;step++){
       R.forEach((value,index,matrix)=>{
@@ -78,19 +80,35 @@ let User_Ratings_Arr = await userRatingArr()
     //     return {P,Q}
     //   }
     }
-    let estimatedRatings = math.multiply(P,Q)
+  let estimatedRatings = math.multiply(P,Q)
+  P.forEach((value,index,matrix)=>{
+    P.subset(math.index(index[0],index[1]),+value.toFixed(2))
+  })
+  Q.forEach((value,index,matrix)=>{
+      Q.subset(math.index(index[0],index[1]),+value.toFixed(2))
+   })
+  estimatedRatings.forEach((value,index,matrix)=>{
+      estimatedRatings.subset(math.index(index[0],index[1]), +value.toFixed(2))
+  })
     return{P,Q,estimatedRatings}
   }
   let {P,Q,estimatedRatings} = matFactorization(User_Ratings,User_Features,Activity_Features,math.size(User_Features)._data[1])
-  /* write to JSON */
-  
-  fs.writeFile ("estimatedRatings.json", JSON.stringify(estimatedRatings._data), function(err) {
-    if (err) throw err;
-    console.log('complete');
-    }
-);
-
+  fs.writeFile ("calculated_tables/activityFeatures.json", JSON.stringify(P._data), function(err) {
+  if (err) throw err;
+  console.log('complete');
+  }
+  )
+  fs.writeFile ("calculated_tables/userFeatures.json", JSON.stringify(Q._data), function(err) {
+      if (err) throw err;
+      console.log('complete');
+      }
+  )
+  fs.writeFile ("calculated_tables/estimatedRatings.json", JSON.stringify(estimatedRatings._data), function(err) {
+      if (err) throw err;
+      console.log('complete');
+      }
+  )
   console.log("---DONE---")
 }
-
-setTimeout(calculateRatings,10)
+module.exports = calculateRatings
+// setTimeout(calculateRatings,1)

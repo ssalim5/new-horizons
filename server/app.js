@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
+
 const app = express()
 module.exports = app
 
@@ -29,6 +30,9 @@ app.use((req, res, next) => {
     next()
   }
 })
+
+//Generate EJS
+app.engine('html', require('ejs').renderFile);
 
 // sends index.html
 app.use('*', (req, res) => {

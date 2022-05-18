@@ -23,9 +23,12 @@
   "dependencies": {
     "@react-google-maps/api": "^2.10.2",
     "@tensorflow/tfjs": "^3.16.0",
+    "aws-sdk": "^2.1133.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.3",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
     "express": "^4.16.4",
     "google-map-react": "^2.1.10",
     "google-maps-react": "^2.0.6",
@@ -34,6 +37,7 @@
     "mathjs": "^10.5.2",
     "morgan": "^1.9.1",
     "pg": "^8.5.1",
+    "react-modal": "^3.15.1",
     "sequelize": "^6.3.5",
     "victory": "^36.3.2"
   },

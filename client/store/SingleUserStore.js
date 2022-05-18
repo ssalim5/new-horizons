@@ -29,7 +29,7 @@ export const fetchUser = (id) => {
 
 const initialState = {};
 export default function singleUserReducer(state = initialState, action) {
-  console.log("ActionSINGLE", action)
+  //console.log("ActionSINGLE", action)
   switch (action.type) {
     case SET_SINGLE_USER:
       return action.userData;
