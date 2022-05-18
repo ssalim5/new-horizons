@@ -32,7 +32,7 @@ router.get("/", async (req, res, next) => {
             userId:user.id
           },
           attributes:['score','updatedAt', 'activityId'],
-          // required: false
+          required: false
         }
 
       });
@@ -49,7 +49,8 @@ router.get("/", async (req, res, next) => {
           where: {
             userId: user.id
           },
-          attributes: ['score', 'updatedAt', 'activityId']
+          attributes: ['score', 'updatedAt', 'activityId'],
+          required: false
         }
       })
       res.json(activities)
@@ -70,7 +71,7 @@ router.get("/users", async (req,res,next)=> {
         where:{
           userId:user.id
         },
-        attributes:['userId'],
+        attributes:['userId','score','updatedAt'],
       },
     });
     res.json(activity)
