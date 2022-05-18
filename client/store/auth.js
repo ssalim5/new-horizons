@@ -46,7 +46,6 @@ export const signup = (user) => async (dispatch) => {
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
     history.push('/');
-
   } catch (authError) {
     return dispatch(setAuth({ error: authError }));
   }

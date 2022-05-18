@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import { fetchActivities} from "../store/allActivitiesStore";
 import { fetchUserRecommendations } from "../store/userRecommendations";
+import MappedActivity from './utilities/MappedActivity'
 import { Link } from 'react-router-dom'
 
 
@@ -15,12 +16,15 @@ export class Recommended extends React.Component {
     // this.props.fetchRecommended();  
   }
   render() {
-    console.log("RENDERING",this.props.recommended)
+    //console.log("RENDERING",this.props.recommended)
     return  (
-      <div className="recommendations-container">
-        <div>Based on your previous activity rankings here are some more activities you might like</div>
-        <ul className="activities-container">
+      <div id="recommendations-container" className="module">
+        <h2>All Recommendations</h2>
+        <p>Based on your previous activity rankings here are some more activities you might like</p>
+        <MappedActivity data={this.props.recommended}/>
+        {/* <ul className="activities-container">
         {this.props.recommended? this.props.recommended.sort((a,b)=>{
+          //console.log ("A",a, "B",b)
           return (a.score>b.score?-1:1)
         }).slice(0,6).
         map((activity) => {
@@ -34,7 +38,7 @@ export class Recommended extends React.Component {
             </Link>
           )
           }):""}
-        </ul>
+        </ul> */}
       </div>
     )
   }

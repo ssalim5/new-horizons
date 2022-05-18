@@ -5,12 +5,11 @@
   --light-detail: rgb(172, 172, 172);
   --dark-detail: rgb(42, 42, 42);
   --nav-color: #6F2DBD;
-  --rating01: #391763;
-  --rating02: #6F2DBD;
-  --rating03: #7A5BD9;
-  --rating04: #A663CC;
-  --rating05: #EB85D8;
-
+  --rating05: #e59fe3;
+  --rating04: #c874b2;
+  --rating03: #7b337d;
+  --rating02: #430d4b;
+  --rating01: #210535;
 
 }
 
@@ -37,7 +36,15 @@ nav a {
   display: inline-block;
 } */
 
+h1{
+  color: var(--light-detail);
+}
+
 h2{
+  color: var(--font-color);
+}
+
+h3{
   color: var(--font-color);
 }
 
@@ -53,28 +60,111 @@ button{
   height:auto;
   border-radius:50px;
   background-color: var(--nav-color);
-  font-size:20px;
+  font-size:16px;
   border:2px solid var(--dark-detail);
   padding:5px 20px 5px 20px;
   margin:20px;
 }
 
-button:hover{
-  opacity:80%;
+/* repeated elements */
+.clickable:hover{
+opacity:80%;
+cursor: pointer;
+}
+
+.clickable:active{
+  opacity:50%;
   cursor: pointer;
 }
 
-/* module */
-.module{
+#routes{
   display:flex;
   flex-direction:column;
   align-items: center;
-  width:94%;
+  width:100%;
   margin-top:5%;
-  margin-left:3%;
   border-top: 2px solid var(--light-detail);
   background-image: linear-gradient(var(--lighter-background),var(--background));
-  padding-bottom:100px;
+  margin-bottom:100px;
+}
+
+.component{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  flex-wrap:wrap;
+}
+
+.module{
+  /* border: 3px solid var(--nav-color); */
+  border-radius: 20px;
+  width:80%;
+  max-width:500px;
+  padding:0 3% 10% 3%;
+  margin:5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.module>p{
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom:50px;
+}
+
+.module>h2{
+  margin:10px;
+}
+
+.module>a{
+  color:var(--rating04);
+}
+
+.module>a:visited{
+  color:var(--rating03);
+}
+
+.util-component{
+  height: 75%;
+  width:100%;
+}
+
+.singleItem{
+  background-image: linear-gradient(var(--lighter-background),var(--background));
+  border-radius: 100px;
+  width:100%;
+  height: 20%;
+  margin-bottom: 9px;
+}
+
+.singleItem a{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.singleItem-image{
+  max-height: 83px; 
+  max-width: 150px;
+  min-width: 75px;
+  object-fit: cover;
+  border-radius: 100px 0 0 100px;
+  width: 20%;
+  height: 100%;
+}
+
+.singleItem h3{
+  margin-left:10px;
+  margin-bottom:2px;
+}
+.singleItem p{
+  margin-left:10px;
+  margin-top:2px;
 }
 
 /* login/register */
@@ -120,14 +210,26 @@ button:hover{
   margin:5%;
 }
 
+/* home */
+#home .offButton{
+  background-color: var(--lighter-background);
+  pointer-events: none;
+}
+
+.topFive-nav{
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content: space-between;
+}
+
 /* mapped activity */
-.allActivities{
+/* #allActivities{
   width:90%;
   margin-left: 5%;
   margin-right: 5%;
-}
+} */
 
-.activityImage{
+/* .activityImage{
   height:110px;
   width:110px;
   object-fit: cover;
@@ -141,10 +243,6 @@ button:hover{
 .activity{
   width:100%;
   padding: 5px;
-}
-
-.activity:hover{
-  opacity:80%;
 }
 
 .activity:active{
@@ -165,31 +263,26 @@ button:hover{
 .activity p{
   color:var(--light-detail);
   margin-left: 10px
-}
+} */
 
-.rating-1>a>div{
+.rating-1{
   background-image: linear-gradient(var(--rating01),var(--background));
-  width:90%;
 }
 
-.rating-2>a>div{
+.rating-2{
   background-image: linear-gradient(var(--rating02),var(--background));
-  width:90%;
 }
 
-.rating-3>a>div{
+.rating-3{
   background-image: linear-gradient(var(--rating03),var(--background));
-  width:90%;
 }
 
-.rating-4>a>div{
+.rating-4{
   background-image: linear-gradient(var(--rating04),var(--background));
-  width:90%;
 }
 
-.rating-5>a>div{
+.rating-5{
   background-image: linear-gradient(var(--rating05),var(--background));
-  width:90%;
 }
 
 /* single activity */
@@ -254,10 +347,6 @@ button:hover{
   margin:20px;
 }
 
-.singleActivity button:hover{
-  opacity:80%
-}
-
 .map{
   background-color: darkgrey;
   width:100%;
@@ -273,6 +362,9 @@ button:hover{
   color: white;
   background-color: red;
 }
+
+
+
 
 /* rating modal stars css */
 .mymodal {
@@ -371,6 +463,20 @@ button:hover{
 
 
 @media (min-width: 700px){
+  #home{
+    display:flex;
+    flex-direction:row;
+    flex-wrap: nowrap;
+  }
+
+  #topFive-recommendations{
+    width:40%;
+  }
+
+  #topFive-activities{
+    width:40%;
+  }
+
   .singleActivity-body{
     display: flex;
     flex-direction: row;
