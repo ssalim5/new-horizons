@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
-import { fetchActivities} from "../store/allActivitiesStore";
+import { getUserActivities } from "../store/userActivitiesStore";
 import { VictoryPie, VictoryTheme, VictoryStack, VictoryLabel, VictoryChart, VictoryAxis, VictoryBar} from 'victory';
 import MappedActivity from "./utilities/MappedActivity";
 
@@ -14,10 +14,10 @@ class Graph extends React.Component {
     }
   }
   componentDidMount(){
-    this.props.fetchActivities()
+    this.props.getUserActivities()
 }
   render() {
-    const activities = this.props.activities
+    const activities = this.props.userActivities
     const userAdventurous = this.props.auth.adventurous
     const userCreative = this.props.auth.creative
     const userRelaxing = this.props.auth.relaxing
@@ -76,7 +76,7 @@ class Graph extends React.Component {
          <div><h2> Category of Activities</h2></div>
          <div className='Chart1'>
 <VictoryPie
-  colorScale={["tomato", "yellow", "navy", "grey", "green"]}
+  colorScale={"heatmap"}
   data={[
     { x: "Creative", y: totalCreative },
     { x: "Athletic", y: totalAthletic},
@@ -84,6 +84,7 @@ class Graph extends React.Component {
     { x: "Social", y: totalSocial },
     { x: "Relaxing", y: totalRelaxing }
   ]}
+  labelComponent={<VictoryLabel angle={45}/>}
   style={{ labels: { fill: "white"} }}
 />
 </div>
@@ -99,6 +100,15 @@ class Graph extends React.Component {
     { x: "Relaxing", y: userRelaxing}
   ]}
   style={{ labels: { fill: "white"} }}
+  labelComponent={<VictoryLabel angle={45}/>}
+  // origin={{ y: 250 }}
+  // padding={125}
+
+// labelPosition={({ index }) => index
+// ? "centroid"
+// : "startAngle"
+// }
+// padding={{ top: 50, bottom: 50 }}
 />
 </div>
 </div>
@@ -106,11 +116,13 @@ class Graph extends React.Component {
       <div><h2> Exertion Level of Activities</h2></div>
       <div className='Chart2'>
 <VictoryPie
-  colorScale={["tomato", "cyan", "navy" ]}
+  colorScale={"cool"}
+  startAngle={90}
+  endAngle={-90}
   data={[
-    { x: "Low", y: low },
-    { x: "Medium", y: medium },
     { x: "High", y: high },
+    { x: "Medium", y: medium },
+    { x: "Low", y: low },
     // { x: "Relaxing", y: 55 },
     // { x: "Entertaining", y: 55 }
   ]}
@@ -120,10 +132,12 @@ class Graph extends React.Component {
 <div> <h2>Location of Activities</h2></div>
 <div className='Chart2'>
 <VictoryPie
-  colorScale={["yellow", "gray" ]}
+  colorScale={"qualitative"}
+  startAngle={90}
+  endAngle={-90}
   data={[
-    { x: "Inside", y: inside },
     { x: "Outside", y: outside },
+    { x: "Inside", y: inside },
     // { x: "Relaxing", y: 55 },
     // { x: "Entertaining", y: 55 }
   ]}
@@ -156,13 +170,15 @@ class Graph extends React.Component {
     const mapState = (state) => {
       return {
         activities: state.activities,
-        auth: state.auth
+        auth: state.auth,
+        userActivities: state.userActivities
       };
     };
 
     const mapDispatch = (dispatch, { history }) => {
       return {
         fetchActivities: () => dispatch(fetchActivities()),
+        getUserActivities: () => dispatch(getUserActivities())
       };
     };
 
