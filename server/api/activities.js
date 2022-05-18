@@ -46,7 +46,7 @@ router.get("/users", async (req,res,next)=> {
         where:{
           userId:user.id
         },
-        attributes:['userId'],
+        attributes:['userId','score','updatedAt'],
       },
     });
     res.json(activity)
