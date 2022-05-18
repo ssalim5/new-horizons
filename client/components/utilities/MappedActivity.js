@@ -1,22 +1,26 @@
-import React from 'react'
-import Modal from 'react-modal'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
-Modal.setAppElement("#app")
 
-export default function MappedActivity (props) {
-    let {activities} = props
 
+export default function MappedActivity(props){
+    const {data}=props
+
+    if(!data){
+        return(
+            <div>Loading</div>
+        )
+    }
     return(
         <div className="util-component">
-            {activities.map((activity)=>{
+            {data.map((activity)=>{
                 return(
-                    <div key={activity.id} className={activity.useractivities.length>0 ? `rating-${activity.useractivities[0].score} singleItem clickable`:"singleItem clickable"}>
+                    <div key={activity.id} className={activity.hasOwnProperty("score") ? `rating-${Math.ceil(activity.score)} singleItem clickable`:(activity.hasOwnProperty("useractivities") ? (activity.useractivities.length>0 ? `rating-${activity.useractivities[0].score} singleItem clickable`:"rating-x singleItem clickable") : "loading")}>
                         <Link to ={`/activities/${activity.id}`}>
                             <img src= {activity.imageUrl} className="singleItem-image"/>
                             <div>
                                 <h3>{activity.name}</h3>
-                                <p>test</p>
+                                <p>{activity.hasOwnProperty("score") ? `recommended: ${activity.score}`:(activity.hasOwnProperty("useractivities") ? (activity.useractivities.length>0 ? `rating: ${activity.useractivities[0].score}`:"loading") : "loading")}</p>
                             </div>
                         </Link>
                     </div>
@@ -24,18 +28,4 @@ export default function MappedActivity (props) {
             })}
         </div>
     )
-    
-    // return(
-    //     <div key={activity.id} className={activity.useractivities ? 
-    //         (activity.useractivities.length>0 ? `rating-${activity.useractivities[0].score} singleItem clickable`:"rating-x singleItem clickable") 
-    //     : "singleItem clickable"}>
-    //         <Link to ={`/activities/${activity.id}`}>
-    //             <img src= {activity.imageUrl} className="singleItem-image"/>
-    //             {/* <div> */}
-    //                 <h3>{activity.name}</h3>
-    //                 {/* <p>rating: {activity.useractivities ? (activity.useractivities.length>0 ? activity.useractivities[0].score:"n/a") : "loading"}</p> */}
-    //             {/* </div> */}
-    //         </Link>
-    //     </div>
-    // )
 }

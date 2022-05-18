@@ -17,7 +17,7 @@ export class AllActivities extends React.Component {
     return(
       <div id="allActivities" className="module">
         <h2>All Activities</h2>
-        <MappedActivity activities={this.props.activities} />
+        <MappedActivity data={this.props.activities}/>
       </div>
     )
   }

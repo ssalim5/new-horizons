@@ -5,11 +5,11 @@
   --light-detail: rgb(172, 172, 172);
   --dark-detail: rgb(42, 42, 42);
   --nav-color: #6F2DBD;
-  --rating01: #e59fe3;
-  --rating02: #c874b2;
+  --rating05: #e59fe3;
+  --rating04: #c874b2;
   --rating03: #7b337d;
-  --rating04: #430d4b;
-  --rating05: #210535;
+  --rating02: #430d4b;
+  --rating01: #210535;
   
 
 }
@@ -109,6 +109,24 @@ cursor: pointer;
   align-items: center;
 }
 
+.module>p{
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom:50px;
+}
+
+.module>h2{
+  margin:10px;
+}
+
+.module>a{
+  color:var(--rating04);
+}
+
+.module>a:visited{
+  color:var(--rating03);
+}
+
 .util-component{
   height: 75%;
   width:100%;
@@ -142,7 +160,6 @@ cursor: pointer;
 }
 
 .singleItem h3{
-  margin-top:10px;
   margin-left:10px;
   margin-bottom:2px;
 }
@@ -198,10 +215,6 @@ cursor: pointer;
 #home .offButton{
   background-color: var(--lighter-background);
   pointer-events: none;
-}
-
-#home h2{
-  margin:10px;
 }
 
 .topFive-nav{

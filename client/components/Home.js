@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeTopFiveAct } from '../store/utilities'
-import TopFive from './utilities/TopFive'
+import { Link } from 'react-router-dom'
+import MappedActivity from './utilities/MappedActivity'
 
 
 export default function Home(){
@@ -34,20 +35,22 @@ export default function Home(){
 
         <div id="topFive-recommendations" className="module">
           <h2>My Recommendations</h2>
+          <Link to ={"/recommended"} className="clickable">See All Recommended Activities</Link>
           <div className="topFive-nav">
             <button className={recStart<=0 ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveRec","minus",recStart)})}>prev</button>
             <button className={recStart+5>=myRecommendations.length ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveRec","plus",recStart)})}>next</button>
           </div>
-          <TopFive data={myRecommendations.slice(recStart,recStart+5)}/>
+          <MappedActivity data={myRecommendations.slice(recStart,recStart+5)}/>
         </div>
         
         <div id="topFive-activities" className="module">
           <h2>My Activities</h2>
+          <Link to ={"/activities"} className="clickable">See All Activities</Link>
           <div className="topFive-nav">
             <button className={actStart<=0 ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveAct","minus",actStart)})}>prev</button>
             <button className={actStart+5>=myActivities.length ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveAct","plus",actStart)})}>next</button>
           </div>
-          <TopFive data={myActivities.slice(actStart,actStart+5)}/>
+          <MappedActivity data={myActivities.slice(actStart,actStart+5)}/>
         </div>
 
       </div>
