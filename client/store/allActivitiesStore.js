@@ -46,13 +46,14 @@ export const _postUserActivity = (userActivity) => {
 }
 
 /* THUNKS */
-export const fetchActivities = () => {
+export const fetchActivities = (keyword) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
       const { data } = await axios.get("/api/activities/",{
         headers: {
           authorization: token
-        }
+        },
+        params: {keyword}
       });
       dispatch(_setActivities(data));
   };
