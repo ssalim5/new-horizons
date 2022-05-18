@@ -11,9 +11,9 @@ import Registration from './components/Registration';
 import Recommended from './components/Recommended';
 import Friends from './components/Friends';
 import Graph from './components/Graph';
-import Nearby from './components/Nearby'
 import AllUsers from './components/AllUsers';
 import AddFriends from './components/AddFriends'
+import MyComponent from './components/GMap';
 
 /**
  * COMPONENT
@@ -38,7 +38,7 @@ class Routes extends Component {
             <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
             <Route exact path="/graph" component={Graph} />
-            <Route exact path="/nearby" component={Nearby} />
+            <Route exact path="/nearby" component={MyComponent} />
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/users/:id" component={UserProfile} />
             <Route exact path="/addfriends/:id" component={AddFriends} />
@@ -55,7 +55,6 @@ class Routes extends Component {
             <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
             <Route exact path="/graph" component={Graph} />
-            <Route exact path="/nearby" component={Nearby} />
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/addfriends/:id" component={AddFriends} />
           </Switch>
