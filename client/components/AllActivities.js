@@ -15,7 +15,7 @@ export class AllActivities extends React.Component {
   }
 
   changeSort(sortType){
-    
+
   }
 
   render() {
@@ -39,7 +39,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, { history }) => {
   return {
-    fetchActivities: () => dispatch(fetchActivities()),
+    fetchActivities: (sort) => dispatch(fetchActivities()),
   };
 };
 
