@@ -20,7 +20,7 @@ export default function MappedActivity(props){
                             <img src= {activity.imageUrl} className="singleItem-image"/>
                             <div>
                                 <h3>{activity.name}</h3>
-                                <p>{activity.hasOwnProperty("score") ? `recommended: ${activity.score}`:(activity.hasOwnProperty("useractivities") ? (activity.useractivities.length>0 ? `rating: ${activity.useractivities[0].score}`:"loading") : "loading")}</p>
+                                <p>{activity.hasOwnProperty("score") ? `recommended: ${activity.score}`:(activity.hasOwnProperty("useractivities") ? (activity.useractivities.length>0 ? `rating: ${activity.useractivities[0].score}`:"No rating") : "loading")}</p>
                             </div>
                         </Link>
                     </div>
