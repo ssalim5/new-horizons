@@ -48,8 +48,6 @@ router.get("/users", async (req,res,next)=> {
         },
         attributes:['userId'],
       },
-      model: ActivityCategory,
-      attributes:['categoryId', 'score','updatedAt']
     });
     res.json(activity)
   } catch (err) {

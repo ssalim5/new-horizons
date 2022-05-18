@@ -27,6 +27,56 @@ const User = db.define('user', {
   password: {
     type: Sequelize.STRING,
   },
+  creative: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: "3",
+    validate: {
+      notEmpty: true,
+      min: 0,
+      max: 5,
+    },
+  },
+  athletic: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: "3",
+    validate: {
+      notEmpty: true,
+      min: 0,
+      max: 5,
+    },
+  },
+  relaxing: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: "3",
+    validate: {
+      notEmpty: true,
+      min: 0,
+      max: 5,
+    },
+  },
+  adventurous: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: "3",
+    validate: {
+      notEmpty: true,
+      min: 0,
+      max: 5,
+    },
+  },
+  social: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: "3",
+    validate: {
+      notEmpty: true,
+      min: 0,
+      max: 5,
+    },
+  },
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: 'https://static.wikia.nocookie.net/hogwarts-mystery/images/f/fe/Main_character.png/revision/latest?cb=20201103022051',

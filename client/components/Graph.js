@@ -5,12 +5,7 @@ import { fetchActivities} from "../store/allActivitiesStore";
 import { VictoryPie, VictoryTheme, VictoryStack, VictoryLabel, VictoryChart, VictoryAxis, VictoryBar} from 'victory';
 import MappedActivity from "./utilities/MappedActivity";
 
-const data = [
-  {quarter: 1, earnings: 13000},
-  {quarter: 2, earnings: 16500},
-  {quarter: 3, earnings: 14250},
-  {quarter: 4, earnings: 19000}
-];
+
 
 class Graph extends React.Component {
   constructor() {
@@ -23,7 +18,12 @@ class Graph extends React.Component {
 }
   render() {
     const activities = this.props.activities
-    console.log("Act", activities)
+    const userAdventurous = this.props.auth.adventurous
+    const userCreative = this.props.auth.creative
+    const userRelaxing = this.props.auth.relaxing
+    const userAthletic = this.props.auth.athletic
+    const userSocial = this.props.auth.social
+
    const array = activities.map((activity) => (activity.exertion))
    let low = 0
    let medium = 0
@@ -81,6 +81,17 @@ class Graph extends React.Component {
     { x: "Relaxing", y: totalRelaxing }
   ]}
 />
+<div> USER PROFILE</div>
+<VictoryPie
+  colorScale={"heatmap"}
+  data={[
+    { x: "Creative", y: userCreative },
+    { x: "Athletic", y: userAthletic },
+    { x: "Adventurous", y: userAdventurous },
+    { x: "Social", y: userSocial },
+    { x: "Relaxing", y: userRelaxing}
+  ]}
+/>
       <div> Exertion Level of Activities</div>
 <VictoryPie
   colorScale={["tomato", "cyan", "navy" ]}
@@ -94,7 +105,7 @@ class Graph extends React.Component {
 />
 <div> Location of Activities</div>
 <VictoryPie
-  colorScale={["yellow", "black" ]}
+  colorScale={["yellow", "gray" ]}
   data={[
     { x: "Inside", y: inside },
     { x: "Outside", y: outside },
@@ -124,7 +135,8 @@ class Graph extends React.Component {
 
     const mapState = (state) => {
       return {
-        activities: state.activities
+        activities: state.activities,
+        auth: state.auth
       };
     };
 
