@@ -24,7 +24,7 @@ router.get("/", async (req, res, next) => {
           userId:user.id
         },
         attributes:['score','updatedAt', 'activityId'],
-        // required: false
+        required: false
       }
 
     });
