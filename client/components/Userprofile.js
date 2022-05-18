@@ -19,10 +19,9 @@ class UserProfile extends React.Component {
   render() {
     const user = this.props.userData;
     const friends = this.props.friends;
-    const recent = this.props.activities
-    const userActivities = this.props.userActivities
+    const userActivities = this.props.userActivities.reverse()
     const recent5 = userActivities.slice(0,5)
-    const reverse = recent5.reverse()
+
 
     return (
       <div>
