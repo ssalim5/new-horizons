@@ -10,7 +10,10 @@ const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
 const POST_USERACTIVITY = "POST_USERACTIVITY"
 
 /* ACTION CREATORS */
-export const _setActivities = (activities) => {
+export const _setActivities = (activities,sort) => {
+  if(sort==="a-z"){
+    console.log(activities)
+  }
   return {
     type: SET_ACTIVITIES,
     activities,
@@ -46,7 +49,7 @@ export const _postUserActivity = (userActivity) => {
 }
 
 /* THUNKS */
-export const fetchActivities = () => {
+export const fetchActivities = (sort) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
       const { data } = await axios.get("/api/activities/",{
@@ -54,7 +57,7 @@ export const fetchActivities = () => {
           authorization: token
         }
       });
-      dispatch(_setActivities(data));
+      dispatch(_setActivities(data,sort));
   };
 };
 

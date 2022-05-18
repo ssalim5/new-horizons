@@ -13,10 +13,17 @@ export class AllActivities extends React.Component {
   componentDidMount(){
       this.props.fetchActivities()
   }
+
+  changeSort(sortType){
+    
+  }
+
   render() {
     return(
       <div id="allActivities" className="module">
         <h2>All Activities</h2>
+        <button>a-z</button>
+        <button>z-a</button>
         <MappedActivity data={this.props.activities}/>
       </div>
     )

@@ -3,11 +3,25 @@ import axios from "axios";
 const TOKEN = "token";
 
 /* ACTION TYPES */
+const GET_UTILITIES = "SET_UTILITIES"
+const RESET_UTILITIES = "RESET_UTILITIES"
 const CHANGE_TOPFIVE_ACT = "CHANGE_TOPFIVE_ACT"
 const CHANGE_TOPFIVE_REC = "CHANGE_TOPFIVE_REC"
 
 
 /* ACTION CREATORS */
+export const getUtilities = () => {
+    return{
+        type: GET_UTILITIES
+    }
+}
+
+export const resetUtilities = () => {
+    return{
+        type: RESET_UTILITIES
+    }
+}
+
 export const changeTopFiveAct = (startNumber,destination) => {
     console.log(startNumber,destination)
     if(destination === "fiveAct"){
@@ -21,8 +35,6 @@ export const changeTopFiveAct = (startNumber,destination) => {
             startNumber
         }
     }
-
-    
 }
 
 /* THUNKS */
@@ -39,6 +51,10 @@ const initialState = {
 };
 const utilitiesReducer = (state = initialState, action) => {
     switch (action.type) {
+        case GET_UTILITIES:
+            return state
+        case RESET_UTILITIES:
+            return initialState
         case CHANGE_TOPFIVE_ACT:
             return {...state,fiveAct:action.startNumber}
         case CHANGE_TOPFIVE_REC:
