@@ -15,16 +15,9 @@ export class AllActivities extends React.Component {
   }
   render() {
     return(
-      <div id="allActivities">
-        {this.props.activities.map((activity) => {
-          return(
-            <div key={activity.id} className={activity.useractivities ? 
-              (activity.useractivities.length>0 ? `rating-${activity.useractivities[0].score} activity`:"rating-x activity") 
-            : "activity"}>
-              <MappedActivity activity={activity} />
-            </div>
-          )
-         })}
+      <div id="allActivities" className="module">
+        <h2>All Activities</h2>
+        <MappedActivity activities={this.props.activities} />
       </div>
     )
   }

@@ -37,7 +37,15 @@ nav a {
   display: inline-block;
 } */
 
+h1{
+  color: var(--light-detail);
+}
+
 h2{
+  color: var(--font-color);
+}
+
+h3{
   color: var(--font-color);
 }
 
@@ -78,7 +86,7 @@ cursor: pointer;
   margin-top:5%;
   border-top: 2px solid var(--light-detail);
   background-image: linear-gradient(var(--lighter-background),var(--background));
-  padding-bottom:100px;
+  margin-bottom:100px;
 }
 
 .component{
@@ -90,18 +98,17 @@ cursor: pointer;
 }
 
 .module{
-  border: 3px solid var(--nav-color);
+  /* border: 3px solid var(--nav-color); */
   border-radius: 20px;
   width:80%;
   max-width:500px;
-  padding:0 2% 10% 2%;
+  padding:0 3% 10% 3%;
   margin:5%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* move*/
 .util-component{
   height: 75%;
   width:100%;
@@ -135,9 +142,13 @@ cursor: pointer;
 }
 
 .singleItem h3{
-  color:var(--font-color);
+  margin-top:10px;
   margin-left:10px;
-
+  margin-bottom:2px;
+}
+.singleItem p{
+  margin-left:10px;
+  margin-top:2px;
 }
 
 /* login/register */
@@ -185,8 +196,12 @@ cursor: pointer;
 
 /* home */
 #home .offButton{
-  background-color: var(--background);
+  background-color: var(--lighter-background);
   pointer-events: none;
+}
+
+#home h2{
+  margin:10px;
 }
 
 .topFive-nav{
@@ -196,13 +211,13 @@ cursor: pointer;
 }
 
 /* mapped activity */
-#allActivities{
+/* #allActivities{
   width:90%;
   margin-left: 5%;
   margin-right: 5%;
-}
+} */
 
-.activityImage{
+/* .activityImage{
   height:110px;
   width:110px;
   object-fit: cover;
@@ -216,10 +231,6 @@ cursor: pointer;
 .activity{
   width:100%;
   padding: 5px;
-}
-
-.activity:hover{
-  opacity:80%;
 }
 
 .activity:active{
@@ -240,31 +251,26 @@ cursor: pointer;
 .activity p{
   color:var(--light-detail);
   margin-left: 10px
-}
+} */
 
-.rating-1>a>div{
+.rating-1{
   background-image: linear-gradient(var(--rating01),var(--background));
-  width:90%;
 }
 
-.rating-2>a>div{
+.rating-2{
   background-image: linear-gradient(var(--rating02),var(--background));
-  width:90%;
 }
 
-.rating-3>a>div{
+.rating-3{
   background-image: linear-gradient(var(--rating03),var(--background));
-  width:90%;
 }
 
-.rating-4>a>div{
+.rating-4{
   background-image: linear-gradient(var(--rating04),var(--background));
-  width:90%;
 }
 
-.rating-5>a>div{
+.rating-5{
   background-image: linear-gradient(var(--rating05),var(--background));
-  width:90%;
 }
 
 /* single activity */
@@ -327,10 +333,6 @@ cursor: pointer;
   border:2px solid var(--dark-detail);
   padding:5px;
   margin:20px;
-}
-
-.singleActivity button:hover{
-  opacity:80%
 }
 
 .map{

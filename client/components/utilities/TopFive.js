@@ -15,12 +15,13 @@ export default function topFive(props){
         <div className="util-component">
             {data.map((activity)=>{
                 return(
-                    <div key={activity.id} className="singleItem clickable">
+                    <div key={activity.id} className={activity.score ? `rating-${Math.ceil(activity.score)} singleItem clickable`:`rating-${activity.useractivities[0].score} singleItem clickable`}>
                         <Link to ={`/activities/${activity.id}`}>
-                            {/* <div className="singleItem-img"> */}
-                                <img src= {activity.imageUrl} className="singleItem-image"/>
-                            {/* </div> */}
-                            <h3>{activity.name}</h3>
+                            <img src= {activity.imageUrl} className="singleItem-image"/>
+                            <div>
+                                <h3>{activity.name}</h3>
+                                <p>{activity.score ? `recommended: ${activity.score}` : `rating: ${activity.useractivities[0].score}`}</p>
+                            </div>
                         </Link>
                     </div>
                 )
