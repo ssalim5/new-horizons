@@ -30,22 +30,26 @@ export default function Home(){
   }
 
   return(
-      <div className="module" id="home">
-        <div id="topFive-activities">
+      <div id="home" className="component">
+
+        <div id="topFive-recommendations" className="module">
+          <h2>My Recommendations</h2>
           <div className="topFive-nav">
-            <button className={actStart<=0 ? "offButton" : "onButton"} onClick={(()=>{changeFive("fiveAct","minus",actStart)})}>prev</button>
-            <button className={actStart+5>=myActivities.length ? "offButton" : "onButton"} onClick={(()=>{changeFive("fiveAct","plus",actStart)})}>next</button>
-          </div>
-          <TopFive data={myActivities.slice(actStart,actStart+5)}/>
-        </div>
-        <div id="topFive-activities">
-          <div className="topFive-nav">
-            <button className={recStart<=0 ? "offButton" : "onButton"} onClick={(()=>{changeFive("fiveRec","minus",recStart)})}>prev</button>
-            <button className={recStart+5>=myActivities.length ? "offButton" : "onButton"} onClick={(()=>{changeFive("fiveRec","plus",recStart)})}>next</button>
+            <button className={recStart<=0 ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveRec","minus",recStart)})}>prev</button>
+            <button className={recStart+5>=myRecommendations.length ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveRec","plus",recStart)})}>next</button>
           </div>
           <TopFive data={myRecommendations.slice(recStart,recStart+5)}/>
         </div>
         
+        <div id="topFive-activities" className="module">
+          <h2>My Activities</h2>
+          <div className="topFive-nav">
+            <button className={actStart<=0 ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveAct","minus",actStart)})}>prev</button>
+            <button className={actStart+5>=myActivities.length ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveAct","plus",actStart)})}>next</button>
+          </div>
+          <TopFive data={myActivities.slice(actStart,actStart+5)}/>
+        </div>
+
       </div>
   )
 }

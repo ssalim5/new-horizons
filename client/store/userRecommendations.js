@@ -4,7 +4,7 @@ const TOKEN = "token";
 const SET_USER_RECOMMENDATIONS = "SET_USER_RECOMMENDATIONS";
 const REMOVE_RECOMMENDATION = "REMOVE_RECOMMENDATIION"
 
-const _setUserRecomendations = (recommended) => {
+export const _setUserRecomendations = (recommended) => {
   return {
     type: SET_USER_RECOMMENDATIONS,
     recommended,

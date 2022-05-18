@@ -12,11 +12,14 @@ export default function topFive(props){
         )
     }
     return(
-        <div className="topFive">
+        <div className="util-component">
             {data.map((activity)=>{
                 return(
-                    <div key={activity.id} className="topFive-option">
+                    <div key={activity.id} className="singleItem clickable">
                         <Link to ={`/activities/${activity.id}`}>
+                            {/* <div className="singleItem-img"> */}
+                                <img src= {activity.imageUrl} className="singleItem-image"/>
+                            {/* </div> */}
                             <h3>{activity.name}</h3>
                         </Link>
                     </div>

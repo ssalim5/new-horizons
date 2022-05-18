@@ -5,11 +5,11 @@
   --light-detail: rgb(172, 172, 172);
   --dark-detail: rgb(42, 42, 42);
   --nav-color: #6F2DBD;
-  --rating01: #391763;
-  --rating02: #6F2DBD;
-  --rating03: #7A5BD9;
-  --rating04: #A663CC;
-  --rating05: #EB85D8;
+  --rating01: #e59fe3;
+  --rating02: #c874b2;
+  --rating03: #7b337d;
+  --rating04: #430d4b;
+  --rating05: #210535;
   
 
 }
@@ -53,28 +53,91 @@ button{
   height:auto;
   border-radius:50px;
   background-color: var(--nav-color);
-  font-size:20px;
+  font-size:16px;
   border:2px solid var(--dark-detail);
   padding:5px 20px 5px 20px;
   margin:20px;
 }
 
-button:hover{
-  opacity:80%;
+/* repeated elements */
+.clickable:hover{
+opacity:80%;
+cursor: pointer;
+}
+
+.clickable:active{
+  opacity:50%;
   cursor: pointer;
 }
 
-/* module */
-.module{
+#routes{
   display:flex;
   flex-direction:column;
   align-items: center;
-  width:94%;
+  width:100%;
   margin-top:5%;
-  margin-left:3%;
   border-top: 2px solid var(--light-detail);
   background-image: linear-gradient(var(--lighter-background),var(--background));
   padding-bottom:100px;
+}
+
+.component{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  flex-wrap:wrap;
+}
+
+.module{
+  border: 3px solid var(--nav-color);
+  border-radius: 20px;
+  width:80%;
+  max-width:500px;
+  padding:0 2% 10% 2%;
+  margin:5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* move*/
+.util-component{
+  height: 75%;
+  width:100%;
+}
+
+.singleItem{
+  background-image: linear-gradient(var(--lighter-background),var(--background));
+  border-radius: 100px;
+  width:100%;
+  height: 20%;
+  margin-bottom: 9px;
+}
+
+.singleItem a{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.singleItem-image{
+  max-height: 83px; 
+  max-width: 150px;
+  min-width: 75px;
+  object-fit: cover;
+  border-radius: 100px 0 0 100px;
+  width: 20%;
+  height: 100%;
+}
+
+.singleItem h3{
+  color:var(--font-color);
+  margin-left:10px;
+
 }
 
 /* login/register */
@@ -126,9 +189,14 @@ button:hover{
   pointer-events: none;
 }
 
+.topFive-nav{
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content: space-between;
+}
 
 /* mapped activity */
-.allActivities{
+#allActivities{
   width:90%;
   margin-left: 5%;
   margin-right: 5%;
@@ -378,6 +446,20 @@ button:hover{
 
 
 @media (min-width: 700px){
+  #home{
+    display:flex;
+    flex-direction:row;
+    flex-wrap: nowrap;
+  }
+
+  #topFive-recommendations{
+    width:40%;
+  }
+
+  #topFive-activities{
+    width:40%;
+  }
+
   .singleActivity-body{
     display: flex;
     flex-direction: row;

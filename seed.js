@@ -554,7 +554,7 @@ const activities = [
   id: 9,
   name: "Baseball",
   description: 'fun activity',
-  imageUrl: 'https://www.tompsc.com/ImageRepository/Document?documentId=38976'
+  imageUrl: 'https://cdn.vox-cdn.com/thumbor/WQOsA4m3mNZtgL-7N-gnToIe_II=/0x0:1884x1060/1200x800/filters:focal(784x120:1084x420)/cdn.vox-cdn.com/uploads/chorus_image/image/70783633/MD2_1987_1.0.jpeg'
   },
   {
   id: 10,
