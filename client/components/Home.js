@@ -23,7 +23,6 @@ export default function Home(){
     }
   }
 
-
   if(!myActivities){
       return(
           <div>Loading</div>

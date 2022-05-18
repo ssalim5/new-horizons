@@ -10,7 +10,6 @@
   --rating03: #7b337d;
   --rating02: #430d4b;
   --rating01: #210535;
-  
 
 }
 
@@ -445,11 +444,11 @@ cursor: pointer;
     content: '★ ';
 }
 .ratingStars > input:checked ~ label {
-    color: var(--rating03);    
+    color: var(--rating03);
 }
 .ratingStars:not(:checked) > label:hover,
 .ratingStars:not(:checked) > label:hover ~ label {
-    color: var(--rating03);  
+    color: var(--rating03);
 }
 .ratingStars > input:checked + label:hover,
 .ratingStars > input:checked + label:hover ~ label,
@@ -458,6 +457,9 @@ cursor: pointer;
 .ratingStars > label:hover ~ input:checked ~ label {
     color: var(--rating03);
 }
+
+.Charts{display:flex; flex-direction:row;}
+.Chart2{display:flex; margin-left:10%; margin-right: 10%; padding-left:30px }
 
 
 @media (min-width: 700px){

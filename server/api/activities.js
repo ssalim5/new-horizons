@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { re } = require("mathjs");
-const {models: { Activity,User,UserActivities }} = require("../db");
+const {models: { Activity,User,UserActivities, ActivityCategory }} = require("../db");
 module.exports = router;
 
 const requireToken = async (req, res, next) => {
@@ -23,10 +23,12 @@ router.get("/", async (req, res, next) => {
         where:{
           userId:user.id
         },
-        attributes:['score','updatedAt'],
-        required: false
+        attributes:['score','updatedAt', 'activityId'],
+        // required: false
       }
+
     });
+    console.log("ACTIV", activity)
     res.json(activity)
   } catch (err) {
     next(err);
@@ -44,8 +46,8 @@ router.get("/users", async (req,res,next)=> {
         where:{
           userId:user.id
         },
-        attributes:['userId','score','updatedAt'],
-      }
+        attributes:['userId'],
+      },
     });
     res.json(activity)
   } catch (err) {

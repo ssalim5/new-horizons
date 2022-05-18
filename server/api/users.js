@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { user } = require('pg/lib/defaults')
 const { models: { User, Activity, Category }} = require('../db')
 module.exports = router
+const axios = require('axios')
 
 //GET: read all users
 router.get('/', async (req, res, next) => {
@@ -18,7 +19,8 @@ router.get('/', async (req, res, next) => {
 router.get("/activities/rec",async(req,res,next)=>{
   try{ 
     let {id}= await User.findByToken(req.headers.authorization);
-    let data = require('../../calculated_tables/estimatedRatings.json')
+    // let data = require('../../calculated_tables/estimatedRatings.json')
+    let {data} = await axios.get('/api/s3')
     let user_data = data[id-1]
     let allActivities = await Activity.findAll({order:[['id','ASC']]})
     const userActivities = await User.findByPk(
@@ -28,10 +30,7 @@ router.get("/activities/rec",async(req,res,next)=>{
         through: {attributes: ['score']}
       }}
     )
-    console.log(id)
     let indicesToSkip=userActivities.activities.map((element)=>{return element.id-1})
-    console.log(indicesToSkip)
-    console.log(userActivities.activities)
     let recommendedActivities = []
     for (let ind=0;ind<allActivities.length;ind++){
       if (!indicesToSkip.includes(ind)){
