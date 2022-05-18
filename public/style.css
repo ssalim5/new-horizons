@@ -10,7 +10,7 @@
   --rating03: #7A5BD9;
   --rating04: #A663CC;
   --rating05: #EB85D8;
-  
+
 
 }
 
@@ -352,11 +352,11 @@ button:hover{
     content: '★ ';
 }
 .ratingStars > input:checked ~ label {
-    color: var(--rating03);    
+    color: var(--rating03);
 }
 .ratingStars:not(:checked) > label:hover,
 .ratingStars:not(:checked) > label:hover ~ label {
-    color: var(--rating03);  
+    color: var(--rating03);
 }
 .ratingStars > input:checked + label:hover,
 .ratingStars > input:checked + label:hover ~ label,
@@ -365,6 +365,9 @@ button:hover{
 .ratingStars > label:hover ~ input:checked ~ label {
     color: var(--rating03);
 }
+
+.Charts{display:flex; flex-direction:row;}
+.Chart2{display:flex; margin-left:10%; margin-right: 10%; padding-left:30px }
 
 
 @media (min-width: 700px){

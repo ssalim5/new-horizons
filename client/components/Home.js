@@ -9,7 +9,7 @@ export const Home = props => {
 
   return (
     <div>
-      <h3>Welcome {username} to New Horizons</h3>
+      <h2>Welcome {username} to New Horizons</h2>
       <img src= "https://picturecorrect-wpengine.netdna-ssl.com/wp-content/uploads/2017/02/best-tips-for-taking-horizon-photos.jpg" />
     </div>
   )

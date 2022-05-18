@@ -66,22 +66,29 @@ class Graph extends React.Component {
   const totalAthletic = athletic.reduce((a,b) => a + b, 0)
   const totalCreative = creative.reduce((a,b) => a + b, 0)
 
+  console.log("creative", athletic)
 
+  console.log("Totalcreative", totalAthletic)
 
     return (
       <div>
-         <div> Category of Activities</div>
+        <div className='Charts'>
+         <div><h2> Category of Activities</h2></div>
+         <div className='Chart1'>
 <VictoryPie
   colorScale={["tomato", "yellow", "navy", "grey", "green"]}
   data={[
     { x: "Creative", y: totalCreative },
-    { x: "Athletic", y: totalAthletic },
+    { x: "Athletic", y: totalAthletic},
     { x: "Adventurous", y: totalAdventurous },
     { x: "Social", y: totalSocial },
     { x: "Relaxing", y: totalRelaxing }
   ]}
+  style={{ labels: { fill: "white"} }}
 />
-<div> USER PROFILE</div>
+</div>
+<div><h2> USER PROFILE</h2></div>
+<div className='Chart1'>
 <VictoryPie
   colorScale={"heatmap"}
   data={[
@@ -91,8 +98,13 @@ class Graph extends React.Component {
     { x: "Social", y: userSocial },
     { x: "Relaxing", y: userRelaxing}
   ]}
+  style={{ labels: { fill: "white"} }}
 />
-      <div> Exertion Level of Activities</div>
+</div>
+</div>
+<div className='Charts'>
+      <div><h2> Exertion Level of Activities</h2></div>
+      <div className='Chart2'>
 <VictoryPie
   colorScale={["tomato", "cyan", "navy" ]}
   data={[
@@ -102,8 +114,11 @@ class Graph extends React.Component {
     // { x: "Relaxing", y: 55 },
     // { x: "Entertaining", y: 55 }
   ]}
+  style={{ labels: { fill: "white"} }}
 />
-<div> Location of Activities</div>
+</div>
+<div> <h2>Location of Activities</h2></div>
+<div className='Chart2'>
 <VictoryPie
   colorScale={["yellow", "gray" ]}
   data={[
@@ -112,23 +127,28 @@ class Graph extends React.Component {
     // { x: "Relaxing", y: 55 },
     // { x: "Entertaining", y: 55 }
   ]}
+  style={{ labels: { fill: "white"} }}
+  // padding={10}
+  // width="50%"
 />
+</div>
+</div>
 
 
-<div>Activity Venue</div>
+{/* <div>Activity Venue</div>
         <VictoryChart
   theme={VictoryTheme.material}
   domainPadding={{ x: 100 }}
->
+> */}
 
 {/* </VictoryChart> */}
-        <VictoryBar
+        {/* <VictoryBar
           data={[{x: "INSIDE", y:inside},
             {x: "OUTSIDE", y:outside}]}
           // // x= "Inside"
           // y= "NUMBER"
         />
-      </VictoryChart>
+      </VictoryChart> */}
       </div>
     )}}
 
