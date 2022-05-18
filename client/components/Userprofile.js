@@ -26,7 +26,7 @@ class UserProfile extends React.Component {
       <div>
         {user ? (
           <div>
-            <h1>USER: {user.username}</h1>
+            <h2>USER: {user.username}</h2>
             <h2>USER EMAIL: {user.email}</h2>
             {/* <div><img src= {user.imageUrl}/></div> */}
            {/* <div> <Link to={`/user/modify/${this.props.match.params.id}`}>Modify </Link></div> */}
@@ -48,14 +48,14 @@ class UserProfile extends React.Component {
         "There is no user data"
       )}
     </div>
-    <div><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link></div>
-    <div>Friends List</div>
+    <h2><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link></h2>
+    <h2>Friends List:</h2>
     <div> {friends.map((friend) => {
           return (
             <div>
             <Link to={`/users/${friend.id}`} key={friend.id}>
             <div className="friend" key={friend.id}>
-            <h1 className="name">{friend.username}</h1>
+            <h2 className="name">{friend.username}</h2>
             </div>
             </Link>
              <form onSubmit={(ev) => ev.preventDefault()}>
