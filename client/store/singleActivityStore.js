@@ -1,4 +1,5 @@
 import axios from "axios";
+import {_postUserActivity, _updateUserActivity} from "./userActivitiesStore"
 
 const TOKEN = "token";
 
@@ -38,6 +39,7 @@ export const postUserActivity = (activityId,score) => {
       },
       )
       dispatch(_setSingleActivity(data))
+      dispatch(_postUserActivity(data))
   }
 }
 
@@ -56,6 +58,7 @@ export const putUserActivity = (activityId,score) => {
       },
       )
       dispatch(_setSingleActivity(data))
+      dispatch(_updateUserActivity(data))
   }
 }
 
