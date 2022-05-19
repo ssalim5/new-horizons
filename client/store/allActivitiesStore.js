@@ -1,4 +1,5 @@
 import axios from "axios";
+import { sort } from "mathjs";
 
 const TOKEN = "token";
 
@@ -132,42 +133,34 @@ export const updateActivity = (activity) => {
 };
 
 function sortingMethod(activities,sortOn,sortDirection){
-  if(sortOn==="score"){
-    if(sortDirection==="forward"){
-      return activities.sort(function(a,b){
-        if(a.useractivities.length<=0){
-          a.useractivities = [{score:0}]
-        }
-        if(b.useractivities.length<=0){
-          b.useractivities = [{score:0}]
-        }
-        return (a.useractivities[0].score-b.useractivities[0].score)
-      })
-    }else if(sortDirection==="reverse"){
-      return activities.sort(function(a,b){
-        if(a.useractivities.length<=0){
-          a.useractivities = [{score:0}]
-        }
-        if(b.useractivities.length<=0){
-          b.useractivities = [{score:0}]
-        }
-        return (b.useractivities[0].score-a.useractivities[0].score)
-      })
-    }
-  }else{
-    if(sortDirection==="forward"){
-      return activities.sort(function(a,b){
-        if(a[sortOn] < b[sortOn]) { return -1}
-        if(b[sortOn] < a[sortOn]) { return 1}
+  function typeHelper(input){
+    if(sortOn==="score" || sortOn=="updatedAt"){
+      if(input.useractivities.length<=0){
         return 0
-      })
-    }else if(sortDirection==="reverse"){
-      return activities.sort(function(a,b){
-        if(a[sortOn] < b[sortOn]) { return 1}
-        if(b[sortOn] < a[sortOn]) { return -1}
-        return 0
-      })
+      }else{
+        if(sortOn==="updatedAt"){
+          console.log("UPDATTEDAT")
+          return new Date(input.useractivities[0].updatedAt).getTime()
+        }
+        return input.useractivities[0][sortOn]
+      }
     }
+    return input[sortOn]
+  }
+
+  if(sortDirection==="forward"){
+    return activities.sort(function(a,b){
+      // console.log(a)
+      if(typeHelper(a) < typeHelper(b)) { return -1}
+      if(typeHelper(b) < typeHelper(a)) { return 1}
+       return 0
+    })
+  }else if(sortDirection==="reverse"){
+    return activities.sort(function(a,b){
+      if(typeHelper(a) < typeHelper(b)) { return 1}
+      if(typeHelper(b) < typeHelper(a)) { return -1}
+      return 0
+    })
   }
 }
 
