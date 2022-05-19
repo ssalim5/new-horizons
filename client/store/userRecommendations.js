@@ -2,13 +2,22 @@ import Axios from "axios";
 
 const TOKEN = "token";
 const SET_USER_RECOMMENDATIONS = "SET_USER_RECOMMENDATIONS";
+const REMOVE_RECOMMENDATION = "REMOVE_RECOMMENDATIION"
 
-const _setUserRecomendations = (recommended) => {
+export const _setUserRecomendations = (recommended) => {
   return {
     type: SET_USER_RECOMMENDATIONS,
     recommended,
   };
 };
+
+export const _removeRec = (recommendation) => {
+  console.log("---BANANA---")
+  return{
+    type: REMOVE_RECOMMENDATION,
+    recommendation,
+  }
+}
 
 export const fetchUserRecommendations = () =>{
     return async (dispatch) => {
@@ -30,6 +39,8 @@ export default function recommendationsReducer(state = initialState, action) {
     case SET_USER_RECOMMENDATIONS:
         console.log("state recommended being set")
       return action.recommended;
+    case REMOVE_RECOMMENDATION:
+      return state.filter((rec) => rec.id !== action.recommendation)
     default:
       return state;
   }

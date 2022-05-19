@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { postUserActivity, putUserActivity } from '../../store/singleActivityStore'
+import { _removeRec } from '../../store/userRecommendations'
 import Modal from 'react-modal'
 
 Modal.setAppElement("#app")
@@ -10,24 +11,13 @@ export default function RatingsModal(props){
 
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
-    
-    const customStyles = {
-        content: {
-          top: '35%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          width: '60%',
-          transform: 'translate(-40%, -10%)',
-        },
-    };
 
     function onChange(event){
         if(activity.useractivities.length>0){
             dispatch(putUserActivity(activity.id,event.target.value))
         }else{
             dispatch(postUserActivity(activity.id,event.target.value))
+            dispatch(_removeRec(activity.id))
         }
         toggleModal()
     }

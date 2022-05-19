@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 
-import {me, getUserActivities, fetchUserRecommendations} from './store'
+import {me, getUserActivities, fetchUserRecommendations, _setUserActivities, _setUserRecomendations} from './store'
 
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
@@ -24,17 +24,25 @@ import Messenger from './components/Messenger.';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    // this.props.getUserActivities()
+    // this.props.fetchRecommended()
   }
-  componentDidUpdate() {
+
+componentDidUpdate(prevProps){
+  if(prevProps.isLoggedIn !== this.props.isLoggedIn){
     if(this.props.isLoggedIn){
       this.props.getUserActivities()
       this.props.fetchRecommended()
     }
+    if(!this.props.isLoggedIn){
+      this.props._setUserActivities([])
+      this.props._setUserRecomendations([])
+    }
   }
+}
 
   render() {
     const {isLoggedIn} = this.props
-    console.log(this.props)
     return (
       <div id="routes">
         {isLoggedIn ? (
@@ -91,6 +99,8 @@ const mapDispatch = dispatch => {
     },
     getUserActivities: () => dispatch(getUserActivities()),
     fetchRecommended: () => dispatch(fetchUserRecommendations()),
+    _setUserActivities: (input) => dispatch(_setUserActivities(input)),
+    _setUserRecomendations: (input) => dispatch(_setUserRecomendations(input)),
   }
 }
 

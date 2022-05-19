@@ -11,6 +11,7 @@ import recommendationsReducer from './userRecommendations'
 import userActivitiesReducer from './userActivitiesStore'
 import friendReducer from './friendsStore'
 import messagesReducer from './messagesStore'
+import utilities from './utilities'
 
 const reducer = combineReducers({
   auth,
@@ -21,7 +22,8 @@ const reducer = combineReducers({
   recommended: recommendationsReducer,
   userActivities: userActivitiesReducer,
   friends: friendReducer,
-  messages: messagesReducer
+  messages: messagesReducer,
+  utilities: utilities,
   })
 
 const middleware = composeWithDevTools(
@@ -34,3 +36,4 @@ export * from './auth'
 export * from './userActivitiesStore'
 export * from './singleActivityStore'
 export * from './userRecommendations'
+export * from './utilities'

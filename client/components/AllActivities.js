@@ -1,33 +1,37 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux"
 import { connect } from "react-redux";
 import { fetchActivities} from "../store/allActivitiesStore";
 import MappedActivity from "./utilities/MappedActivity";
 
 
-export class AllActivities extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-    }
-  }
-  componentDidMount(){
-      this.props.fetchActivities()
-  }
-  render() {
-    return(
-      <div id="allActivities">
-        {this.props.activities.map((activity) => {
-          return(
-            <div key={activity.id} className={activity.useractivities ? 
-              (activity.useractivities.length>0 ? `rating-${activity.useractivities[0].score} activity`:"rating-x activity") 
-            : "activity"}>
-              <MappedActivity activity={activity} />
-            </div>
-          )
-         })}
+const AllActivities = (props) => {
+  const dispatch = useDispatch()
+  const [input, setInput] = useState('')
+  const activities = useSelector((state) => state.activities )
+  useEffect( () => {
+    dispatch(fetchActivities(input))
+  }, [input])
+  return(
+    <div id="allActivities" className="module">
+      <h2>All Activities</h2>
+      <div>
+        <form className="search-activities">
+          <input
+            className="search-activities"
+            type="search"
+            value={input.name}
+            onChange={(e) => {
+              console.log(input)
+              setInput(e.target.value)
+            }}
+            placeholder="Type to search..."
+          />
+        </form>
       </div>
-    )
-  }
+      <MappedActivity data={activities}/>
+    </div>
+  )
 }
 
 
