@@ -4,6 +4,7 @@ const TOKEN = "token";
 
 /* ACTION TYPES */
 const SET_ACTIVITIES = "SET_ACTIVITIES";
+const SORT_ACTIVITIES = "SORT_ACTIVITIES"
 const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
@@ -11,14 +12,21 @@ const POST_USERACTIVITY = "POST_USERACTIVITY"
 
 /* ACTION CREATORS */
 export const _setActivities = (activities,sort) => {
-  if(sort==="a-z"){
-    console.log(activities)
-  }
   return {
     type: SET_ACTIVITIES,
     activities,
+    sortOn: sort.sortOn,
+    sortDirection: sort.sortDirection,
   };
 };
+
+export const _sortActivities = (sort) => {
+  return {
+    type: SORT_ACTIVITIES,
+    sortOn: sort.sortOn,
+    sortDirection: sort.sortDirection,
+  }
+}
 
 const _createActivity = (activity) => {
   return {
@@ -48,9 +56,7 @@ export const _postUserActivity = (userActivity) => {
   }
 }
 
-/* THUNKS */
-
-export const fetchActivities = (keyword) => {
+export const fetchActivities = (keyword,sort) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
       const { data } = await axios.get("/api/activities/",{
@@ -59,7 +65,7 @@ export const fetchActivities = (keyword) => {
         },
         params: {keyword}
       });
-      dispatch(_setActivities(data));
+      dispatch(_setActivities(data,sort));
   };
 };
 
@@ -125,13 +131,55 @@ export const updateActivity = (activity) => {
   };
 };
 
+function sortingMethod(activities,sortOn,sortDirection){
+  if(sortOn==="score"){
+    if(sortDirection==="forward"){
+      return activities.sort(function(a,b){
+        if(a.useractivities.length<=0){
+          a.useractivities = [{score:0}]
+        }
+        if(b.useractivities.length<=0){
+          b.useractivities = [{score:0}]
+        }
+        return (a.useractivities[0].score-b.useractivities[0].score)
+      })
+    }else if(sortDirection==="reverse"){
+      return activities.sort(function(a,b){
+        if(a.useractivities.length<=0){
+          a.useractivities = [{score:0}]
+        }
+        if(b.useractivities.length<=0){
+          b.useractivities = [{score:0}]
+        }
+        return (b.useractivities[0].score-a.useractivities[0].score)
+      })
+    }
+  }else{
+    if(sortDirection==="forward"){
+      return activities.sort(function(a,b){
+        if(a[sortOn] < b[sortOn]) { return -1}
+        if(b[sortOn] < a[sortOn]) { return 1}
+        return 0
+      })
+    }else if(sortDirection==="reverse"){
+      return activities.sort(function(a,b){
+        if(a[sortOn] < b[sortOn]) { return 1}
+        if(b[sortOn] < a[sortOn]) { return -1}
+        return 0
+      })
+    }
+  }
+}
+
 // reducer
 
 const initialState = [];
 const activitiesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ACTIVITIES:
-      return action.activities;
+      return sortingMethod(action.activities,action.sortOn,action.sortDirection)
+    case SORT_ACTIVITIES:
+      return sortingMethod(state,action.sortOn,action.sortDirection)
     case POST_USERACTIVITY:
       const arr = state.filter(elem=>elem.id !== action.userActivity.id)
       return [...arr,action.userActivity]

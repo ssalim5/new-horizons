@@ -7,6 +7,7 @@ const GET_UTILITIES = "SET_UTILITIES"
 const RESET_UTILITIES = "RESET_UTILITIES"
 const CHANGE_TOPFIVE_ACT = "CHANGE_TOPFIVE_ACT"
 const CHANGE_TOPFIVE_REC = "CHANGE_TOPFIVE_REC"
+const CHANGE_UTILITIES_SORTACT = "CHANGE_UTILITIES_SORTACT"
 
 
 /* ACTION CREATORS */
@@ -19,6 +20,13 @@ export const getUtilities = () => {
 export const resetUtilities = () => {
     return{
         type: RESET_UTILITIES
+    }
+}
+
+export const changeSortAct = (sort) => {
+    return{
+        type:CHANGE_UTILITIES_SORTACT,
+        sort
     }
 }
 
@@ -44,7 +52,10 @@ export const changeTopFiveAct = (startNumber,destination) => {
 const initialState = {
     sortRec:"",
     filterRec:"",
-    sortAct:"",
+    sortAct:{
+        sortOn:"name",
+        sortDirection:"forward"
+      },
     filterAct:"",
     fiveAct:0,
     fiveRec:0,
@@ -59,6 +70,8 @@ const utilitiesReducer = (state = initialState, action) => {
             return {...state,fiveAct:action.startNumber}
         case CHANGE_TOPFIVE_REC:
             return {...state,fiveRec:action.startNumber}
+        case CHANGE_UTILITIES_SORTACT:
+            return {...state,sortAct:action.sort}
     
         default:
             return state;
