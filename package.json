@@ -39,6 +39,7 @@
     "pg": "^8.5.1",
     "react-modal": "^3.15.1",
     "sequelize": "^6.3.5",
+    "use-places-autocomplete": "^3.0.0",
     "victory": "^36.3.2"
   },
   "devDependencies": {
