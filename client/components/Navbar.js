@@ -17,6 +17,7 @@ const Navbar = ({handleClick, isLoggedIn, userId,}) => (
           <Link  to="/graph"> Graph</Link>
           <Link  to="/users"> All Users</Link>
           <Link  to={`/users/${userId}`}> My Profile</Link>
+          <Link  to={`/messages`}> Messages</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>

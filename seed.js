@@ -1,7 +1,7 @@
 const { green, red } = require("chalk");
 const {
   db,
-  models: {User, Activity, Category, ActivityCategory, UserActivities,UserCategories},
+  models: {User, Activity, Category, ActivityCategory, UserActivities,UserCategories,Message,Chat,UserChats},
 } = require("./server/db");
 
 const createdUserActivities = require('./script/userActivitiesGenerator')
@@ -1143,7 +1143,32 @@ const userCategories = [
     score: 2
   },
 ]
+const messages = [
+  {id:1, userId:1,
+  content:"hi"},
+  {id:2,userId:1,
+    content:"sup"},
+  {id:3,userId:2,
+    content:"HELLO"}
+]
+const chats = [
+  {id:1},
+  {id:2},
+  {id:3},
+  {id:4},
+]
 
+const userChats = [
+  {id:1,
+  userId:1,
+  chatId:1},
+  {id:2,
+  userId:2,
+  chatId:1},
+  {id:3,
+  userId:1,
+  chatId:2},
+]
 
 const seed = async () => {
   try {
@@ -1159,7 +1184,28 @@ const seed = async () => {
       categories.map((category)=>{
         return Category.create(category)
       }),
+  //     messages.map((message)=>{
+  //       return Message.create(message)
+  //   }),
+  //   chats.map((chat)=>{
+  //     return Chat.create({chat,include:[Message]})
+  // })
     )
+
+    let dbChats = await Promise.all(
+      chats.map((chat)=>{
+        return Chat.create(chat)
+      }))
+    let dbMessages = await Promise.all(
+      messages.map((message)=>{
+        return Message.create(message)
+      })
+    )
+
+    dbChats[0].addMessage(dbMessages[0])
+    dbChats[0].addMessage(dbMessages[1])
+    dbChats[1].addMessage(dbMessages[2])
+
     /* run the association tables seeding separately due to any sequelize hooks in the non-association table models */
     await Promise.all(
       activitiesCategories.map((actCat)=>{
@@ -1170,9 +1216,12 @@ const seed = async () => {
       }),
       userCategories.map((useCat)=>{
         return UserCategories.create(useCat)
+      }),
+      userChats.map((userChat)=>{
+        return UserChats.create(userChat)
       })
     )
-
+    
     console.log(green('Seeding success!'))
     db.close()
 
