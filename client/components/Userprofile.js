@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchUser } from "../store/SingleUserStore";
 import { fetchActivities} from "../store/allActivitiesStore";
+import { getUserActivities } from "../store/userActivitiesStore";
 import {fetchFriends, deleteFriend} from "../store/friendsStore"
 import MappedActivity from "./utilities/MappedActivity";
 
@@ -12,15 +13,16 @@ class UserProfile extends React.Component {
     this.props.fetchUserData(this.props.match.params.id);
     this.props.fetchFriends(this.props.match.params.id);
     this.props.fetchActivities()
+    this.props.getUserActivities()
   }
 
   render() {
     const user = this.props.userData;
     const friends = this.props.friends;
-    const recent = this.props.activities
-    const recent5 = recent.slice(0,5)
-    console.log("recent", recent)
-    console.log("recent5", recent5)
+    const userActivities = this.props.userActivities.reverse()
+    const recent5 = userActivities.slice(0,5)
+
+
     return (
       <div>
       <div>
@@ -30,15 +32,20 @@ class UserProfile extends React.Component {
             <h2>USER EMAIL: {user.email}</h2>
             {/* <div><img src= {user.imageUrl}/></div> */}
            {/* <div> <Link to={`/user/modify/${this.props.match.params.id}`}>Modify </Link></div> */}
-           <div>5 MOST RECENT ACTIVITIES:</div>
+           <h1>5 MOST RECENT ACTIVITIES:</h1>
            <div id="allActivities">
         {recent5.map((activity) => {
           return(
-            <div key={activity.id} className={activity.useractivities ?
-              (activity.useractivities.length>0 ? `activity-${activity.useractivities[0].score}`:"activity-x")
-            : "activity"}>
-              <MappedActivity activity={activity} />
+            <Link to ={`/activities/${activity.id}`}>
+            <img src= {activity.imageUrl} className="singleItem-image"/>
+            <div>
+                <h3>{activity.name}</h3>
             </div>
+        </Link>
+
+            // <div key={activity.id} className="activity-x">
+            // <h1>{activity.name}</h1>
+            // </div>
           )
          })}
       </div>
@@ -81,7 +88,8 @@ const mapState = (state) => {
   return {
     userData: state.user,
     friends: state.friends,
-    activities: state.activities
+    activities: state.activities,
+    userActivities: state.userActivities
   };
 };
 
@@ -91,6 +99,7 @@ const mapDispatch = (dispatch, { history }) => {
     fetchFriends: (id) => dispatch(fetchFriends(id)),
     deleteFriend: (id) => dispatch(deleteFriend(id)),
     fetchActivities: () => dispatch(fetchActivities()),
+    getUserActivities: () => dispatch(getUserActivities())
   };
 };
 

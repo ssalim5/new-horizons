@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { re } = require("mathjs");
 const {models: { Activity,User,UserActivities, ActivityCategory }} = require("../db");
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 module.exports = router;
 
 const requireToken = async (req, res, next) => {
@@ -17,19 +19,42 @@ const requireToken = async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization)
-    const activity= await Activity.findAll({
-      include:{
-        model:UserActivities,
-        where:{
-          userId:user.id
-        },
-        attributes:['score','updatedAt', 'activityId'],
-        required: false
-      }
 
-    });
-    console.log("ACTIV", activity)
-    res.json(activity)
+    function isEmpty(obj){
+      return Object.keys(obj).length === 0
+    }
+
+    if( isEmpty(req.query) ){
+      const activity= await Activity.findAll({
+        include:{
+          model:UserActivities,
+          where:{
+            userId:user.id
+          },
+          attributes:['score','updatedAt', 'activityId'],
+          required: false
+        }
+
+      });
+      res.json(activity)
+    } else {
+      const activities = await Activity.findAll({
+        where : {
+          name: {
+            [Op.iLike]: '%'+req.query.keyword+'%'
+          }
+        },
+        include: {
+          model: UserActivities,
+          where: {
+            userId: user.id
+          },
+          attributes: ['score', 'updatedAt', 'activityId'],
+          required: false
+        }
+      })
+      res.json(activities)
+    }
   } catch (err) {
     next(err);
   }
