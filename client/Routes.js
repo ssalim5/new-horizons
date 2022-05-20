@@ -1,9 +1,11 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
+
+import {me, getUserActivities, fetchUserRecommendations, _setUserActivities, _setUserRecomendations, getUtilities, resetUtilities} from './store'
+
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import {me} from './store'
 import UserProfile from './components/Userprofile';
 import AllActivities from './components/AllActivities';
 import SingleActivity from './components/SingleActivity';
@@ -13,6 +15,7 @@ import Friends from './components/Friends';
 import Graph from './components/Graph';
 import AllUsers from './components/AllUsers';
 import AddFriends from './components/AddFriends'
+import MyActivities from './components/MyActivities';
 
 /**
  * COMPONENT
@@ -20,13 +23,29 @@ import AddFriends from './components/AddFriends'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    // this.props.getUserActivities()
+    // this.props.fetchRecommended()
   }
+
+componentDidUpdate(prevProps){
+  if(prevProps.isLoggedIn !== this.props.isLoggedIn){
+    if(this.props.isLoggedIn){
+      this.props.getUserActivities()
+      this.props.fetchRecommended()
+      this.props.getUtilities()
+    }
+    if(!this.props.isLoggedIn){
+      this.props._setUserActivities([])
+      this.props._setUserRecomendations([])
+      this.props.resetUtilities()
+    }
+  }
+}
 
   render() {
     const {isLoggedIn} = this.props
-
     return (
-      <div>
+      <div id="routes">
         {isLoggedIn ? (
           <Switch>
             <Route exact path="/" component={Home} />
@@ -40,21 +59,22 @@ class Routes extends Component {
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/users/:id" component={UserProfile} />
             <Route exact path="/addfriends/:id" component={AddFriends} />
+            <Route exact path="/myactivities" component={MyActivities} />
 
           </Switch>
         ) : (
           <Switch>
-            <Route exact path='/' component={ Home } />
+            <Route exact path='/' component={ Login } />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/activities" component={AllActivities} />
+            {/* <Route exact path="/activities" component={AllActivities} />
             <Route exact path="/activities/:id" component={SingleActivity} />
-            <Route exact path="/user/:id" component={UserProfile} />
+            <Route exact path="/user/:id" component={UserProfile} /> */}
             <Route exact path="/registration" component={Registration} />
-            <Route exact path="/recommended" component={Recommended} />
+            {/* <Route exact path="/recommended" component={Recommended} />
             <Route exact path="/friends" component={Friends} />
             <Route exact path="/graph" component={Graph} />
             <Route exact path="/users" component={AllUsers} />
-            <Route exact path="/addfriends/:id" component={AddFriends} />
+            <Route exact path="/addfriends/:id" component={AddFriends} /> */}
           </Switch>
         )}
       </div>
@@ -77,7 +97,14 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-    }
+    },
+    getUserActivities: () => dispatch(getUserActivities()),
+    fetchRecommended: () => dispatch(fetchUserRecommendations()),
+    _setUserActivities: (input) => dispatch(_setUserActivities(input)),
+    _setUserRecomendations: (input) => dispatch(_setUserRecomendations(input)),
+    _setUserRecomendations: (input) => dispatch(_setUserRecomendations(input)),
+    getUtilities: () => dispatch(getUtilities()),
+    resetUtilities: () => dispatch(resetUtilities()),
   }
 }
 

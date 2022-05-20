@@ -1,7 +1,8 @@
 const router = require("express").Router();
-const {
-  models: { Activity,User },
-} = require("../db");
+const { re } = require("mathjs");
+const {models: { Activity,User,UserActivities, ActivityCategory }} = require("../db");
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 module.exports = router;
 
 const requireToken = async (req, res, next) => {
@@ -14,25 +15,153 @@ const requireToken = async (req, res, next) => {
   }
 };
 
-//GET: read all activities
+//GET: read all activities (logged in)
 router.get("/", async (req, res, next) => {
   try {
-    const activity= await Activity.findAll();
-    res.json(activity);
+    const user = await User.findByToken(req.headers.authorization)
+
+    function isEmpty(obj){
+      return Object.keys(obj).length === 0
+    }
+
+    if( isEmpty(req.query) ){
+      const activity= await Activity.findAll({
+        include:{
+          model:UserActivities,
+          where:{
+            userId:user.id
+          },
+          attributes:['score','updatedAt', 'activityId'],
+          required: false
+        }
+
+      });
+      res.json(activity)
+    } else {
+      const activities = await Activity.findAll({
+        where : {
+          name: {
+            [Op.iLike]: '%'+req.query.keyword+'%'
+          }
+        },
+        include: {
+          model: UserActivities,
+          where: {
+            userId: user.id
+          },
+          attributes: ['score', 'updatedAt', 'activityId'],
+          required: false
+        }
+      })
+      res.json(activities)
+    }
   } catch (err) {
     next(err);
   }
 });
 
-//GET: read a single activity - find by activity.Id
-router.get("/:id", async (req, res, next) => {
-  try {
-    const activity = await Activity.findByPk(req.params.id);
-    res.json(activity);
+//GET: all activities for a single user
+router.get("/users", async (req,res,next)=> {
+  console.log("START")
+  try{
+    const user = await User.findByToken(req.headers.authorization)
+    const activity= await Activity.findAll({
+      include:{
+        model:UserActivities,
+        where:{
+          userId:user.id
+        },
+        attributes:['userId','score','updatedAt'],
+      },
+    });
+    res.json(activity)
   } catch (err) {
-    next(err);
+    next(err)
+  }
+})
+
+//GET: read a single activity - find by activity.Id (logged in)
+router.get("/:id",async (req,res,next)=>{
+  try{
+    const user = await User.findByToken(req.headers.authorization)
+    const activity = await Activity.findByPk(req.params.id,{
+      include:{
+        model:UserActivities,
+        where:{
+          userId:user.id
+        },
+        //attributes:['score','updatedAt'],
+        required: false
+      }
+    })
+    res.status(201).send(activity)
+    //res.json(activity)
+  } catch (error) {
+    next(error)
+  }
+})
+
+//POST: post an activity to useractivities table - return that activity from the activities table with user useractivities info
+router.post("/useractivity", async (req, res, next) => {
+  try {
+      const user = await User.findByToken(req.headers.authorization)
+      if(await UserActivities.findOne({
+          where:{
+              userId:user.id,
+              activityId: req.body.activityId
+          }
+      })){
+          return res.status(403).send("this user/activity already exists")
+      }else{
+          await UserActivities.create({
+              userId:user.id,
+              activityId: req.body.activityId,
+              score: req.body.score
+          });
+          const activity = await Activity.findByPk(req.body.activityId,{
+            include:{
+              model:UserActivities,
+              where:{
+                userId:user.id
+              },
+              //attributes:['score','updatedAt'],
+              required: false
+            }
+          })
+          res.status(201).send(activity)
+      }
+  } catch (error) {
+      next(error);
   }
 });
+
+router.put("/useractivity", async (req,res,next)=>{
+  try{
+    const user = await User.findByToken(req.headers.authorization)
+
+    await UserActivities.update({
+      score: req.body.score
+    },{
+      where:{
+        userId: user.id,
+        activityId: req.body.activityId
+      }
+    })
+    const activity = await Activity.findByPk(req.body.activityId,{
+      include:{
+        model:UserActivities,
+        where:{
+          userId:user.id
+        },
+        //attributes:['score','updatedAt'],
+        required: false
+      }
+    })
+    res.status(201).send(activity)
+  } catch(error) {
+
+  }
+})
 
 //POST: create a new activity (need to be admin?)
 router.post("/", requireToken, async (req, res, next) => {
@@ -63,11 +192,6 @@ router.put("/update/:id", requireToken, async (req, res, next) => {
     next(error);
   }
 });
-
-
-
-
-
 
 router.put("/:id", requireToken, async (req, res, next) => {
   try {

@@ -14,9 +14,9 @@ function Registration(){
   const [category,setCategory] = useState({
     creative: 0,
     athletic: 0,
-    logical: 0,
+    social: 0,
     relaxing: 0,
-    entertaining: 0,
+    adventurous: 0,
   })
 
   const [hideRequiredFlag,setHideRequiredFlag] = useState(true)
@@ -29,7 +29,7 @@ function Registration(){
   function handleSubmit(event) {
       event.preventDefault();
       console.log(user)
-      
+
       if(user.password===user.confirmPassword){
           let trigger = true
           let addUser ={}
@@ -54,9 +54,9 @@ function Registration(){
           setUser({...user,password:"",confirmPassword:""})
       }
   }
-  
+
   return(
-      <div id='user-create'>
+      <div className="module login">
         <h2>Signup</h2>
         <form onSubmit={handleSubmit}>
             {matchPasswords ? "" : <div className = "alertbox"> passwords do not match</div>}
@@ -84,10 +84,6 @@ function Registration(){
             {hideRequiredFlag ? "" : <div className = "alert">required field</div>}
           </div>
 
-          <div className="submit-buttons">
-            <button type='submit'>submit</button>
-            <button type='button'><Link to='/'>cancel</Link></button>
-          </div>
 
           <label>
           Rate Your Interest in Creative Activities :
@@ -112,17 +108,6 @@ function Registration(){
           </select>
         </label>
         <label>
-          Rate Your Interest in Logical Activities :
-          <select name="logical" value={category.logical} onChange={handleChange}>
-            <option value="0">Optional</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </label>
-        <label>
           Rate Your Interest in Relaxing Activities :
           <select name="relaxing" value={category.relaxing} onChange={handleChange}>
             <option value="0">Optional</option>
@@ -134,8 +119,19 @@ function Registration(){
           </select>
         </label>
         <label>
-          Rate Your Interest in Entertaining Activities :
-          <select name="entertaining" value={category.entertaining} onChange={handleChange}>
+          Rate Your Interest in Adventurous Activities :
+          <select name="adventurous" value={category.adventurous} onChange={handleChange}>
+            <option value="0">Optional</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <label>
+          Rate Your Interest in Social Activities :
+          <select name="social" value={category.social} onChange={handleChange}>
             <option value="0"> Optional</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -144,7 +140,11 @@ function Registration(){
             <option value="5">5</option>
           </select>
         </label>
-          
+        <div id="registration-submit-buttons">
+            <button type='submit'>submit</button>
+            <button type='button'><Link to='/'>cancel</Link></button>
+          </div>
+
         </form>
       </div>
   )

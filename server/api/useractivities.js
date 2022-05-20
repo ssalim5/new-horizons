@@ -17,7 +17,7 @@ router.get("/", async (req,res,next)=>{
     res.send(test.activities)
 })
 //POST: add a new activity to useractivities for user
-router.post("/", async (req, res, next) => {
+router.post("/userActivity", async (req, res, next) => {
     try {
         //console.log("---HEADERS---",req.headers.authorization)
         const user = await User.findByToken(req.headers.authorization)

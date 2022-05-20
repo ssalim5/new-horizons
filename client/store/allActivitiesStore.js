@@ -1,19 +1,33 @@
 import axios from "axios";
+import { sort } from "mathjs";
 
-// Action Types
+const TOKEN = "token";
+
+/* ACTION TYPES */
 const SET_ACTIVITIES = "SET_ACTIVITIES";
+const SORT_ACTIVITIES = "SORT_ACTIVITIES"
 const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
-const TOKEN = "token";
+const POST_USERACTIVITY = "POST_USERACTIVITY"
 
-// Action creators
-export const _setActivities = (activities) => {
+/* ACTION CREATORS */
+export const _setActivities = (activities,sort) => {
   return {
     type: SET_ACTIVITIES,
     activities,
+    sortOn: sort.sortOn,
+    sortDirection: sort.sortDirection,
   };
 };
+
+export const _sortActivities = (sort) => {
+  return {
+    type: SORT_ACTIVITIES,
+    sortOn: sort.sortOn,
+    sortDirection: sort.sortDirection,
+  }
+}
 
 const _createActivity = (activity) => {
   return {
@@ -36,13 +50,43 @@ const _updateActivity = (ACTIVITY) => {
   };
 };
 
-//Thunks
-export const fetchActivities = () => {
+export const _postUserActivity = (userActivity) => {
+  return{
+      type: POST_USERACTIVITY,
+      userActivity,
+  }
+}
+
+export const fetchActivities = (keyword,sort) => {
   return async (dispatch) => {
-    const { data } = await axios.get("/api/activities");
-    dispatch(_setActivities(data));
+    const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.get("/api/activities/",{
+        headers: {
+          authorization: token
+        },
+        params: {keyword}
+      });
+      dispatch(_setActivities(data,sort));
   };
 };
+
+export const postUserActivity = (activityId,score) => {
+  const token = window.localStorage.getItem(TOKEN)
+  return async (dispatch) => {
+      const {data} = await axios.post("/api/activities/useractivity",
+      {
+          activityId: activityId,
+          score: score
+      },
+      {
+          headers: {
+              authorization: token
+            },
+      },
+      )
+      dispatch(_postUserActivity(data))
+  }
+}
 
 export const createActivity = (activity, history) => {
   return async (dispatch) => {
@@ -88,13 +132,50 @@ export const updateActivity = (activity) => {
   };
 };
 
+function sortingMethod(activities,sortOn,sortDirection){
+  function typeHelper(input){
+    if(sortOn==="score" || sortOn=="updatedAt"){
+      if(input.useractivities.length<=0){
+        return 0
+      }else{
+        if(sortOn==="updatedAt"){
+          console.log("UPDATTEDAT")
+          return new Date(input.useractivities[0].updatedAt).getTime()
+        }
+        return input.useractivities[0][sortOn]
+      }
+    }
+    return input[sortOn]
+  }
+
+  if(sortDirection==="forward"){
+    return activities.sort(function(a,b){
+      // console.log(a)
+      if(typeHelper(a) < typeHelper(b)) { return -1}
+      if(typeHelper(b) < typeHelper(a)) { return 1}
+       return 0
+    })
+  }else if(sortDirection==="reverse"){
+    return activities.sort(function(a,b){
+      if(typeHelper(a) < typeHelper(b)) { return 1}
+      if(typeHelper(b) < typeHelper(a)) { return -1}
+      return 0
+    })
+  }
+}
+
 // reducer
 
 const initialState = [];
 const activitiesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ACTIVITIES:
-      return action.activities;
+      return sortingMethod(action.activities,action.sortOn,action.sortDirection)
+    case SORT_ACTIVITIES:
+      return sortingMethod(state,action.sortOn,action.sortDirection)
+    case POST_USERACTIVITY:
+      const arr = state.filter(elem=>elem.id !== action.userActivity.id)
+      return [...arr,action.userActivity]
     case CREATE_ACTIVITY:
       return [...state, action.activity];
     case DELETE_ACTIVITY:

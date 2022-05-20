@@ -11,6 +11,8 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+
+//Get read all friends
 router.get('/:id', async (req, res, next) => {
   try {
     const friends = await Friend.findAll({
@@ -23,3 +25,13 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const friend = await Friend.findByPk(req.params.id);
+    await friend.destroy();
+    res.send(friend);
+  } catch (error) {
+    next(error);
+  }
+});

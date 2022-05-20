@@ -2,8 +2,9 @@ import axios from 'axios'
 
 /* ACTION TYPES */
 const TOKEN = 'token'
-const GET_USERACTIVITY = "GET_USERACTIVITIES"
+const SET_USERACTIVITY = "SET_USERACTIVITIES"
 const POST_USERACTIVITY = "POST_USERACTIVITY"
+const UPDATE_USERACTIVITY = "UPDATE_USERACTIVITY"
 
 /* ACTION CREATORS */
 export const _postUserActivity = (userActivity) => {
@@ -13,36 +14,30 @@ export const _postUserActivity = (userActivity) => {
     }
 }
 
-export const _getUserActivities = (userActivities) => {
+export const _updateUserActivity = (userActivity) => {
     return{
-        type: GET_USERACTIVITY,
+        type: UPDATE_USERACTIVITY,
+        userActivity
+    }
+}
+
+export const _setUserActivities = (userActivities) => {
+    return{
+        type: SET_USERACTIVITY,
         userActivities
     }
 }
 
 /* THUNKS */
-export const getUserActivity = () => {
+export const getUserActivities = () => {
     return async (dispatch) => {
-        const {data} = await axios.get("/api/users/useractivities")
-        dispatch(_getUserActivities(data))
-    }
-}
-
-export const postUserActivity = (activityId,score) => {
-    const token = window.localStorage.getItem(TOKEN)
-    return async (dispatch) => {
-        const {data} = await axios.post("/api/useractivities",
-        {
-            activityId: activityId,
-            score: score
-        },
-        {
+        const token = window.localStorage.getItem(TOKEN);
+        const {data} = await axios.get(`/api/activities/users`,{
             headers: {
-                authorization: token
-              },
-        },
-        )
-        dispatch(_postUserActivity(data))
+              authorization: token
+            }
+          });
+          dispatch(_setUserActivities(data))
     }
 }
 
@@ -50,10 +45,15 @@ export const postUserActivity = (activityId,score) => {
 const initialState = [];
 const userActivitiesReducer = (state = initialState, action) => {
     switch(action.type){
-        case GET_USERACTIVITY:
+        case SET_USERACTIVITY:
             return action.userActivities
         case POST_USERACTIVITY:
             return [...state,action.userActivity]
+        case UPDATE_USERACTIVITY:
+            console.log("ACTION: ",action)
+            return state.map((activity) =>
+            activity.id === action.userActivity.id ? action.userActivity : activity
+            );
         default:
             return state;
     }
