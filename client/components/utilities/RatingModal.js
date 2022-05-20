@@ -11,12 +11,13 @@ export default function RatingsModal(props){
 
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
+    const sortDirection = useSelector((state)=> state.utilities.homeSortAct)
 
     function onChange(event){
         if(activity.useractivities.length>0){
-            dispatch(putUserActivity(activity.id,event.target.value))
+            dispatch(putUserActivity(activity.id,event.target.value,sortDirection))
         }else{
-            dispatch(postUserActivity(activity.id,event.target.value))
+            dispatch(postUserActivity(activity.id,event.target.value,sortDirection))
             dispatch(_removeRec(activity.id))
         }
         toggleModal()

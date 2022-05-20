@@ -24,7 +24,7 @@ export const fetchSingleActivity = (id) => {
   }
 };
 
-export const postUserActivity = (activityId,score) => {
+export const postUserActivity = (activityId,score,direction) => {
   const token = window.localStorage.getItem(TOKEN)
   return async (dispatch) => {
       const {data} = await axios.post("/api/activities/useractivity",
@@ -39,11 +39,11 @@ export const postUserActivity = (activityId,score) => {
       },
       )
       dispatch(_setSingleActivity(data))
-      dispatch(_postUserActivity(data))
+      dispatch(_postUserActivity(data,direction))
   }
 }
 
-export const putUserActivity = (activityId,score) => {
+export const putUserActivity = (activityId,score,direction) => {
   const token = window.localStorage.getItem(TOKEN)
   return async (dispatch) => {
       const {data} = await axios.put("/api/activities/useractivity",
@@ -58,7 +58,7 @@ export const putUserActivity = (activityId,score) => {
       },
       )
       dispatch(_setSingleActivity(data))
-      dispatch(_updateUserActivity(data))
+      dispatch(_updateUserActivity(data,direction))
   }
 }
 
