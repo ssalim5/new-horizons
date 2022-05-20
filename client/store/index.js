@@ -11,6 +11,7 @@ import recommendationsReducer from './userRecommendations'
 import userActivitiesReducer from './userActivitiesStore'
 import friendReducer from './friendsStore'
 import utilities from './utilities'
+import locationReducer from './location'
 
 const reducer = combineReducers({
   auth,
@@ -22,7 +23,8 @@ const reducer = combineReducers({
   userActivities: userActivitiesReducer,
   friends: friendReducer,
   utilities: utilities,
-  })
+  location: locationReducer
+})
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

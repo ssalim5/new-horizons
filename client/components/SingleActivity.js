@@ -3,13 +3,14 @@ import {useDispatch, useSelector} from 'react-redux'
 import {fetchSingleActivity} from "../store"
 import { useParams } from 'react-router-dom'
 import RatingsModal from './utilities/RatingModal'
-
+import Map from './Map'
+import {activityQueries} from './utilities/MapsTextSearch'
 
 export default function SingleActivity(){
     const dispatch = useDispatch()
     const params = useParams()
     const activity = useSelector((state)=> state.singleActivity)
-    
+
     useEffect(()=>{
         dispatch(fetchSingleActivity(params.id))
     },[])
@@ -36,8 +37,10 @@ export default function SingleActivity(){
                     <RatingsModal activity={activity} />
                 </div>
             </div>
-            <div className="map">map</div>
-            
+            <div className="map">
+                <Map activityQuery={activityQueries[activity.name]} />
+            </div>
+
         </div>
     )
 }

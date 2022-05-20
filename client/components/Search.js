@@ -1,10 +1,14 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng
 } from "use-places-autocomplete";
+import { defaultCenter } from "./Map";
 
-export default function Search({ moveMap }) {
+export default function Search({ panTo }) {
+  const location = useSelector((state) => state.location )
+  const {lat, lng} = Object.keys(location).length === 0 ? defaultCenter : location
   const {
     ready,
     value,
@@ -13,14 +17,13 @@ export default function Search({ moveMap }) {
     clearSuggestions
   } = usePlacesAutocomplete({
     requestOptions: {
-      location: { lat: () => -3.745, lng: () => -38.523},
-      radius: 1*1000,
-    }
+      location: {lat: () => lat, lng: () => lng},
+      radius: 500,
+    },
     // debounce: 300
   });
 
   const handleInput = e => {
-    // Update the keyword of the input element
     setValue(e.target.value);
   };
 
@@ -30,11 +33,10 @@ export default function Search({ moveMap }) {
     setValue(description, false);
     clearSuggestions();
 
-    // Get latitude and longitude via utility functions
     try {
       const res = await getGeocode({address: description})
       const { lat, lng } = await getLatLng(res[0])
-      moveMap({ lat, lng })
+      panTo({ lat, lng })
     } catch (error) {
       console.log(error)
     }

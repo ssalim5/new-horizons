@@ -1,13 +1,8 @@
 import React from "react";
 import axios from "axios";
+import { setLocation } from "../store/location";
+import { useDispatch } from "react-redux";
 
-export const getPosition = (moveMap) => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((pos) => moveMap({ lat: pos.coords.latitude, lng: pos.coords.longitude }), errorCallback);
-  } else {
-    alert("Sorry, Geolocation is not supported by this browser.");
-  }
-}
   // Check permissions if the error occured due to user not allowing location to be shared
 export const errorCallback = () => {
   if (navigator.permissions) {
@@ -21,9 +16,20 @@ export const errorCallback = () => {
   }
 }
 
-export default function Locate({moveMap}) {
+export default function Locate({panTo}) {
+  const dispatch = useDispatch()
   return (
-    <button onClick={() => getPosition(moveMap)} >
+    <button onClick={() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude }
+          panTo(loc)
+          dispatch( setLocation(loc) )
+        }, errorCallback);
+      } else {
+        alert("Sorry, Geolocation is not supported by this browser.");
+      }
+    }}>
       Find My Location!
     </button>
   )
