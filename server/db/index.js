@@ -31,6 +31,9 @@ User.belongsToMany(User, { as: 'friends', through: {model:Friend, foreignKey: "f
 Chat.hasMany(Message)
 Message.belongsTo(Chat)
 
+Message.belongsTo(User)
+User.hasMany(Message)
+
 Chat.belongsToMany(User,{through:{model: UserChats, foreignKey: "chatId", otherKey: "userId", unique: false}})
 User.belongsToMany(Chat,{through:{model: UserChats, foreignKey: "userId", otherKey: "chatId", unique: false}})
 // Friend.belongsToMany(User, { as: 'friends', through: {model:Friend, foreignKey: "friendId", otherKey: "userId", unique: false}})

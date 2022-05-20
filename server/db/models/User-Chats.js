@@ -8,7 +8,6 @@ const UserChats = db.define('userchats', {
         primaryKey: true,
         unique: true,
     },
-   
 })
 
 

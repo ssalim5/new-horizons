@@ -10,7 +10,7 @@ import userReducer from './allUsersStore'
 import recommendationsReducer from './userRecommendations'
 import userActivitiesReducer from './userActivitiesStore'
 import friendReducer from './friendsStore'
-import messagesReducer from './messagesStore'
+import chatReducer from './chatStore'
 import utilities from './utilities'
 
 const reducer = combineReducers({
@@ -22,7 +22,7 @@ const reducer = combineReducers({
   recommended: recommendationsReducer,
   userActivities: userActivitiesReducer,
   friends: friendReducer,
-  messages: messagesReducer,
+  chats: chatReducer,
   utilities: utilities,
   })
 

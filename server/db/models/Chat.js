@@ -3,12 +3,13 @@ const db = require('../db')
 
 
 const Chat = db.define('chat', {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        unique: true,
-    },
+    //I Might need to add UUIDs to define rooms for chats... will figure this out later.
+    // id: {
+    //     type: Sequelize.INTEGER,
+    //     autoIncrement: true,
+    //     primaryKey: true,
+    //     unique: true,
+    // },
 })
 
 
