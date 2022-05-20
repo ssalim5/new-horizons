@@ -139,7 +139,6 @@ function sortingMethod(activities,sortOn,sortDirection){
         return 0
       }else{
         if(sortOn==="updatedAt"){
-          console.log("UPDATTEDAT")
           return new Date(input.useractivities[0].updatedAt).getTime()
         }
         return input.useractivities[0][sortOn]

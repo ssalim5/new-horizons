@@ -8,6 +8,8 @@ const RESET_UTILITIES = "RESET_UTILITIES"
 const CHANGE_TOPFIVE_ACT = "CHANGE_TOPFIVE_ACT"
 const CHANGE_TOPFIVE_REC = "CHANGE_TOPFIVE_REC"
 const CHANGE_UTILITIES_SORTACT = "CHANGE_UTILITIES_SORTACT"
+const CHANGE_HOME_REC_SORT_DIRECTION = "CHANGE_HOME_REC_SORT_DIRECTION"
+const CHANGE_HOME_ACT_SORT_DIRECTION = "CHANGE_HOME_ACT_SORT_DIRECTION"
 
 
 /* ACTION CREATORS */
@@ -30,8 +32,21 @@ export const changeSortAct = (sort) => {
     }
 }
 
+export const reverseHomeAct = (sortTo) => {
+    return{
+        type:CHANGE_HOME_ACT_SORT_DIRECTION,
+        sortTo,
+    }
+}
+
+export const reverseHomeRec = (sortTo) => {
+    return{
+        type:CHANGE_HOME_REC_SORT_DIRECTION,
+        sortTo,
+    }
+}
+
 export const changeTopFiveAct = (startNumber,destination) => {
-    console.log(startNumber,destination)
     if(destination === "fiveAct"){
         return{
             type: CHANGE_TOPFIVE_ACT,
@@ -50,16 +65,16 @@ export const changeTopFiveAct = (startNumber,destination) => {
 // reducer
 
 const initialState = {
-    sortRec:"",
-    filterRec:"",
+    homeSortAct: false,
+    homeSortRec: false,
     sortAct:{
         sortOn:"name",
         sortDirection:"forward"
       },
-    filterAct:"",
     fiveAct:0,
     fiveRec:0,
 };
+
 const utilitiesReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_UTILITIES:
@@ -72,7 +87,10 @@ const utilitiesReducer = (state = initialState, action) => {
             return {...state,fiveRec:action.startNumber}
         case CHANGE_UTILITIES_SORTACT:
             return {...state,sortAct:action.sort}
-    
+        case CHANGE_HOME_REC_SORT_DIRECTION:
+            return { ...state,homeSortRec:action.sortTo}
+        case CHANGE_HOME_ACT_SORT_DIRECTION:
+            return { ...state,homeSortAct:action.sortTo}
         default:
             return state;
   }
