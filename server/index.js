@@ -23,7 +23,7 @@ const init = async () => {
     }
     // start listening (and create a 'server' object representing our server)
     app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
-    await uploadRatingsToAWS()
+    // await uploadRatingsToAWS()
     setInterval(uploadRatingsToAWS,60*60*1000)
 
   } catch (ex) {

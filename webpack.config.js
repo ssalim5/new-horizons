@@ -1,4 +1,9 @@
 module.exports = {
+  resolve: {
+    fallback: {
+        "fs": false
+    },
+  },
   entry: [
     './client/index.js'
   ],
