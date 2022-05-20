@@ -16,6 +16,7 @@ import Graph from './components/Graph';
 import AllUsers from './components/AllUsers';
 import AddFriends from './components/AddFriends'
 import MyActivities from './components/MyActivities';
+import FriendsActivities from './components/FriendsActivities';
 
 /**
  * COMPONENT
@@ -58,6 +59,7 @@ componentDidUpdate(prevProps){
             <Route exact path="/users/:id" component={UserProfile} />
             <Route exact path="/addfriends/:id" component={AddFriends} />
             <Route exact path="/myactivities" component={MyActivities} />
+            <Route exact path="/usersfriends/:id" component={FriendsActivities} />
 
           </Switch>
         ) : (
