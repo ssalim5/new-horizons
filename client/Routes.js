@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 
-import {me, getUserActivities, fetchUserRecommendations, _setUserActivities, _setUserRecomendations} from './store'
+import {me, getUserActivities, fetchUserRecommendations, _setUserActivities, _setUserRecomendations, getUtilities, resetUtilities} from './store'
 
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
@@ -17,6 +17,7 @@ import AllUsers from './components/AllUsers';
 import AddFriends from './components/AddFriends'
 import MyActivities from './components/MyActivities';
 import ChatList from './components/ChatList';
+import FriendsActivities from './components/FriendsActivities';
 
 /**
  * COMPONENT
@@ -33,10 +34,12 @@ componentDidUpdate(prevProps){
     if(this.props.isLoggedIn){
       this.props.getUserActivities()
       this.props.fetchRecommended()
+      this.props.getUtilities()
     }
     if(!this.props.isLoggedIn){
       this.props._setUserActivities([])
       this.props._setUserRecomendations([])
+      this.props.resetUtilities()
     }
   }
 }
@@ -60,6 +63,8 @@ componentDidUpdate(prevProps){
             <Route exact path="/addfriends/:id" component={AddFriends} />
             <Route exact path="/myactivities" component={MyActivities} />
             <Route exact path="/chats" component={ChatList} />
+            <Route exact path="/usersfriends/:id" component={FriendsActivities} />
+
           </Switch>
         ) : (
           <Switch>
@@ -101,6 +106,8 @@ const mapDispatch = dispatch => {
     fetchRecommended: () => dispatch(fetchUserRecommendations()),
     _setUserActivities: (input) => dispatch(_setUserActivities(input)),
     _setUserRecomendations: (input) => dispatch(_setUserRecomendations(input)),
+    getUtilities: () => dispatch(getUtilities()),
+    resetUtilities: () => dispatch(resetUtilities()),
   }
 }
 

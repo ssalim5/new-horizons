@@ -11,11 +11,29 @@ router.get("/", async (req,res,next)=>{
             where: {
                 id: req.body.activityId
             },
-            // through: {attributes: ['score']}
+            through: {attributes: ['score']}
         }
     })
     res.send(test.activities)
 })
+
+router.get("/:id", async (req,res,next)=>{
+    const test = await User.findByPk(req.params.id,
+        // { where: {
+        //     userId: req.params.id
+        // }}
+        {include:{
+            model: Activity,
+        }}
+        //     where: {
+        //         id: req.body.activityId
+        //     },
+        //     through: {attributes: ['score']}
+        )
+
+    res.send(test)
+})
+
 //POST: add a new activity to useractivities for user
 router.post("/userActivity", async (req, res, next) => {
     try {

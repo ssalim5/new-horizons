@@ -12,6 +12,7 @@ import userActivitiesReducer from './userActivitiesStore'
 import friendReducer from './friendsStore'
 import chatReducer from './chatStore'
 import utilities from './utilities'
+import friendActivitiesReducer from './friendsActivitiesStore'
 
 const reducer = combineReducers({
   auth,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   allUsers: userReducer,
   recommended: recommendationsReducer,
   userActivities: userActivitiesReducer,
+  friendActivities: friendActivitiesReducer,
   friends: friendReducer,
   chats: chatReducer,
   utilities: utilities,
