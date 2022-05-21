@@ -6,6 +6,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import { defaultCenter } from "./Map";
 
+// Search for and set a different location to center the activities results.
 export default function Search({ panTo }) {
   const location = useSelector((state) => state.location )
   const {lat, lng} = Object.keys(location).length === 0 ? defaultCenter : location
