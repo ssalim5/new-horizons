@@ -19,6 +19,7 @@ class UserProfile extends React.Component {
   render() {
     const user = this.props.userData;
     const friends = this.props.friends;
+    console.log('friends', friends)
     const userActivities = this.props.userActivities.reverse()
     const recent5 = userActivities.slice(0,5)
 
@@ -28,6 +29,7 @@ class UserProfile extends React.Component {
       <div>
         {user ? (
           <div>
+            <img src= {user.imageUrl}/>
             <h2>USER: {user.username}</h2>
             <h2>USER EMAIL: {user.email}</h2>
             {/* <div><img src= {user.imageUrl}/></div> */}
@@ -60,7 +62,7 @@ class UserProfile extends React.Component {
     <div> {friends.map((friend) => {
           return (
             <div>
-            <Link to={`/users/${friend.id}`} key={friend.id}>
+            <Link to={`/usersfriends/${friend.friendId}`} key={friend.id}>
             <div className="friend" key={friend.id}>
             <h2 className="name">{friend.username}</h2>
             </div>
