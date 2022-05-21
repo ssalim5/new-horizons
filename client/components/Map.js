@@ -2,10 +2,6 @@ import React, {useRef, useCallback, useState} from 'react'
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import Search from './Search';
 import Locate from './Locate'
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng
-} from "use-places-autocomplete";
 
 let service;
 const containerStyle = {
@@ -26,9 +22,8 @@ const options = {
 const libraries = ["places"]
 
 export default function Map(props) {
-  console.log(props)
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDN3RyOvTueeIClwEbnrrmBoPOvouFoXoA",
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries
   })
 
@@ -59,10 +54,7 @@ export default function Map(props) {
     new google.maps.Marker({
       position: {lat, lng},
       icon: {
-        urL: "http://maps.google.com/mapfiles/kml/pushpin/blue-pushpin.png",
-        scaledSize: new window.google.maps.Size(30,30),
-        origin: new window.google.maps.Point(0,0),
-        anchor: new window.google.maps.Point(15,15)
+        urL: "http://maps.google.com/mapfiles/kml/pushpin/blue-pushpin.png"
       },
       map
     })
@@ -79,7 +71,6 @@ export default function Map(props) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++) {
           let place = results[i];
-          console.log(place)
           if(place.business_status !== "OPERATIONAL")
             continue
           setMarkers( current => [...current,
@@ -93,16 +84,6 @@ export default function Map(props) {
               openBool: place.hasOwnProperty("opening_hours") ? place.opening_hours.isOpen() : null
             }
           ])
-          // const marker = new google.maps.Marker({
-          //   position: place.geometry.location,
-          //   map
-          // });
-          // google.maps.event.addListener(marker, 'click', (function(marker) {
-          //   return function() {
-          //       infowindow.setContent();
-          //       infowindow.open(map, marker);
-          //   }
-          // })(marker));
         }
       }
     }
