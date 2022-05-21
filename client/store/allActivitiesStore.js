@@ -1,21 +1,33 @@
 import axios from "axios";
+import { sort } from "mathjs";
 
 const TOKEN = "token";
 
 /* ACTION TYPES */
 const SET_ACTIVITIES = "SET_ACTIVITIES";
+const SORT_ACTIVITIES = "SORT_ACTIVITIES"
 const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
 const POST_USERACTIVITY = "POST_USERACTIVITY"
 
 /* ACTION CREATORS */
-export const _setActivities = (activities) => {
+export const _setActivities = (activities,sort) => {
   return {
     type: SET_ACTIVITIES,
     activities,
+    sortOn: sort.sortOn,
+    sortDirection: sort.sortDirection,
   };
 };
+
+export const _sortActivities = (sort) => {
+  return {
+    type: SORT_ACTIVITIES,
+    sortOn: sort.sortOn,
+    sortDirection: sort.sortDirection,
+  }
+}
 
 const _createActivity = (activity) => {
   return {
@@ -45,8 +57,7 @@ export const _postUserActivity = (userActivity) => {
   }
 }
 
-/* THUNKS */
-export const fetchActivities = (keyword) => {
+export const fetchActivities = (keyword,sort) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
       const { data } = await axios.get("/api/activities/",{
@@ -55,7 +66,7 @@ export const fetchActivities = (keyword) => {
         },
         params: {keyword}
       });
-      dispatch(_setActivities(data));
+      dispatch(_setActivities(data,sort));
   };
 };
 
@@ -121,13 +132,46 @@ export const updateActivity = (activity) => {
   };
 };
 
+function sortingMethod(activities,sortOn,sortDirection){
+  function typeHelper(input){
+    if(sortOn==="score" || sortOn=="updatedAt"){
+      if(input.useractivities.length<=0){
+        return 0
+      }else{
+        if(sortOn==="updatedAt"){
+          return new Date(input.useractivities[0].updatedAt).getTime()
+        }
+        return input.useractivities[0][sortOn]
+      }
+    }
+    return input[sortOn]
+  }
+
+  if(sortDirection==="forward"){
+    return activities.sort(function(a,b){
+      // console.log(a)
+      if(typeHelper(a) < typeHelper(b)) { return -1}
+      if(typeHelper(b) < typeHelper(a)) { return 1}
+       return 0
+    })
+  }else if(sortDirection==="reverse"){
+    return activities.sort(function(a,b){
+      if(typeHelper(a) < typeHelper(b)) { return 1}
+      if(typeHelper(b) < typeHelper(a)) { return -1}
+      return 0
+    })
+  }
+}
+
 // reducer
 
 const initialState = [];
 const activitiesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ACTIVITIES:
-      return action.activities;
+      return sortingMethod(action.activities,action.sortOn,action.sortDirection)
+    case SORT_ACTIVITIES:
+      return sortingMethod(state,action.sortOn,action.sortDirection)
     case POST_USERACTIVITY:
       const arr = state.filter(elem=>elem.id !== action.userActivity.id)
       return [...arr,action.userActivity]
