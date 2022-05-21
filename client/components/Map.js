@@ -27,7 +27,7 @@ export default function Map(props) {
     libraries
   })
 
-  const [map, setMap] = useState(null)
+  // const [map, setMap] = useState(null)
   const [markers, setMarkers] = useState([])
   const [selectedMarker, setSelectedMarker] = useState(null)
 
@@ -43,9 +43,10 @@ export default function Map(props) {
   //   setMap(map)
   // }, [])
 
-  // const onUnmount = React.useCallback(function callback(map) {
-  //   setMap(null)
-  // }, [])
+  const onUnmount = React.useCallback(function callback(map) {
+    setMarkers([])
+    mapRef.current = null
+  }, [])
 
   const panTo = useCallback( ({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
@@ -101,7 +102,7 @@ export default function Map(props) {
         zoom={12}
         options={options}
         onLoad={onLoad}
-        // onUnmount={onUnmount}
+        onUnmount={onUnmount}
       >
         { markers.map( marker => (
           <Marker
