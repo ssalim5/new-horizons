@@ -13,13 +13,13 @@ class UserProfile extends React.Component {
     const user = this.props.userData;
     const friends = this.props.friends;
     return (
-      <div>
+      <div className="component">
       <div>
         {user ? (
-          <div>
+          <div key={user.id}>
             <h1>USER: {user.username}</h1>
             <h2>USER EMAIL: {user.email}</h2>
-            <div><img src= {user.imageUrl}/></div>
+            <div className="resize"><img src= {user.imageUrl}/></div>
           </div>
         ) : (
         "There is no user data"
@@ -28,14 +28,17 @@ class UserProfile extends React.Component {
       <div>Friends List</div>
       <div> {friends.map((friend) => {
             return (
+              <div key={friend.id}>
               <Link to={`/users/${friend.id}`} key={friend.id}>
               <div className="friend" key={friend.id}>
               <h1 className="name">{friend.username}</h1>
               </div>
               </Link>
+              </div>
             );
           })}
           </div>
+
       </div>
     )
   }

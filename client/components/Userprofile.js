@@ -25,11 +25,13 @@ class UserProfile extends React.Component {
 
 
     return (
-      <div>
+      <div id="home" className="component">
       <div>
         {user ? (
-          <div>
-            <img src= {user.imageUrl}/>
+          <div key={user.id}>
+            <div className="singleActivity-image">
+            <img className="resize" src= {user.imageUrl}/>
+            </div>
             <h2>USER: {user.username}</h2>
             <h2>USER EMAIL: {user.email}</h2>
             {/* <div><img src= {user.imageUrl}/></div> */}
@@ -38,6 +40,7 @@ class UserProfile extends React.Component {
            <div id="allActivities">
         {recent5.map((activity) => {
           return(
+            <div key={activity.id}>
             <Link to ={`/activities/${activity.id}`}>
             <img src= {activity.imageUrl} className="singleItem-image"/>
             <div>
@@ -45,23 +48,28 @@ class UserProfile extends React.Component {
             </div>
         </Link>
 
-            // <div key={activity.id} className="activity-x">
+            {/* // <div key={activity.id} className="activity-x">
             // <h1>{activity.name}</h1>
-            // </div>
+            // </div> */}
+            </div>
           )
          })}
       </div>
+
            </div>
            )
       : (
         "There is no user data"
       )}
     </div>
-    <h2><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link></h2>
-    <h2>Friends List:</h2>
+    <div className="module">
+    <p1><h2><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link>
+    </h2>
+    </p1>
+    <p2><h2>Friends List:</h2></p2>
     <div> {friends.map((friend) => {
           return (
-            <div>
+            <div key={friend.id}>
             <Link to={`/usersfriends/${friend.friendId}`} key={friend.id}>
             <div className="friend" key={friend.id}>
             <h2 className="name">{friend.username}</h2>
@@ -80,6 +88,7 @@ class UserProfile extends React.Component {
                </div>
           );
         })}
+        </div>
         </div>
     </div>
     )
