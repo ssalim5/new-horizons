@@ -26,7 +26,7 @@ const init = async () => {
     const io = require('socket.io')(server);
     const socket = require('./socket')(io);
     // await uploadRatingsToAWS()
-    setInterval(uploadRatingsToAWS,60*60*1000)
+    // setInterval(uploadRatingsToAWS,60*60*1000)
 
   } catch (ex) {
     console.log(ex)

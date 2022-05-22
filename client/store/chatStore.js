@@ -47,6 +47,7 @@ export const fetchChats = () => {
               authorization: token,
             },
           });
+          console.log(data)
         dispatch(gotMessagesFromServer(data));
       } catch (err) {
         console.log(err);
@@ -73,6 +74,7 @@ export const fetchChats = () => {
   export const addUser = (user,chat)=>{ //Adds a user to a room input user and chat only need id fields
     return async (dispatch) => {
       try {
+        console.log("TEST",user,"CHAT",chat)
         let { data } = await axios.put("/api/chats/user",{
             user:user,chat:chat
           });
@@ -87,11 +89,15 @@ export const fetchChats = () => {
     return async (dispatch) => {
       try {
         console.log(newMessage);
-        const { data } = await axios.post("/api/messages/", newMessage); //message must contain chatid and content
+      const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.post("/api/chats/message", {message:newMessage},{
+          headers: {
+            authorization: token,
+          },}); //message must contain chatid and content
         console.log(data);
         dispatch(fetchChats())
         // dispatch(gotNewMessageFromServer(data)); //update own store
-        socket.emit("new-message", data); //update store on other people's computers
+        clientSocket.emit("new-message", data); //update store on other people's computers
       } catch (error) {
         console.log(error);
       }

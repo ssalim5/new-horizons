@@ -21,26 +21,32 @@ router.get("/", async (req, res, next) => {
             {model:Chat,required:false,
             include:[{
                 model:Message,
-                include:[{model:User,attributes:['username','imageUrl']},]
-            }],
-            }
+                include:[{model:User,attributes:['username','imageUrl']}],
+                order: [['id', 'ASC']]
+            },
+            {model:User,attributes:['username']}
+            ],
+            },
         ]
         })
+        console.log(chats[0].messages)
       res.json(chats)
     } catch (err) {
       next(err);
     }
   });
-
+  //yet to be used
   router.get("/:chatId", async (req, res, next) => {
     try {
       const {id} = await User.findByToken(req.headers.authorization)
       const chat = await Chat.findByPk(req.params.chatId,{
             include:[{
                 model:Message,
-                include:[{model:User,attributes:['username','imageUrl']},]
+                include:[{model:User,attributes:['username','imageUrl']},],
+                order: [['createdAt', 'ASC']]
             }],
             })
+            console.log(chat)
       res.json(chat)
     } catch (err) {
       next(err);
@@ -60,10 +66,9 @@ router.get("/", async (req, res, next) => {
 
   router.put("/user", async (req,res,next)=>{ //Add user to chat
     try {
-      let {id:userId} = req.body.user
-      let {id:chatId} = req.body.chat
-      let chat = await Chat.findByPk(chatId)
-      let user = await User.findByPk(userId)
+      console.log(req.body)
+      let chat = await Chat.findByPk(req.body.chat.id)
+      let user = await User.findByPk(req.body.user.id)
       await chat.addUser(user)
       res.json(chat)
     } catch (error) {

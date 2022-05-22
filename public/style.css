@@ -539,6 +539,7 @@ cursor: pointer;
   
 }
 .sidebar{
+  color: white;
   flex-basis: 10%;
 }
 .messages-main{
@@ -549,10 +550,56 @@ cursor: pointer;
 .active-chat{
   display: flex;
   flex-basis: 90%;
-  flex-direction: column-reverse;
+  /* flex-direction: column-reverse; */
   overflow-y: scroll;
+  color: white;
 }
+.messages{
+  
+}
+.msg{
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+.msg-user{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50px;
+  height: 50px;
+}
+
 .new-messages{
   position:absolute;
   bottom: 0;
+}
+
+.msg-img {
+  height: 50px;
+  width: 50px;
+}
+
+.msg {
+  border-radius: 5px;
+  border-width: 10px;
+  border: blue;
+}
+
+.msg-text{
+  padding-left:10px ;
+  padding-top: 10px;
+}
+
+/* message form */
+
+#new-message-form {
+  position: relative;
+}
+
+#new-message-form .form-control {
+  border-width: 3px 1.5px 3px 3px;
+}
+
+#new-message-form.btn {
+  border-width: 3px;
 }
