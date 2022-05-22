@@ -12,6 +12,7 @@ import userActivitiesReducer from './userActivitiesStore'
 import friendReducer from './friendsStore'
 import chatReducer from './chatStore'
 import utilities from './utilities'
+import locationReducer from './location'
 import friendActivitiesReducer from './friendsActivitiesStore'
 
 const reducer = combineReducers({
@@ -26,7 +27,8 @@ const reducer = combineReducers({
   friends: friendReducer,
   chats: chatReducer,
   utilities: utilities,
-  })
+  location: locationReducer
+})
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
