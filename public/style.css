@@ -42,7 +42,7 @@ form.search-activities {
 
 input[type="search"] {
   border: none;
-  background-color: inherit,
+  background-color: inherit;
   margin: 0;
   padding: 7px 8px;
   font-size: 14px;
@@ -244,17 +244,10 @@ cursor: pointer;
 }
 
 /* home */
-#home .offButton{
-  background-color: var(--lighter-background);
-  pointer-events: none;
-}
 
-.topFive-nav{
-  display:flex;
-  flex-wrap:nowrap;
-  justify-content: space-between;
+.button {
+  background-color: #370344 !important;
 }
-
 /* mapped activity */
 /* #allActivities{
   width:90%;

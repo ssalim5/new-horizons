@@ -1,0 +1,14 @@
+#home .offButton{
+    background-color: var(--lighter-background);
+    pointer-events: none;
+  }
+  
+  .topFive-nav{
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content: space-between;
+  }
+
+  .btn-custom {
+    background-color: red;
+}

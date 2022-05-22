@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeTopFiveAct,reverseHomeAct,reverseHomeRec,_sortRec,_sortUserActivities } from '../store'
 import { Link } from 'react-router-dom'
 import MappedActivity from './utilities/MappedActivity'
+import Button from 'react-bootstrap/Button'
 
 
 export default function Home(){
@@ -43,13 +44,13 @@ export default function Home(){
   }
   return(
       <div id="home" className="component">
-
         <div id="topFive-recommendations" className="module">
           <h2>My Recommendations</h2>
           <div className="topFive-nav">
-            <button className ="clickable" type="button" onClick={()=>reverseSort("rec")}>reverse</button>
+            <Button variant="primary" style={{ backgroundColor: "#00B1E1" }}>test</Button>
+            {/* <button className ="clickable" type="button" onClick={()=>reverseSort("rec")}>reverse</button>
             <button className={recStart<=0 ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveRec","minus",recStart)})}>prev</button>
-            <button className={recStart+5>=myRecommendations.length ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveRec","plus",recStart)})}>next</button>
+            <button className={recStart+5>=myRecommendations.length ? "offButton" : "onButton clickable"} onClick={(()=>{changeFive("fiveRec","plus",recStart)})}>next</button> */}
           </div>
           <MappedActivity data={myRecommendations.slice(recStart,recStart+5)}/>
         </div>
