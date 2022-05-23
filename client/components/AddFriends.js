@@ -65,23 +65,16 @@ export class AddFriends extends React.Component {
           <input
             className="search-activities"
             type="search"
-            // value= {filter}
-            // onChange={handleFilter}
             value={searchWord}
             onChange={this.handleChange}
-            // {(e) => {
-            //   console.log(input)
-            //   setInput(e.target.value)
-            // }}
             placeholder="Type to search..."
           />
         </form>
-        {filter.length ? (
+        {filter.length ?
           <div>
-            ({filter.map((user) => {
+            {filter.map((user) => {
           return (
             <div className="user" key={user.id}>
-
                   <h2 className="name">{user.username}</h2>
                   <form onSubmit={(ev) => ev.preventDefault()}>
         <button type="submit"
@@ -91,10 +84,10 @@ export class AddFriends extends React.Component {
         </button>
         </form>
         </div>
-        )})})
-        </div> ) : (
+        )})}
+        </div>  :
         <div>
-        ({users.map((user) => {
+        {users.map((user) => {
           return (
             <div className="user" key={user.id}>
 
@@ -108,9 +101,9 @@ export class AddFriends extends React.Component {
         </form>
             </div>
           );
-        })})
+        })}
       </div>
-      )
+
   }
   </div>
   )}}
