@@ -227,13 +227,13 @@ cursor: pointer;
 }
 
 #allActivities .accordion-button{
-  background-color: var(--rating03);
+  background-color: var(--light-detail);
   margin-bottom:20px;
 }
 
-#allActivities .accordion-button:not(.collapsed) {
+/* #allActivities .accordion-button:not(.collapsed) {
   color:var(--light-detail)
-}
+} */
 
 #allActivities .accordion-body{
   width:100%;
