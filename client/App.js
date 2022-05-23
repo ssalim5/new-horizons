@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Navbar from './components/Navbar'
+import NavigationBar from './components/Navbar'
 import Routes from './Routes'
 
 import * as tf from '@tensorflow/tfjs'
@@ -85,7 +85,7 @@ const App = () => {
   // console.log(math.multiply(P,Q))
   return (
     <div>
-      <Navbar />
+      <NavigationBar />
       <Routes />
     </div>
   )
