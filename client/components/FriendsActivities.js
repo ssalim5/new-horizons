@@ -26,11 +26,11 @@ class FriendsActivities extends React.Component {
 
 
     return (
-      <div>
+      <div className="module">
       <div>
         {user ? (
           <div>
-            <img src= {user.imageUrl}/>
+            <img className="resize" src= {user.imageUrl}/>
             <h2>Friends Username: {user.username}</h2>
             <h2>Friends Email: {user.email}</h2>
       </div>

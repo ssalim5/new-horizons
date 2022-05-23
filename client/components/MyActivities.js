@@ -1,10 +1,7 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Modal from 'react-modal'
 import { getUserActivities } from '../store';
 import MappedActivity from './utilities/MappedActivity'
-
-Modal.setAppElement("#app")
 
 export default function MyActivities(){
     const dispatch = useDispatch()

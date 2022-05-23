@@ -1,7 +1,3 @@
-import axios from "axios";
-
-const TOKEN = "token";
-
 /* ACTION TYPES */
 const GET_UTILITIES = "SET_UTILITIES"
 const RESET_UTILITIES = "RESET_UTILITIES"
@@ -69,7 +65,7 @@ const initialState = {
     homeSortRec: false,
     sortAct:{
         sortOn:"name",
-        sortDirection:"forward"
+        sortDirection:true
       },
     fiveAct:0,
     fiveRec:0,
@@ -86,6 +82,7 @@ const utilitiesReducer = (state = initialState, action) => {
         case CHANGE_TOPFIVE_REC:
             return {...state,fiveRec:action.startNumber}
         case CHANGE_UTILITIES_SORTACT:
+            console.log(action.sort)
             return {...state,sortAct:action.sort}
         case CHANGE_HOME_REC_SORT_DIRECTION:
             return { ...state,homeSortRec:action.sortTo}
