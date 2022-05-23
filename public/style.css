@@ -217,13 +217,33 @@ cursor: pointer;
 
 /* all activities */
 #allActivities>div{
+  width:100%;
   display:flex;
   flex-direction: column;
   align-items: center;
 }
+#allActivities .accordion{
+  width:100%;
+}
+
+#allActivities .accordion-button{
+  background-color: var(--rating03);
+  margin-bottom:20px;
+}
+
+#allActivities .accordion-button:not(.collapsed) {
+  color:var(--light-detail)
+}
+
+#allActivities .accordion-body{
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 Button.purple{
-  margin:15px;
+  margin: 10px;
   background-color: var(--rating03);
   border: 2px solid var(--dark-detail)
 }
@@ -232,6 +252,11 @@ Button.purple:hover{
   margin:15px;
   background-color: var(--rating02);
   border: 2px solid var(--dark-detail);
+}
+
+Button.purple:focus{
+  background-color: var(--rating03);
+  border-color: var(--dark-detail)
 }
 
 Button.purple>a{
