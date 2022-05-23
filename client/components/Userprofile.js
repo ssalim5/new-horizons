@@ -19,7 +19,7 @@ class UserProfile extends React.Component {
   render() {
     const user = this.props.userData;
     const friends = this.props.friends;
-    console.log('friends', friends)
+
     const userActivities = this.props.userActivities.reverse()
     const recent5 = userActivities.slice(0,5)
 
@@ -63,10 +63,9 @@ class UserProfile extends React.Component {
       )}
     </div>
     <div className="module">
-    <p1><h2><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link>
+    <h2><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link>
     </h2>
-    </p1>
-    <p2><h2>Friends List:</h2></p2>
+    <h2>Friends List:</h2>
     <div> {friends.map((friend) => {
           return (
             <div key={friend.id}>
