@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import NavigationBar from './components/Navbar'
 import Routes from './Routes'
@@ -6,6 +6,7 @@ import Routes from './Routes'
 import * as tf from '@tensorflow/tfjs'
 import * as math from 'mathjs'
 import { pow } from 'mathjs'
+
 
 const App = () => {
   // let User_Ratings_Arr = [[5,3,-1,1,0,3,2,3],
@@ -41,7 +42,7 @@ const App = () => {
   //       Activity_Features_Arr.push(activity_features)
   // }
   // //MXN Array : M: num users N num activities
-  // // MxK * K*N // the multiplication we need to do 
+  // // MxK * K*N // the multiplication we need to do
   // // let User_Ratings = tf.tensor2d(User_Ratings_Arr)
   // // let User_Features = tf.tensor2d(User_Features_Arr)
   // // let Activity_Features = tf.tensor2d(Activity_Features_Arr)
@@ -57,8 +58,8 @@ const App = () => {
   //         for (let k=0;k<FeatureSize;k++){
   //           let pInd = math.index(index[0],k)
   //           let qInd = math.index(k,index[1])
-  //           let newP = P.subset(pInd)+ alpha*(2*err*Q.subset(qInd)-beta*P.subset(pInd)) 
-  //           let newQ = Q.subset(qInd)+ alpha*(2*err*P.subset(pInd)-beta*Q.subset(qInd))  
+  //           let newP = P.subset(pInd)+ alpha*(2*err*Q.subset(qInd)-beta*P.subset(pInd))
+  //           let newQ = Q.subset(qInd)+ alpha*(2*err*P.subset(pInd)-beta*Q.subset(qInd))
   //           P.subset(pInd, newP )
   //           Q.subset(qInd, newQ)
   //         }
@@ -83,6 +84,11 @@ const App = () => {
   // }
   // let {P,Q} = matFactorization(User_Ratings,User_Features,Activity_Features,math.size(User_Features)._data[1])
   // console.log(math.multiply(P,Q))
+  useEffect(() => {
+    window.process = {
+      ...window.process,
+    };
+  }, []);
   return (
     <div>
       <NavigationBar />

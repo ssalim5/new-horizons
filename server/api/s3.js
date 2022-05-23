@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const aws = require("aws-sdk");
 const fs = require("fs")
-const path = require("path")
-const { config } = require("chai");
+// const { config } = require("chai");
 require('dotenv').config();
 module.exports = router
 
 const S3_BUCKET = process.env.S3_BUCKET
+
 
 aws.config.update({
   region: process.env.AWS_DEFAULT_REGION,
@@ -49,6 +49,10 @@ router.post('/', async(req, res) => {
   } catch (err) {
     console.log("Error", err);
   }
+})
+
+router.post('/picture/:id', async(req, res) => {
+  const s3 = new aws.S3()
 })
 
 // Accessing from CLIENT side - get SignedURL

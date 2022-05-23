@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get("/activities/rec",async(req,res,next)=>{
-  try{ 
+  try{
     let {id}= await User.findByToken(req.headers.authorization);
     // let data = require('../../calculated_tables/estimatedRatings.json')
     let {data} = await axios.get('/api/s3')
@@ -26,7 +26,7 @@ router.get("/activities/rec",async(req,res,next)=>{
     const userActivities = await User.findByPk(
       id,
       {include:{
-        model: Activity, 
+        model: Activity,
         through: {attributes: ['score']}
       }}
     )
@@ -41,7 +41,7 @@ router.get("/activities/rec",async(req,res,next)=>{
   }
   catch(error){
     next(error)
-  } 
+  }
 })
 
 //GET: read single user
@@ -118,7 +118,12 @@ router.delete("/:id", async (req,res,next) => {
 //PUT: update a user
 router.put("/:id", async (req,res,next) => {
   try{
-    const user = await User.findByPk(req.params.id)
+    const user = await User.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ['id', 'username', 'email', 'imageUrl'],
+    });
     res.send(await user.update(req.body))
   }
   catch(error){
