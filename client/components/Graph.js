@@ -2,21 +2,70 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { getUserActivities } from "../store/userActivitiesStore";
-import { VictoryPie, VictoryTheme, VictoryStack, VictoryLabel, VictoryChart, VictoryAxis, VictoryBar} from 'victory';
+import { getFriendActivities } from "../store/friendsActivitiesStore";
+import {fetchFriends} from "../store/friendsStore"
+// import styled from 'styled-components';
+import { VictoryPie, VictoryTheme, VictoryStack, VictoryLabel,
+  VictoryChart, VictoryAxis, VictoryBar} from 'victory';
 import MappedActivity from "./utilities/MappedActivity";
 
+// const DropDownContainer = styled("div")``;
+// const DropDownHeader = styled("div")``;
+// const DropDownListContainer = styled("div")``;
+// const DropDownList = styled("ul")``;
+// const ListItem = styled("li")``;
 
 
 class Graph extends React.Component {
   constructor() {
     super();
     this.state = {
+      Creative: 3,
+      Athletic: 3,
+      Adventurous: 3,
+      Social: 3,
+      Relaxing: 3
     }
+    this.handleSelect = this.handleSelect.bind(this)
   }
   componentDidMount(){
     this.props.getUserActivities()
+    this.props.fetchFriends(this.props.auth.id);
 }
+
+handleSelect(event) {
+  // this.setState({
+  //   searchWord: event.target.value,
+  // })
+  this.props.getFriendActivities(event.target.value)
+  const friendActivities = this.props.friendActivities.activities || []
+  const friendCreative = friendActivities.map((activity) => (activity.creative))
+  const friendAthletic = friendActivities.map((activity) => (activity.athletic))
+  const friendAdventurous = friendActivities.map((activity) => (activity.adventurous))
+  const friendRelaxing = friendActivities.map((activity) => (activity.relaxing))
+  const friendSocial = friendActivities.map((activity) => (activity.social))
+  const totalFriendSocial = friendSocial.reduce((a,b) => a + b, 0)
+  const totalFriendRelaxing = friendRelaxing.reduce((a,b) => a + b, 0)
+  const totalFriendAdventurous = friendAdventurous.reduce((a,b) => a + b, 0)
+  const totalFriendAthletic = friendAthletic.reduce((a,b) => a + b, 0)
+  const totalFriendCreative = friendCreative.reduce((a,b) => a + b, 0)
+  this.setState({
+    Creative: totalFriendCreative,
+    Athletic: totalFriendAthletic,
+    Adventurous: totalFriendAdventurous,
+    Social: totalFriendSocial,
+    Relaxing: totalFriendRelaxing
+  }),
+
+
+  console.log("EVENT", event.target.value)
+
+}
+
+// this.props.getFriendActivities(this.props.match.params.id)
+
   render() {
+    const friends = this.props.friends || []
     const activities = this.props.userActivities
     const userAdventurous = this.props.auth.adventurous
     const userCreative = this.props.auth.creative
@@ -66,12 +115,8 @@ class Graph extends React.Component {
   const totalAthletic = athletic.reduce((a,b) => a + b, 0)
   const totalCreative = creative.reduce((a,b) => a + b, 0)
 
-  console.log("creative", athletic)
-
-  console.log("Totalcreative", totalAthletic)
-
     return (
-      <div>
+      <div className="component">
         <div className='Charts'>
          <div><h2> Category of Activities</h2></div>
          <div className='Chart1'>
@@ -88,16 +133,25 @@ class Graph extends React.Component {
   style={{ labels: { fill: "white"} }}
 />
 </div>
-<div><h2> USER PROFILE</h2></div>
+<div><h2> Friends Categories </h2></div>
+<div className="App">
+      {friends.length ? (<select onChange={this.handleSelect} name="selectList" id="selectList">
+
+      ({friends.map((friends) => {
+          return (
+  <option value={friends.friendId} key={friends.id}>{friends.username}</option>)})})
+</select>) : <div>NOTHING </div>}
+    </div>
+{/* <div><h2> USER PROFILE</h2></div> */}
 <div className='Chart1'>
 <VictoryPie
   colorScale={"heatmap"}
   data={[
-    { x: "Creative", y: userCreative },
-    { x: "Athletic", y: userAthletic },
-    { x: "Adventurous", y: userAdventurous },
-    { x: "Social", y: userSocial },
-    { x: "Relaxing", y: userRelaxing}
+    { x: "Creative", y: this.state.Creative},
+    { x: "Athletic", y: this.state.Athletic},
+    { x: "Adventurous", y: this.state.Adventurous},
+    { x: "Social", y: this.state.Social },
+    { x: "Relaxing", y: this.state.Relaxing}
   ]}
   style={{ labels: { fill: "white"} }}
   labelComponent={<VictoryLabel angle={45}/>}
@@ -117,8 +171,8 @@ class Graph extends React.Component {
       <div className='Chart2'>
 <VictoryPie
   colorScale={"cool"}
-  startAngle={90}
-  endAngle={-90}
+  // startAngle={90}
+  // endAngle={-90}
   data={[
     { x: "High", y: high },
     { x: "Medium", y: medium },
@@ -132,9 +186,10 @@ class Graph extends React.Component {
 <div> <h2>Location of Activities</h2></div>
 <div className='Chart2'>
 <VictoryPie
+
   colorScale={"qualitative"}
-  startAngle={90}
-  endAngle={-90}
+  // startAngle={90}
+  // endAngle={-90}
   data={[
     { x: "Outside", y: outside },
     { x: "Inside", y: inside },
@@ -144,7 +199,7 @@ class Graph extends React.Component {
   style={{ labels: { fill: "white"} }}
   // padding={10}
   // width="50%"
-/>
+  />
 </div>
 </div>
 
@@ -171,14 +226,18 @@ class Graph extends React.Component {
       return {
         activities: state.activities,
         auth: state.auth,
-        userActivities: state.userActivities
+        userActivities: state.userActivities,
+        friendActivities: state.friendActivities,
+        friends: state.friends,
       };
     };
 
     const mapDispatch = (dispatch, { history }) => {
       return {
         fetchActivities: () => dispatch(fetchActivities()),
-        getUserActivities: () => dispatch(getUserActivities())
+        getUserActivities: () => dispatch(getUserActivities()),
+        fetchFriends: (id) => dispatch(fetchFriends(id)),
+        getFriendActivities: (id) => dispatch(getFriendActivities(id))
       };
     };
 
