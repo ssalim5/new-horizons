@@ -16,6 +16,7 @@ import Graph from './components/Graph';
 import AllUsers from './components/AllUsers';
 import AddFriends from './components/AddFriends'
 import MyActivities from './components/MyActivities';
+import ChatList from './components/ChatList';
 import FriendsActivities from './components/FriendsActivities';
 
 /**
@@ -61,6 +62,7 @@ componentDidUpdate(prevProps){
             <Route exact path="/users/:id" component={UserProfile} />
             <Route exact path="/addfriends/:id" component={AddFriends} />
             <Route exact path="/myactivities" component={MyActivities} />
+            <Route exact path="/chats" component={ChatList} />
             <Route exact path="/usersfriends/:id" component={FriendsActivities} />
 
           </Switch>
@@ -103,7 +105,6 @@ const mapDispatch = dispatch => {
     getUserActivities: () => dispatch(getUserActivities()),
     fetchRecommended: () => dispatch(fetchUserRecommendations()),
     _setUserActivities: (input) => dispatch(_setUserActivities(input)),
-    _setUserRecomendations: (input) => dispatch(_setUserRecomendations(input)),
     _setUserRecomendations: (input) => dispatch(_setUserRecomendations(input)),
     getUtilities: () => dispatch(getUtilities()),
     resetUtilities: () => dispatch(resetUtilities()),

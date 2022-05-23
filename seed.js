@@ -1,7 +1,7 @@
 const { green, red } = require("chalk");
 const {
   db,
-  models: {User, Activity, Category, ActivityCategory, UserActivities,UserCategories},
+  models: {User, Activity, Category, ActivityCategory, UserActivities,UserCategories,Message,Chat,UserChats},
 } = require("./server/db");
 
 const createdUserActivities = require('./script/userActivitiesGenerator')
@@ -1099,156 +1099,156 @@ const categories = [
 
 const activitiesCategories = [
   {
-    id:1,
+    // id:1,
     activityId:1,
     categoryId:1,
     score:2,
   },{
-    id:2,
+    // id:2,
     activityId:1,
     categoryId:2,
     score:5,
   },{
-    id:3,
+    // id:3,
     activityId:1,
     categoryId:3,
     score:2,
   },{
-    id:4,
+    // id:4,
     activityId:1,
     categoryId:4,
     score:1,
   },{
-    id:5,
+    // id:5,
     activityId:1,
     categoryId:5,
     score:1,
   },{
-    id:6,
+    // id:6,
     activityId:2,
     categoryId:1,
     score:3,
   },{
-    id:7,
+    // id:7,
     activityId:2,
     categoryId:2,
     score:3,
   },{
-    id:8,
+    // id:8,
     activityId:2,
     categoryId:3,
     score:3,
   },{
-    id:9,
+    // id:9,
     activityId:2,
     categoryId:4,
     score:3,
   },{
-    id:10,
+    // id:10,
     activityId:2,
     categoryId:5,
     score:2,
   },{
-    id:11,
+    // id:11,
     activityId:3,
     categoryId:1,
     score:2,
   },{
-    id:12,
+    // id:12,
     activityId:3,
     categoryId:2,
     score:1,
   },{
-    id:13,
+    // id:13,
     activityId:3,
     categoryId:3,
     score:5,
   },
   {
-    id:14,
+    // id:14,
     activityId:3,
     categoryId:4,
     score:1,
   },{
-    id:15,
+    // id:15,
     activityId:3,
     categoryId:5,
     score:1,
   },
   {
-    id:16,
+    // id:16,
     activityId:4,
     categoryId:1,
     score:1,
   },{
-    id:17,
+    // id:17,
     activityId:4,
     categoryId:2,
     score:1,
   },{
-    id:18,
+    // id:18,
     activityId:4,
     categoryId:3,
     score:2,
   },
   {
-    id:19,
+    // id:19,
     activityId:4,
     categoryId:4,
     score:4,
   },{
-    id:20,
+    // id:20,
     activityId:4,
     categoryId:5,
     score:5,
   },{
-    id:21,
+    // id:21,
     activityId:5,
     categoryId:1,
     score:2,
   },
   {
-    id:22,
+    // id:22,
     activityId:5,
     categoryId:2,
     score:1,
   },{
-    id:23,
+    // id:23,
     activityId:5,
     categoryId:3,
     score:3,
   },{
-    id:24,
+    // id:24,
     activityId:5,
     categoryId:4,
     score:2,
   },{
-    id:25,
+    // id:25,
     activityId:5,
     categoryId:5,
     score:2,
   },{
-    id:26,
+    // id:26,
     activityId:6,
     categoryId:1,
     score:5,
   },{
-    id:27,
+    // id:27,
     activityId:6,
     categoryId:2,
     score:1,
   },{
-    id:28,
+    // id:28,
     activityId:6,
     categoryId:3,
     score:1,
   },{
-    id:29,
+    // id:29,
     activityId:6,
     categoryId:4,
     score:5,
   },{
-    id:30,
+    // id:30,
     activityId:6,
     categoryId:5,
     score:1,
@@ -1316,84 +1316,126 @@ const userActivities = [
 
 const userCategories = [
   {
-    id:1,
+    // id:1,
     userId: 1,
     categoryId: 1,
     score: 1
   },
   {
-    id:2,
+    // id:2,
     userId: 1,
     categoryId: 2,
     score: 1
   },{
-    id:3,
+    // id:3,
     userId: 1,
     categoryId: 3,
     score: 2
   },{
-    id:4,
+    // id:4,
     userId: 1,
     categoryId: 4,
     score: 5
   },{
-    id:5,
+    // id:5,
     userId: 1,
     categoryId: 5,
     score: 5
   },{
-    id:6,
+    // id:6,
     userId:2,
     categoryId: 1,
     score: 5
   },{
-    id:7,
+    // id:7,
     userId:2,
     categoryId: 2,
     score: 1
   },{
-    id:8,
+    // id:8,
     userId:2,
     categoryId: 3,
     score: 1
   },{
-    id:9,
+    // id:9,
     userId:2,
     categoryId: 4,
     score: 1
   },{
-    id:10,
+    // id:10,
     userId:2,
     categoryId: 5,
     score: 3
   },{
-    id:11,
+    // id:11,
     userId:3,
     categoryId: 1,
     score: 2
   },{
-    id:12,
+    // id:12,
     userId:3,
     categoryId: 2,
     score: 2
   },{
-    id:13,
+    // id:13,
     userId:3,
     categoryId: 3,
     score: 3
   },{
-    id:14,
+    // id:14,
     userId:3,
     categoryId: 4,
     score: 3
   },{
-    id:15,
+    // id:15,
     userId:3,
     categoryId: 5,
     score: 2
   },
 ]
+// const messages = [
+//   {userId:1, chatId:1,
+//   content:"hi"},
+//   {userId:1, chatId:1,
+//   content:"my name is ryan"},
+//   {userId:2, chatId:1,
+//   content:"HELLO"},
+//   {userId:2, chatId:1,
+//   content:"I'm mahdi"},
+//   {userId:1, chatId:3,
+//   content:"Message4"},
+//   {userId:3, chatId:2,
+//   content:"TESTING"},
+//   {userId:4, chatId:3,
+//     content:"Print"}
+// ]
+// const chats = [
+//   {},
+//   {},
+//   {},
+//   {},
+// ]
 
+// const userChats = [
+//   {
+//   userId:1,
+//   chatId:1},
+//   {
+//   userId:2,
+//   chatId:1},
+//   {
+//     userId:1,
+//     chatId:2},
+//   {
+//     userId:4,
+//     chatId:3},
+//   {
+//     userId:1,
+//     chatId:3},
+//   {
+//     userId:3,
+//     chatId:2},
+// ]
 
 const seed = async () => {
   try {
@@ -1409,7 +1451,28 @@ const seed = async () => {
       categories.map((category)=>{
         return Category.create(category)
       }),
+  //     messages.map((message)=>{
+  //       return Message.create(message)
+  //   }),
+  //   chats.map((chat)=>{
+  //     return Chat.create({chat,include:[Message]})
+  // })
     )
+
+    // await Promise.all(
+    //   chats.map((chat)=>{
+    //     return Chat.create(chat)
+    //   }))
+    // await Promise.all(
+    //   messages.map((message)=>{
+    //     return Message.create(message)
+    //   })
+    // )
+
+    // dbChats[0].addMessage(dbMessages[0])
+    // dbChats[0].addMessage(dbMessages[1])
+    // dbChats[1].addMessage(dbMessages[2])
+
     /* run the association tables seeding separately due to any sequelize hooks in the non-association table models */
     await Promise.all(
       activitiesCategories.map((actCat)=>{
@@ -1420,9 +1483,12 @@ const seed = async () => {
       }),
       userCategories.map((useCat)=>{
         return UserCategories.create(useCat)
-      })
+      }),
+      // userChats.map((userChat)=>{
+      //   return UserChats.create(userChat)
+      // })
     )
-
+    
     console.log(green('Seeding success!'))
     db.close()
 
