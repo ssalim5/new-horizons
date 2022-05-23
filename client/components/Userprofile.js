@@ -10,7 +10,8 @@ import MappedActivity from "./utilities/MappedActivity";
 import Graph from "./Graph"
 import aws from "aws-sdk"
 import axios from "axios";
-import {Image} from 'react-bootstrap'
+import {Accordion, Image, Button, Offcanvas} from 'react-bootstrap'
+import AccordionBody from "react-bootstrap/esm/AccordionBody";
 
 const AWS_ACCESS_KEY_ID="AKIAYQC73EU7UC6KESI5"
 const AWS_DEFAULT_REGION="us-east-1"
@@ -29,17 +30,21 @@ const UserProfile = (props) => {
   const friends = useSelector( state => state.friends )
   const userActivities = useSelector( state => state.userActivities.reverse() )
   const recent5 = userActivities.slice(0,5)
+  const [show, setShow] = useState(false);
 
   const fileInput = useRef()
   const profilePicture = useRef()
 
   useEffect( () => {
     console.log(props)
-    dispatch(fetchActivities())
+    //dispatch(fetchActivities())
     dispatch(fetchUser(props.match.params.id))
     dispatch(fetchFriends(props.match.params.id))
-    dispatch(getUserActivities())
+    //dispatch(getUserActivities())
   }, [])
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // componentDidMount() {
   //   this.props.fetchUserData(this.props.match.params.id);
@@ -97,32 +102,47 @@ const UserProfile = (props) => {
           <div className="userInfo">
             <div className="userInfoImage">
               <Image roundedCircle id="userProfileImage" src={user.imageUrl} ref={profilePicture}/>
-              <form onSubmit={handleSubmit}>
-                <label>
-                  Upload a file:
-                  <input type="file" ref={fileInput}/>
-                </label>
-                <button type="submit"> Upload New Picture </button>
-              </form>
+              <Accordion>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>Change Profile Picture</Accordion.Header>
+                  <Accordion.Body>
+                    <form onSubmit={handleSubmit}>
+                      <label>
+                        Upload a file:
+                        <input type="file" ref={fileInput}/>
+                      </label>
+                      <button type="submit"> Upload New Picture </button>
+                    </form>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             </div>
             <div className="userInfoText"> 
               <p>username: {user.username}</p>
               <p>email: {user.email}</p>
-              <button>friends</button>
+              <Button className="purple" onClick={handleShow}>Friends</Button>
+              <Offcanvas show={show} onHide={handleClose}>
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title>Friends</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  friends here
+                </Offcanvas.Body>
+              </Offcanvas>
             </div>
         </div>
         <Graph /> 
-        </div> 
-        <div>
+      </div> 
+        {/* <div>
           {user ? (
-            <div key={user.id}>
+            <div key={user.id}> */}
               {/* <div className="singleActivity-image"> */}
               {/* <img className="resize" src= {user.imageUrl}/> */}
               {/* </div> */}
               {/* <h2>USER: {user.username}</h2> */}
               {/* <h2>USER EMAIL: {user.email}</h2> */}
               {/* <img id="preview" src={user.imageUrl} ref={profilePicture}/> */}
-              <form onSubmit={handleSubmit}>
+              {/* <form onSubmit={handleSubmit}>
                 <label>
                   Upload a file:
                   <input type="file" ref={fileInput}/>
@@ -139,12 +159,12 @@ const UserProfile = (props) => {
               <div>
                   <h3>{activity.name}</h3>
               </div>
-          </Link>
+          </Link> */}
 
               {/* // <div key={activity.id} className="activity-x">
               // <h1>{activity.name}</h1>
               // </div> */}
-              </div>
+              {/* </div>
             )
           })}
         </div>
@@ -181,7 +201,7 @@ const UserProfile = (props) => {
           );
         })}
         </div>
-        </div>
+        </div> */}
     </div>
     )
 }
