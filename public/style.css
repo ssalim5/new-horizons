@@ -554,8 +554,11 @@ cursor: pointer;
   overflow-y: scroll;
   color: white;
 }
-.messages{
-  
+.messages-header{
+  display: flex;
+}
+.messages-title{
+  flex-basis: 80%;
 }
 .msg{
   display: flex;

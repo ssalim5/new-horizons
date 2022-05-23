@@ -1,13 +1,13 @@
 import React, {useState,useEffect} from "react";
 import { addChat, addUser, fetchChats, sendMessage } from "../store/chatStore";
+import { fetchUsers } from "../store/allUsersStore";
 import {connect} from 'react-redux';
-import { fetchFriends } from "../store/friendsStore";
 import { Chat } from "./Chat";
 
 export const ChatList = (props) =>{
     useEffect(() => {
         props.fetchInitialMessages()
-        console.log("Only on initial render",props.chats)
+        props.fetchUsers()
       },[]);
       
     //handles adding new chat and adding users to a chat
@@ -15,8 +15,14 @@ export const ChatList = (props) =>{
       event.preventDefault();
       props.addChat();
     }
+
+    const [userIdToAdd,setUserIdToAdd] = useState(1)
+    const handleChangeUserToAdd = (event)=>{
+      event.preventDefault()
+      setUserIdToAdd(event.target.value)
+    }
     const handleAddUser =(event,user,chat)=>{
-      console.log(event,user,chat)
+      console.log(user)
       event.preventDefault();
       props.addUser(user,chat)
     }
@@ -25,7 +31,6 @@ export const ChatList = (props) =>{
     const [activeChatIndex,setActiveChatIndex] = useState(0)
     const handleSetChat = (event,chatId)=>{
       event.preventDefault();
-      console.log(chatId)
       setActiveChatIndex(chatId)
     }
 
@@ -35,7 +40,6 @@ export const ChatList = (props) =>{
     }
     const handleSendMessage = (event)=> {
       event.preventDefault()
-      console.log("Submitting",messageText)
       props.sendMessage({content:messageText,chatId:props.chats[activeChatIndex].id})
       setMessageText("")
       event.target.focus()
@@ -53,7 +57,7 @@ export const ChatList = (props) =>{
           <div id="chat-list">
           {props.chats? props.chats.map((chat,ind)=>{
             return(
-            <div className="chat-name clickable" onClick={(event)=>handleSetChat(event,ind)}>
+            <div key={ind} className="chat-name clickable" onClick={(event)=>handleSetChat(event,ind)}>
               {chat.users.map((user)=>{ 
               return(
                 user.username + ", "
@@ -63,15 +67,28 @@ export const ChatList = (props) =>{
             :""}
           </div>
         </div>
-            {/* loaded chat */}
+        {/* main chat window*/}
         <div className="messages-main">
-            <form onSubmit={(event)=>handleAddUser(event,{id:20},{id:props.chats[activeChatIndex].id})}>
-              {/* input friend search here */}
-              <button type="submit" className="clickable" >Add User</button>
-            </form>
+          {/* header with title and adding users */}
+            <div className="messages-header">
+              <h2 className="messages-title">{props.chats[activeChatIndex]?props.chats[activeChatIndex].users.reduce(
+                                (prev,user)=>{
+                                  return(prev+user.username + " ")},"")
+                  :""}
+              </h2>
+              <form className="add-user-search" onSubmit={(event)=>handleAddUser(event,{id:userIdToAdd},{id:props.chats[activeChatIndex].id})}>
+                <select list="user-selector" onChange={(event)=>{handleChangeUserToAdd(event)}}>
+                  {props.users?props.users.map((user)=>{
+                    return(<option key={user.id} value={user.id}>{user.username}</option>)}):""}
+                </select>
+                <button type="submit" className="clickable" >Add User</button>
+              </form>
+            </div>
+          {/* loaded chat */}
           <div className="active-chat">
             {props.chats[activeChatIndex]?<Chat chat={props.chats[activeChatIndex]}/>:""}
           </div>
+          {/* new message form */}
           <div className="new-message">
               {/* new message in loaded chat */}
               <form onSubmit={handleSendMessage}>
@@ -86,7 +103,8 @@ export const ChatList = (props) =>{
 
 const mapStateToProps = (state) =>({
     chats:state.chats,
-    friends:state.friends
+    friends:state.friends,
+    users:state.allUsers
   })
   
   const mapDispatchToProps = (dispatch) =>({
@@ -94,6 +112,7 @@ const mapStateToProps = (state) =>({
     addChat: ()=>dispatch(addChat()),
     addUser: (user,chat)=>dispatch(addUser(user,chat)),
     sendMessage: (message)=>dispatch(sendMessage(message)),
+    fetchUsers: ()=>dispatch(fetchUsers())
   })
   
   export default connect(mapStateToProps,mapDispatchToProps)(ChatList)

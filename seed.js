@@ -1393,49 +1393,49 @@ const userCategories = [
     score: 2
   },
 ]
-const messages = [
-  {userId:1, chatId:1,
-  content:"hi"},
-  {userId:1, chatId:1,
-  content:"my name is ryan"},
-  {userId:2, chatId:1,
-  content:"HELLO"},
-  {userId:2, chatId:1,
-  content:"I'm mahdi"},
-  {userId:1, chatId:3,
-  content:"Message4"},
-  {userId:3, chatId:2,
-  content:"TESTING"},
-  {userId:4, chatId:3,
-    content:"Print"}
-]
-const chats = [
-  {},
-  {},
-  {},
-  {},
-]
+// const messages = [
+//   {userId:1, chatId:1,
+//   content:"hi"},
+//   {userId:1, chatId:1,
+//   content:"my name is ryan"},
+//   {userId:2, chatId:1,
+//   content:"HELLO"},
+//   {userId:2, chatId:1,
+//   content:"I'm mahdi"},
+//   {userId:1, chatId:3,
+//   content:"Message4"},
+//   {userId:3, chatId:2,
+//   content:"TESTING"},
+//   {userId:4, chatId:3,
+//     content:"Print"}
+// ]
+// const chats = [
+//   {},
+//   {},
+//   {},
+//   {},
+// ]
 
-const userChats = [
-  {
-  userId:1,
-  chatId:1},
-  {
-  userId:2,
-  chatId:1},
-  {
-    userId:1,
-    chatId:2},
-  {
-    userId:4,
-    chatId:3},
-  {
-    userId:1,
-    chatId:3},
-  {
-    userId:3,
-    chatId:2},
-]
+// const userChats = [
+//   {
+//   userId:1,
+//   chatId:1},
+//   {
+//   userId:2,
+//   chatId:1},
+//   {
+//     userId:1,
+//     chatId:2},
+//   {
+//     userId:4,
+//     chatId:3},
+//   {
+//     userId:1,
+//     chatId:3},
+//   {
+//     userId:3,
+//     chatId:2},
+// ]
 
 const seed = async () => {
   try {
@@ -1459,15 +1459,15 @@ const seed = async () => {
   // })
     )
 
-    await Promise.all(
-      chats.map((chat)=>{
-        return Chat.create(chat)
-      }))
-    await Promise.all(
-      messages.map((message)=>{
-        return Message.create(message)
-      })
-    )
+    // await Promise.all(
+    //   chats.map((chat)=>{
+    //     return Chat.create(chat)
+    //   }))
+    // await Promise.all(
+    //   messages.map((message)=>{
+    //     return Message.create(message)
+    //   })
+    // )
 
     // dbChats[0].addMessage(dbMessages[0])
     // dbChats[0].addMessage(dbMessages[1])
@@ -1484,9 +1484,9 @@ const seed = async () => {
       userCategories.map((useCat)=>{
         return UserCategories.create(useCat)
       }),
-      userChats.map((userChat)=>{
-        return UserChats.create(userChat)
-      })
+      // userChats.map((userChat)=>{
+      //   return UserChats.create(userChat)
+      // })
     )
     
     console.log(green('Seeding success!'))
