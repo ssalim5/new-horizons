@@ -79,7 +79,7 @@ const User = db.define('user', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'https://static.wikia.nocookie.net/hogwarts-mystery/images/f/fe/Main_character.png/revision/latest?cb=20201103022051',
+    defaultValue: 'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',
   },
 })
 

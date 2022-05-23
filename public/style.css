@@ -287,4 +287,32 @@ input.search-activities {
   #topFive-activities{
     width:40%;
   }
+
+  .singleActivity-body{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top:10%
+  }
+
+  .singleActivity-image{
+    margin-left:10%;
+    margin-top:0
+  }
+
+  .singleActivity-text{
+    height:100%;
+    width:100%;
+    margin-right:10%;
+    padding-left:30px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .resize {
+    width: 300px;
+    height: auto;
+}
+
 }
