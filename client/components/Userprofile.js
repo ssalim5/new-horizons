@@ -7,7 +7,10 @@ import { fetchActivities} from "../store/allActivitiesStore";
 import { getUserActivities } from "../store/userActivitiesStore";
 import {fetchFriends, deleteFriend} from "../store/friendsStore"
 import MappedActivity from "./utilities/MappedActivity";
+
 import Graph from "./Graph"
+import AddFriends from "./AddFriends"
+
 import aws from "aws-sdk"
 import axios from "axios";
 import {Accordion, Image, Button, Offcanvas} from 'react-bootstrap'
@@ -36,7 +39,7 @@ const UserProfile = (props) => {
   const profilePicture = useRef()
 
   useEffect( () => {
-    console.log(props)
+    //console.log(props)
     //dispatch(fetchActivities())
     dispatch(fetchUser(props.match.params.id))
     dispatch(fetchFriends(props.match.params.id))
@@ -126,7 +129,21 @@ const UserProfile = (props) => {
                   <Offcanvas.Title>Friends</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  friends here
+                    <Accordion>
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header>Add Friends</Accordion.Header>
+                        <Accordion.Body>
+                          <AddFriends />
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                    {friends.map((friend)=>{
+                      return (
+                      <Link key={friend.id} to={`/usersfriends/${friend.id}`} >
+                        <div className="friend">{friend.username}</div>
+                      </Link>
+                      )
+                    })}
                 </Offcanvas.Body>
               </Offcanvas>
             </div>
@@ -179,28 +196,28 @@ const UserProfile = (props) => {
     <h2><Link to={`/addfriends/${props.match.params.id}`}>Add Friends</Link>
     </h2>
     <h2>Friends List:</h2>
-    <div> {friends.map((friend) => {
-          return (
-            <div key={friend.id}>
-            <Link to={`/usersfriends/${friend.friendId}`} key={friend.id}>
-            <div className="friend" key={friend.id}>
-            <h2 className="name">{friend.username}</h2>
-            </div>
-            </Link>
-             <form onSubmit={(ev) => ev.preventDefault()}>
-               <div className= "remove"></div>
-             <button
-             type="submit"
-               className= "x-button"
-               onClick={() => dispatch( deleteFriend(friend.id) )}
-             >
-               Remove Friend
-             </button>
-             </form>
-               </div>
-          );
-        })}
-        </div>
+    // <div> {friends.map((friend) => {
+    //       return (
+    //         <div key={friend.id}>
+    //         <Link to={`/usersfriends/${friend.friendId}`} key={friend.id}>
+    //         <div className="friend" key={friend.id}>
+    //         <h2 className="name">{friend.username}</h2>
+    //         </div>
+    //         </Link>
+    //          <form onSubmit={(ev) => ev.preventDefault()}>
+    //            <div className= "remove"></div>
+    //          <button
+    //          type="submit"
+    //            className= "x-button"
+    //            onClick={() => dispatch( deleteFriend(friend.id) )}
+    //          >
+    //            Remove Friend
+    //          </button>
+    //          </form>
+    //            </div>
+    //       );
+    //     })}
+    //     </div>
         </div> */}
     </div>
     )
