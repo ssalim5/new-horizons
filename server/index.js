@@ -22,9 +22,11 @@ const init = async () => {
       console.log("synced")
     }
     // start listening (and create a 'server' object representing our server)
-    app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
-    await uploadRatingsToAWS()
-    setInterval(uploadRatingsToAWS,60*60*1000)
+    const server = app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
+    const io = require('socket.io')(server);
+    const socket = require('./socket')(io);
+    // await uploadRatingsToAWS()
+    // setInterval(uploadRatingsToAWS,60*60*1000)
 
   } catch (ex) {
     console.log(ex)

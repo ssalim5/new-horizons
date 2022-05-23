@@ -16,6 +16,7 @@ const NavigationBar = ({handleClick, isLoggedIn, userId,}) => (
             <Nav.Link as={NavLink} to="/activities">Activities</Nav.Link>
             <Nav.Link as={NavLink} to="/graph">Graph</Nav.Link>
             <Nav.Link as={NavLink} to={`/users/${userId}`}>My Profile</Nav.Link>
+            <Nav.Link as={NavLink} to={`/chats`}> Messages</Nav.Link>
             <Nav.Link onClick={handleClick}>Logout</Nav.Link>
         </Nav>
       </Navbar.Collapse>

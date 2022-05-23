@@ -10,6 +10,7 @@ import userReducer from './allUsersStore'
 import recommendationsReducer from './userRecommendations'
 import userActivitiesReducer from './userActivitiesStore'
 import friendReducer from './friendsStore'
+import chatReducer from './chatStore'
 import utilities from './utilities'
 import locationReducer from './location'
 import friendActivitiesReducer from './friendsActivitiesStore'
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   userActivities: userActivitiesReducer,
   friendActivities: friendActivitiesReducer,
   friends: friendReducer,
+  chats: chatReducer,
   utilities: utilities,
   location: locationReducer
 })

@@ -39,6 +39,7 @@
     "pg": "^8.5.1",
     "react-bootstrap": "^2.4.0",
     "sequelize": "^6.3.5",
+    "socketio": "^1.0.0",
     "use-places-autocomplete": "^3.0.0",
     "victory": "^36.3.2"
   },
