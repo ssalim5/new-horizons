@@ -12,7 +12,7 @@ const NavigationBar = ({handleClick, isLoggedIn, userId,}) => (
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav>
-            <Nav.Link as={NavLink} to="/">Home</Nav.Link>
+            <Nav.Link as={NavLink} exact to="/">Home</Nav.Link>
             <Nav.Link as={NavLink} to="/activities">Activities</Nav.Link>
             <Nav.Link as={NavLink} to="/graph">Graph</Nav.Link>
             <Nav.Link as={NavLink} to={`/users/${userId}`}>My Profile</Nav.Link>

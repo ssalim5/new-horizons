@@ -54,7 +54,8 @@ export default function Home(){
       <div id="home" className="component">
 
         <div id="topFive-recommendations" className="module">
-          <h2>My Recommendations</h2>
+          <h2>Recommendations</h2>
+          <a> </a>
           <div className="topFive-nav">
             <Pagination>
               <Pagination.Prev disabled={recStart<=0} onClick={(()=>{changeFive("fiveRec",Number(recStart)-5)})}/>

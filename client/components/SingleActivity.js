@@ -21,7 +21,6 @@ export default function SingleActivity(props){
     //         <div>Loading</div>
     //     )
     // }
-    console.log(activity)
     return(
         <div className="singleActivity module">
             <div className="singleActivity-body">

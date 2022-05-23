@@ -12,3 +12,87 @@
   .btn-custom {
     background-color: red;
 }
+
+
+.button {
+  background-color: #370344 !important;
+}
+/* mapped activity */
+/* #allActivities{
+  width:90%;
+  margin-left: 5%;
+  margin-right: 5%;
+} */
+
+/* .activityImage{
+  height:110px;
+  width:110px;
+  object-fit: cover;
+}
+
+.activity>a>div{
+  width:100%;
+  background-image: linear-gradient(var(--lighter-background),var(--background));
+}
+
+.activity{
+  width:100%;
+  padding: 5px;
+}
+
+.activity:active{
+  opacity: 60%;
+}
+
+.activity>a{
+  display:flex;
+  flex-direction: row;
+}
+
+.activity h2{
+  font-weight:normal;
+  color:var(--font-color);
+  margin-left:10px;
+}
+
+.activity p{
+  color:var(--light-detail);
+  margin-left: 10px
+} */
+
+/* .rating-1{
+  background-image: linear-gradient(var(--rating01),var(--background));
+}
+
+.rating-2{
+  background-image: linear-gradient(var(--rating02),var(--background));
+} */
+
+/* .rating-3{
+  background-image: linear-gradient(var(--rating03),var(--background));
+} */
+
+/* .rating-4{
+  background-image: linear-gradient(var(--rating04),var(--background));
+}
+
+.rating-5{
+  background-image: linear-gradient(var(--rating05),var(--background));
+} */
+
+/****MAKING THE TOPE OF RECOMMENDED AND ACTIVITIES EVEN*****/
+/* #topFive-recommendations h2, #topFive-recommendations .pagination {
+  height: 45px;
+}
+#topFive-activities h2, #topFive-activities .pagination, #topFive-activities a {
+  height: 45px;
+} */
+
+#home a {
+  height: 38px;
+}
+
+
+.singleItem{
+  background-image: linear-gradient(var(--rating03),var(--background));
+}

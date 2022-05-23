@@ -1,0 +1,50 @@
+/* login/register */
+.login>form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+  }
+  
+  .module.login {
+    height: 100vh;
+  }
+  
+  div#registration {
+    height: 100%;
+  }
+  
+  .login div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:50%
+  }
+  
+  .login label{
+    font-size:large
+  }
+  
+  .login input{
+    width:100%;
+    background-color: var(--font-color);
+    padding:10px;
+    border-radius: 10px;
+    border: 3px solid var(--nav-color);
+    margin-top:5px;
+  }
+  
+  .login input:focus{
+    border: 3px solid var(--rating03)
+  }
+  
+  #registration-submit-buttons{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items:stretch;
+  }
+  
+  #registration-submit-buttons button{
+    margin:5%;
+  }

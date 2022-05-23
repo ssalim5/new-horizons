@@ -147,14 +147,14 @@ function sortingMethod(activities,sortOn,sortDirection){
     return input[sortOn]
   }
 
-  if(sortDirection==="forward"){
+  if(sortDirection){
     return activities.sort(function(a,b){
       // console.log(a)
       if(typeHelper(a) < typeHelper(b)) { return -1}
       if(typeHelper(b) < typeHelper(a)) { return 1}
        return 0
     })
-  }else if(sortDirection==="reverse"){
+  }else if(!sortDirection){
     return activities.sort(function(a,b){
       if(typeHelper(a) < typeHelper(b)) { return 1}
       if(typeHelper(b) < typeHelper(a)) { return -1}
