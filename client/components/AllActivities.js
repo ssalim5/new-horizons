@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux"
 import { changeSortAct } from "../store";
 import { fetchActivities, _sortActivities} from "../store/allActivitiesStore";
 import MappedActivity from "./utilities/MappedActivity";
-import {Button} from 'react-bootstrap'
+import {Button, Accordion, Card} from 'react-bootstrap'
 
 
 
@@ -59,11 +59,14 @@ export default function AllActivities(){
             placeholder="Type to search..."
           />
         </form>
-        <div>
-          <Button className="purple" onClick={()=>{changeSort("name")}}>{nameSort ? "A-Z" : "Z-A"}</Button>
-          <Button className="purple" nClick={()=>{changeSort("score")}}>score</Button>
-          <Button className="purple" onClick={()=>{changeSort("updatedAt")}}>updatedAt</Button>
-        </div>
+        <Accordion>
+          <Accordion.Header>sorting</Accordion.Header>
+          <Accordion.Body>
+            <Button className="purple" onClick={()=>{changeSort("name")}}>name: {nameSort ? "A-Z" : "Z-A"}</Button>
+            <Button className="purple" onClick={()=>{changeSort("score")}}>score: {scoreSort ? "high-low": "low-high"}</Button>
+            <Button className="purple" onClick={()=>{changeSort("updatedAt")}}>rated: {updatedAtSort ? "latest-oldest" : "oldest-latest"}</Button>
+          </Accordion.Body>
+        </Accordion>
         {/* <form onChange={changeSort} defaultValue="name-forward">
             <input type="radio" id="a-z" name="sort" value={"name-forward"}/>
             <label htmlFor="a-z">a-z</label><br/>
