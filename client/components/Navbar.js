@@ -1,42 +1,50 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link,NavLink} from 'react-router-dom'
 import {logout} from '../store'
+import {Navbar,Nav,Container} from 'react-bootstrap'
 
-const Navbar = ({handleClick, isLoggedIn, userId,}) => (
-  <div>
-    <h1>New Horizons</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/">Home</Link>
-          <Link  to="/activities"> Activities</Link>
-          <Link  to="/recommended"> RecommendedActivities</Link>
-          {/* <Link  to="/friends"> Friends</Link> */}
-          <Link  to="/graph"> Graph</Link>
-          {/* <Link  to="/users"> All Users</Link> */}
-          <Link  to={`/users/${userId}`}> My Profile</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          {/* <Link to="/">Home</Link> */}
-          {/* <Link to="/login">Login</Link> */}
-          {/* <Link  to="/activities"> Activities</Link> */}
-          {/* <Link to="/registration"> Create Profile</Link> */}
-          {/* <Link  to="/users"> All Users</Link> */}
-          {/* <Link  to="/recommended"> RecommendedActivities</Link>
-          <Link  to="/friends"> Friends</Link>
-          <Link  to="/graph"> Graph</Link> */}
-        </div>
-      )}
-    </nav>
-    <hr />
-  </div>
+const NavigationBar = ({handleClick, isLoggedIn, userId,}) => (
+  isLoggedIn ? (
+  <Navbar fixd="top" expand="sm" bg="dark" variant="dark">
+    <Container>
+      <Navbar.Brand>New Horizons</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav>
+            <Nav.Link as={NavLink} exact to="/">Home</Nav.Link>
+            <Nav.Link as={NavLink} to="/activities">Activities</Nav.Link>
+            <Nav.Link as={NavLink} to="/graph">Graph</Nav.Link>
+            <Nav.Link as={NavLink} to={`/users/${userId}`}>My Profile</Nav.Link>
+            <Nav.Link as={NavLink} to={`/chats`}> Messages</Nav.Link>
+            <Nav.Link onClick={handleClick}>Logout</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
+  ):(<div/>)
+
+
+  // <Nav>
+  //   <h1>New Horizons</h1>
+  //   <nav>
+  //     {isLoggedIn ? (
+  //       <div>
+  //         {/* The navbar will show these links after you log in */}
+  //         <Nav.Link as={NavLink} to="/">Home</Nav.Link>
+  //         <Nav.Link as={NavLink} to="/activities">Activities</Nav.Link>
+  //         <Nav.Link as={NavLink} to="/graph">Graph</Nav.Link>
+  //         <Nav.Link as={NavLink} to={`/users/${userId}`}>My Profile</Nav.Link>
+  //         <a href="#" onClick={handleClick}>
+  //           Logout
+  //         </a>
+  //       </div>
+  //     ) : (
+  //       <div/>
+  //     )}
+  //   </nav>
+  //   <hr />
+  // </Nav>
 )
 
 /**
@@ -57,5 +65,5 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(NavigationBar)
 

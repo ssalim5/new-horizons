@@ -74,7 +74,10 @@ const UserProfile = (props) => {
       <div>
       <div>
         {user ? (
-          <div>
+          <div key={user.id}>
+            <div className="singleActivity-image">
+            <img className="resize" src= {user.imageUrl}/>
+            </div>
             <h2>USER: {user.username}</h2>
             <h2>USER EMAIL: {user.email}</h2>
             <img id="preview" src={user.imageUrl} ref={profilePicture}/>
@@ -88,6 +91,7 @@ const UserProfile = (props) => {
            <div id="allActivities">
         {recent5.map((activity) => {
           return(
+            <div key={activity.id}>
             <Link to ={`/activities/${activity.id}`}>
             <img src= {activity.imageUrl} className="singleItem-image"/>
             <div>
@@ -95,24 +99,28 @@ const UserProfile = (props) => {
             </div>
         </Link>
 
-            // <div key={activity.id} className="activity-x">
+            {/* // <div key={activity.id} className="activity-x">
             // <h1>{activity.name}</h1>
-            // </div>
+            // </div> */}
+            </div>
           )
          })}
       </div>
+
            </div>
            )
       : (
         "There is no user data"
       )}
     </div>
-    <h2><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link></h2>
+    <div className="module">
+    <h2><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link>
+    </h2>
     <h2>Friends List:</h2>
     <div> {friends.map((friend) => {
           return (
-            <div>
-            <Link to={`/users/${friend.id}`} key={friend.id}>
+            <div key={friend.id}>
+            <Link to={`/usersfriends/${friend.friendId}`} key={friend.id}>
             <div className="friend" key={friend.id}>
             <h2 className="name">{friend.username}</h2>
             </div>
@@ -130,6 +138,7 @@ const UserProfile = (props) => {
                </div>
           );
         })}
+        </div>
         </div>
     </div>
     )

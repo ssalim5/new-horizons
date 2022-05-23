@@ -139,7 +139,6 @@ function sortingMethod(activities,sortOn,sortDirection){
         return 0
       }else{
         if(sortOn==="updatedAt"){
-          console.log("UPDATTEDAT")
           return new Date(input.useractivities[0].updatedAt).getTime()
         }
         return input.useractivities[0][sortOn]
@@ -148,14 +147,14 @@ function sortingMethod(activities,sortOn,sortDirection){
     return input[sortOn]
   }
 
-  if(sortDirection==="forward"){
+  if(sortDirection){
     return activities.sort(function(a,b){
       // console.log(a)
       if(typeHelper(a) < typeHelper(b)) { return -1}
       if(typeHelper(b) < typeHelper(a)) { return 1}
        return 0
     })
-  }else if(sortDirection==="reverse"){
+  }else if(!sortDirection){
     return activities.sort(function(a,b){
       if(typeHelper(a) < typeHelper(b)) { return 1}
       if(typeHelper(b) < typeHelper(a)) { return -1}

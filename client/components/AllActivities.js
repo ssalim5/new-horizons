@@ -4,12 +4,16 @@ import {useDispatch, useSelector} from "react-redux"
 import { changeSortAct } from "../store";
 import { fetchActivities, _sortActivities} from "../store/allActivitiesStore";
 import MappedActivity from "./utilities/MappedActivity";
+import {Button, Accordion, Card} from 'react-bootstrap'
 
 
 
 export default function AllActivities(){
   const dispatch = useDispatch()
   const [input, setInput] = useState('')
+  const [nameSort,setNameSort] = useState(true)
+  const [scoreSort,setScoreSort] = useState(true)
+  const [updatedAtSort,setUpdatedAtSort] = useState(true)
   const activities = useSelector((state) => state.activities )
   const sorting = useSelector((state)=>state.utilities.sortAct)
   useEffect( () => {
@@ -17,15 +21,26 @@ export default function AllActivities(){
   }, [input])
   let selected = sorting
   
-  function changeSort(event){
-    event.preventDefault()
-    const values = event.target.value.split('-')
+  function changeSort(sortType){
     let sort = {
-      sortOn:values[0],
-      sortDirection:values[1]
+      sortOn:sortType,
+      sortDirection:!nameSort
     }
-    dispatch(changeSortAct(sort))
-    dispatch(_sortActivities(sort))
+    if(sortType==="name"){
+      //dispatch(changeSortAct({sortOn:sortType, sortDirection:!nameSort}))
+      dispatch(_sortActivities({sortOn:sortType, sortDirection:!nameSort}))
+      setNameSort(!nameSort)
+    }
+    if(sortType==="score"){
+      //dispatch(changeSortAct({sortOn:sortType, sortDirection:!scoreSort}))
+      dispatch(_sortActivities({sortOn:sortType, sortDirection:!scoreSort}))
+      setScoreSort(!scoreSort)
+    }
+    if(sortType==="updatedAt"){
+      //dispatch(changeSortAct({sortOn:sortType, sortDirection:!updatedAtSort}))
+      dispatch(_sortActivities({sortOn:sortType, sortDirection:!updatedAtSort}))
+      setUpdatedAtSort(!updatedAtSort)
+    }
   }
   
   return(
@@ -44,7 +59,15 @@ export default function AllActivities(){
             placeholder="Type to search..."
           />
         </form>
-        <form onChange={changeSort} defaultValue="name-forward">
+        <Accordion>
+          <Accordion.Header>sorting</Accordion.Header>
+          <Accordion.Body>
+            <Button className="purple" onClick={()=>{changeSort("name")}}>name: {nameSort ? "A-Z" : "Z-A"}</Button>
+            <Button className="purple" onClick={()=>{changeSort("score")}}>score: {scoreSort ? "high-low": "low-high"}</Button>
+            <Button className="purple" onClick={()=>{changeSort("updatedAt")}}>rated: {updatedAtSort ? "latest-oldest" : "oldest-latest"}</Button>
+          </Accordion.Body>
+        </Accordion>
+        {/* <form onChange={changeSort} defaultValue="name-forward">
             <input type="radio" id="a-z" name="sort" value={"name-forward"}/>
             <label htmlFor="a-z">a-z</label><br/>
             <input type="radio" id="z-a" name="sort" value={"name-reverse"}/>
@@ -57,7 +80,7 @@ export default function AllActivities(){
             <label htmlFor="z-a">{"completion date ->"}</label><br/>
             <input type="radio" id="z-a" name="sort" value={"updatedAt-reverse"}/>
             <label htmlFor="z-a">{"completion date <-"}</label><br/>
-        </form>
+        </form> */}
       </div>
       <MappedActivity data={activities}/>
     </div>

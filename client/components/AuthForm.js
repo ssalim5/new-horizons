@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from '../store'
 import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -26,7 +27,7 @@ const AuthForm = props => {
         </div>
         <div>
           <p>not registered? <Link className="clickable" to="/registration">Sign up here</Link></p>
-          <button className="clickable" type="submit">{displayName}</button>
+          <Button className="purple" type="submit">{displayName}</Button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
