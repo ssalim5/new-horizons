@@ -11,47 +11,48 @@ function Registration(){
       username: "",
       password: "",
       confirmPassword: "",
-  })
-  const [category,setCategory] = useState({
-    creative: 0,
-    athletic: 0,
-    social: 0,
-    relaxing: 0,
-    adventurous: 0,
+      creative: 0,
+      athletic: 0,
+      social: 0,
+      relaxing: 0,
+      adventurous: 0,
   })
 
   const [hideRequiredFlag,setHideRequiredFlag] = useState(true)
   const [matchPasswords,setMatchPasswords] = useState(true)
 
   function handleChange(evt) {
-    setCategory({...category,[evt.target.name]: evt.target.value});
+    setUser({...user, [evt.target.name]: evt.target.value});
+    console.log(user)
   }
 
   function handleSubmit(event) {
       event.preventDefault();
       console.log(user)
 
-      if(user.password===user.confirmPassword){
+      if(user.password === user.confirmPassword){
           let trigger = true
-          let addUser ={}
-          for (let key in user){
-              if(user[key]){
-                  if(key!=="confirmPassword"){
-                      addUser[key] = user[key]
-                  }
-              }
-              else if(!user[key] && key !== "img"){
-                  trigger = false
-              }
-          }
+          // let addUser ={}
+          // for (let key in user){
+          //     if(user[key]){
+          //         if(key!=="confirmPassword"){
+          //             addUser[key] = user[key]
+          //         }
+          //     }
+          //     else if(!user[key] && key !== "img"){
+          //         trigger = false
+          //     }
+          // }
+          let {confirmPassword:_, ...newUser} = user
           if (trigger){
-              dispatch(signup({ ...user }))
-          }else{
+              dispatch(signup({ ...newUser }))
+          } else{
               setHideRequiredFlag(false)
               setUser({...user,password:"",confirmPassword:""})
           }
-      }else{
+      } else{
           setMatchPasswords(false)
+          alert("Passwords don't match")
           setUser({...user,password:"",confirmPassword:""})
       }
   }
@@ -63,32 +64,33 @@ function Registration(){
             {matchPasswords ? "" : <div className = "alertbox"> passwords do not match</div>}
           <div>
             <label htmlFor='email'>Email</label>
-            <input name='email' type="email" value={user.email} onChange={(event)=>setUser({...user, email:event.target.value})}/>
+            {/* (event)=>setUser({...user, email:event.target.value}) */}
+            <input name='email' type="email" value={user.email} onChange={handleChange}/>
             {hideRequiredFlag ? "" : <div className = "alert">required field</div>}
           </div>
 
           <div>
             <label htmlFor='username'>Username</label>
-            <input name='username' value={user.username} onChange={(event)=>setUser({...user, username:event.target.value})}/>
+            <input name='username' value={user.username} onChange={handleChange}/>
             {hideRequiredFlag ? "" : <div className = "alert">required field</div>}
           </div>
 
           <div>
             <label htmlFor='password'>Password</label>
-            <input name='password' type="password" value={user.password} onChange={(event)=>setUser({...user, password:event.target.value})}/>
+            <input name='password' type="password" value={user.password} onChange={handleChange}/>
             {hideRequiredFlag ? "" : <div className = "alert">required field</div>}
           </div>
 
           <div>
             <label htmlFor='confirmPassword'>Confirm Password</label>
-            <input name='confirmPassword' type="password" value={user.confirmPassword} onChange={(event)=>setUser({...user, confirmPassword:event.target.value})}/>
+            <input name='confirmPassword' type="password" value={user.confirmPassword} onChange={handleChange}/>
             {hideRequiredFlag ? "" : <div className = "alert">required field</div>}
           </div>
 
 
           <label>
           Rate Your Interest in Creative Activities :
-          <select name="creative" value={category.creative} onChange={handleChange}>
+          <select name="creative" value={user.creative} onChange={handleChange}>
             <option value="0">Optional</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -99,7 +101,7 @@ function Registration(){
         </label>
         <label>
           Rate Your Interest in Athletic Activities :
-          <select name="athletic" value={category.athletic} onChange={handleChange}>
+          <select name="athletic" value={user.athletic} onChange={handleChange}>
             <option value="0">Optional</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -110,7 +112,7 @@ function Registration(){
         </label>
         <label>
           Rate Your Interest in Relaxing Activities :
-          <select name="relaxing" value={category.relaxing} onChange={handleChange}>
+          <select name="relaxing" value={user.relaxing} onChange={handleChange}>
             <option value="0">Optional</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -121,7 +123,7 @@ function Registration(){
         </label>
         <label>
           Rate Your Interest in Adventurous Activities :
-          <select name="adventurous" value={category.adventurous} onChange={handleChange}>
+          <select name="adventurous" value={user.adventurous} onChange={handleChange}>
             <option value="0">Optional</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -132,7 +134,7 @@ function Registration(){
         </label>
         <label>
           Rate Your Interest in Social Activities :
-          <select name="social" value={category.social} onChange={handleChange}>
+          <select name="social" value={user.social} onChange={handleChange}>
             <option value="0"> Optional</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -145,11 +147,9 @@ function Registration(){
             <Button className="purple" type='submit'>submit</Button>
             <Button className="purple" type='button'><Link to='/'>cancel</Link></Button>
           </div>
-
         </form>
       </div>
   )
-
 }
 
 export default Registration
