@@ -7,8 +7,10 @@ import { fetchActivities} from "../store/allActivitiesStore";
 import { getUserActivities } from "../store/userActivitiesStore";
 import {fetchFriends, deleteFriend} from "../store/friendsStore"
 import MappedActivity from "./utilities/MappedActivity";
+import Graph from "./Graph"
 import aws from "aws-sdk"
 import axios from "axios";
+import {Image} from 'react-bootstrap'
 
 const AWS_ACCESS_KEY_ID="AKIAYQC73EU7UC6KESI5"
 const AWS_DEFAULT_REGION="us-east-1"
@@ -72,43 +74,80 @@ const UserProfile = (props) => {
   //   const friends = this.props.friends;
   //   const userActivities = this.props.userActivities.reverse()
 
+
+  /*
+  return(
+    <div className="userProfile">
+      <div className="userInfo">
+        <img>
+        <div className="userInfoText"> 
+          <p>username<p/>
+          <p>email<p/>
+          <button>friends<p/>
+
+        </div>
+      </div>
+      <Graph /> (remember to import)
+    </div> 
+  )
+  */
   return (
       <div>
-      <div>
-        {user ? (
-          <div key={user.id}>
-            <div className="singleActivity-image">
-            {/* <img className="resize" src= {user.imageUrl}/> */}
+        <div className="userProfile">
+          <div className="userInfo">
+            <div className="userInfoImage">
+              <Image roundedCircle id="userProfileImage" src={user.imageUrl} ref={profilePicture}/>
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Upload a file:
+                  <input type="file" ref={fileInput}/>
+                </label>
+                <button type="submit"> Upload New Picture </button>
+              </form>
             </div>
-            <h2>USER: {user.username}</h2>
-            <h2>USER EMAIL: {user.email}</h2>
-            <img id="preview" src={user.imageUrl} ref={profilePicture}/>
-            <form onSubmit={handleSubmit}>
-              <label>
-                Upload a file:
-                <input type="file" ref={fileInput}/>
-              </label>
-              <button type="submit"> Upload New Picture </button>
-            </form>
-           <h1>5 MOST RECENT ACTIVITIES:</h1>
-           <div id="allActivities">
-        {recent5.map((activity) => {
-          return(
-            <div key={activity.id}>
-            <Link to ={`/activities/${activity.id}`}>
-            <img src= {activity.imageUrl} className="singleItem-image"/>
-            <div>
-                <h3>{activity.name}</h3>
+            <div className="userInfoText"> 
+              <p>username: {user.username}</p>
+              <p>email: {user.email}</p>
+              <button>friends</button>
             </div>
-        </Link>
+        </div>
+        <Graph /> 
+        </div> 
+        <div>
+          {user ? (
+            <div key={user.id}>
+              {/* <div className="singleActivity-image"> */}
+              {/* <img className="resize" src= {user.imageUrl}/> */}
+              {/* </div> */}
+              {/* <h2>USER: {user.username}</h2> */}
+              {/* <h2>USER EMAIL: {user.email}</h2> */}
+              {/* <img id="preview" src={user.imageUrl} ref={profilePicture}/> */}
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Upload a file:
+                  <input type="file" ref={fileInput}/>
+                </label>
+                <button type="submit"> Upload New Picture </button>
+              </form>
+            <h1>5 MOST RECENT ACTIVITIES:</h1>
+            <div id="allActivities">
+          {recent5.map((activity) => {
+            return(
+              <div key={activity.id}>
+              <Link to ={`/activities/${activity.id}`}>
+              <img src= {activity.imageUrl} className="singleItem-image"/>
+              <div>
+                  <h3>{activity.name}</h3>
+              </div>
+          </Link>
 
-            {/* // <div key={activity.id} className="activity-x">
-            // <h1>{activity.name}</h1>
-            // </div> */}
-            </div>
-          )
-         })}
-      </div>
+              {/* // <div key={activity.id} className="activity-x">
+              // <h1>{activity.name}</h1>
+              // </div> */}
+              </div>
+            )
+          })}
+        </div>
 
            </div>
            )
