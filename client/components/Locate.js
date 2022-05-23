@@ -2,12 +2,13 @@ import React from "react";
 import axios from "axios";
 import { setLocation } from "../store/location";
 import { useDispatch } from "react-redux";
+import {Button} from 'react-bootstrap'
 
 //Center map at your location for activities search.
 export default function Locate({panTo}) {
   const dispatch = useDispatch()
   return (
-    <button onClick={() => {
+    <Button className="purple" onClick={() => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
           const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude }
@@ -19,7 +20,7 @@ export default function Locate({panTo}) {
       }
     }}>
       Find My Location!
-    </button>
+    </Button>
   )
 }
 

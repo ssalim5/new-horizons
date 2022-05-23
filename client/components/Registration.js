@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { signup } from '../store/auth';
 import { Link} from "react-router-dom";
+import {Button} from 'react-bootstrap'
 
 function Registration(){
   const dispatch = useDispatch()
@@ -56,7 +57,7 @@ function Registration(){
   }
 
   return(
-      <div className="module login">
+      <div className="module login" id="registration">
         <h2>Signup</h2>
         <form onSubmit={handleSubmit}>
             {matchPasswords ? "" : <div className = "alertbox"> passwords do not match</div>}
@@ -141,8 +142,8 @@ function Registration(){
           </select>
         </label>
         <div id="registration-submit-buttons">
-            <button type='submit'>submit</button>
-            <button type='button'><Link to='/'>cancel</Link></button>
+            <Button className="purple" type='submit'>submit</Button>
+            <Button className="purple" type='button'><Link to='/'>cancel</Link></Button>
           </div>
 
         </form>
