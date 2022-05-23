@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { signup } from '../store/auth';
 import { Link} from "react-router-dom";
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 function Registration(){
   const dispatch = useDispatch()
-  const [user,setUser] = useState({
+  const [user, setUser] = useState({
       email: "",
       username: "",
       password: "",
@@ -18,42 +18,26 @@ function Registration(){
       adventurous: 0,
   })
 
-  const [hideRequiredFlag,setHideRequiredFlag] = useState(true)
-  const [matchPasswords,setMatchPasswords] = useState(true)
+  const [hideRequiredFlag, setHideRequiredFlag] = useState(true)
+  const [matchPasswords, setMatchPasswords] = useState(true)
 
   function handleChange(evt) {
     setUser({...user, [evt.target.name]: evt.target.value});
-    console.log(user)
   }
 
   function handleSubmit(event) {
       event.preventDefault();
-      console.log(user)
-
-      if(user.password === user.confirmPassword){
-          let trigger = true
-          // let addUser ={}
-          // for (let key in user){
-          //     if(user[key]){
-          //         if(key!=="confirmPassword"){
-          //             addUser[key] = user[key]
-          //         }
-          //     }
-          //     else if(!user[key] && key !== "img"){
-          //         trigger = false
-          //     }
-          // }
+      if (user.password === user.confirmPassword) {
           let {confirmPassword:_, ...newUser} = user
-          if (trigger){
-              dispatch(signup({ ...newUser }))
-          } else{
-              setHideRequiredFlag(false)
-              setUser({...user,password:"",confirmPassword:""})
+          for ( const [key, value] of Object.entries(newUser) ){
+            if (value === 0)
+              newUser[key] = 3
           }
+          dispatch(signup({ ...newUser }))
       } else{
           setMatchPasswords(false)
-          alert("Passwords don't match")
-          setUser({...user,password:"",confirmPassword:""})
+          setHideRequiredFlag(false)
+          setUser({...user,password:"", confirmPassword:""})
       }
   }
 
@@ -64,7 +48,6 @@ function Registration(){
             {matchPasswords ? "" : <div className = "alertbox"> passwords do not match</div>}
           <div>
             <label htmlFor='email'>Email</label>
-            {/* (event)=>setUser({...user, email:event.target.value}) */}
             <input name='email' type="email" value={user.email} onChange={handleChange}/>
             {hideRequiredFlag ? "" : <div className = "alert">required field</div>}
           </div>
