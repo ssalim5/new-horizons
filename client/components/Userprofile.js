@@ -1,4 +1,4 @@
-import React, {useRef, useCallback, useEffect} from "react";
+import React, {useRef, useCallback, useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -16,12 +16,13 @@ const AWS_SECRET_ACCESS_KEY="mKHmgnCrdj99MoPLmBZAo7/OJGytwCaAufZIvGQp"
 const S3_BUCKET="new-horizons-app-assets"
 
 aws.config.update({
-  region: AWS_DEFAULT_REGION,
-  accessKeyId: AWS_ACCESS_KEY_ID,
-  secretAccessKey: AWS_SECRET_ACCESS_KEY
+  region: process.env.AWS_DEFAULT_REGION,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 })
 
 const UserProfile = (props) => {
+  const dispatch = useDispatch()
   const user = useSelector( state => state.user )
   const friends = useSelector( state => state.friends )
   const userActivities = useSelector( state => state.userActivities.reverse() )
@@ -31,11 +32,12 @@ const UserProfile = (props) => {
   const profilePicture = useRef()
 
   useEffect( () => {
+    console.log(props)
     dispatch(fetchActivities())
-    dispatch(fetchUserData(props.match.params.id))
+    dispatch(fetchUser(props.match.params.id))
     dispatch(fetchFriends(props.match.params.id))
     dispatch(getUserActivities())
-  }, [input])
+  }, [])
 
   // componentDidMount() {
   //   this.props.fetchUserData(this.props.match.params.id);
@@ -48,9 +50,9 @@ const UserProfile = (props) => {
     e.preventDefault()
     const s3 = new aws.S3()
     const file = fileInput.current.files[0]
-    const pictureKey = "photos/profile_picture_" + this.props.userData.id + file.name.slice( file.name.indexOf('.') )
+    const pictureKey = "photos/profile_picture_" + props.match.params.id + file.name.slice( file.name.indexOf('.') )
     const uploadParams = {
-      Bucket: S3_BUCKET,
+      Bucket: process.env.S3_BUCKET,
       Key: pictureKey,
       Body: file,
       ACL: 'public-read'
@@ -58,8 +60,8 @@ const UserProfile = (props) => {
     const newUrl = `https://new-horizons-app-assets.s3.us-east-1.amazonaws.com/${pictureKey}`
     try {
       const data = await s3.putObject(uploadParams).promise();
-      this.props.updateUserData( {...userData, imageUrl: newUrl} )
-      profilePicture.src = newUrl
+      dispatch( updateUser( {...user, imageUrl: newUrl} ) )
+      profilePicture.current.src = newUrl
       console.log("Successful Upload", data);
     } catch (err) {
       console.log("Error", err);
@@ -76,17 +78,18 @@ const UserProfile = (props) => {
         {user ? (
           <div key={user.id}>
             <div className="singleActivity-image">
-            <img className="resize" src= {user.imageUrl}/>
+            {/* <img className="resize" src= {user.imageUrl}/> */}
             </div>
             <h2>USER: {user.username}</h2>
             <h2>USER EMAIL: {user.email}</h2>
             <img id="preview" src={user.imageUrl} ref={profilePicture}/>
             <form onSubmit={handleSubmit}>
-              <input type="file" ref={fileInput}/>
+              <label>
+                Upload a file:
+                <input type="file" ref={fileInput}/>
+              </label>
               <button type="submit"> Upload New Picture </button>
             </form>
-            {/* <div><img src= {user.imageUrl}/></div> */}
-           {/* <div> <Link to={`/user/modify/${this.props.match.params.id}`}>Modify </Link></div> */}
            <h1>5 MOST RECENT ACTIVITIES:</h1>
            <div id="allActivities">
         {recent5.map((activity) => {
@@ -114,7 +117,7 @@ const UserProfile = (props) => {
       )}
     </div>
     <div className="module">
-    <h2><Link to={`/addfriends/${this.props.match.params.id}`}>Add Friends</Link>
+    <h2><Link to={`/addfriends/${props.match.params.id}`}>Add Friends</Link>
     </h2>
     <h2>Friends List:</h2>
     <div> {friends.map((friend) => {
@@ -130,7 +133,7 @@ const UserProfile = (props) => {
              <button
              type="submit"
                className= "x-button"
-               onClick={() => this.props.deleteFriend(friend.id)}
+               onClick={() => dispatch( deleteFriend(friend.id) )}
              >
                Remove Friend
              </button>

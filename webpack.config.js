@@ -8,6 +8,9 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 module.exports = {
+  resolve: {
+    fallback: { "util": require.resolve("util/") }
+  },
   plugins: [
     new webpack.DefinePlugin(envKeys)
   ],
