@@ -31,6 +31,7 @@ const UserProfile = (props) => {
   const dispatch = useDispatch()
   const user = useSelector( state => state.user )
   const friends = useSelector( state => state.friends )
+  console.log("friends", friends)
   const userActivities = useSelector( state => state.userActivities.reverse() )
   const recent5 = userActivities.slice(0,5)
   const [show, setShow] = useState(false);
@@ -88,7 +89,7 @@ const UserProfile = (props) => {
     <div className="userProfile">
       <div className="userInfo">
         <img>
-        <div className="userInfoText"> 
+        <div className="userInfoText">
           <p>username<p/>
           <p>email<p/>
           <button>friends<p/>
@@ -96,7 +97,7 @@ const UserProfile = (props) => {
         </div>
       </div>
       <Graph /> (remember to import)
-    </div> 
+    </div>
   )
   */
   return (
@@ -120,7 +121,7 @@ const UserProfile = (props) => {
                 </Accordion.Item>
               </Accordion>
             </div>
-            <div className="userInfoText"> 
+            <div className="userInfoText">
               <p>username: {user.username}</p>
               <p>email: {user.email}</p>
               <Button className="purple" onClick={handleShow}>Friends</Button>
@@ -133,13 +134,13 @@ const UserProfile = (props) => {
                       <Accordion.Item eventKey="0">
                         <Accordion.Header>Add Friends</Accordion.Header>
                         <Accordion.Body>
-                          <AddFriends />
+                          <AddFriends data={props.match.params.id}/>
                         </Accordion.Body>
                       </Accordion.Item>
                     </Accordion>
                     {friends.map((friend)=>{
                       return (
-                      <Link key={friend.id} to={`/usersfriends/${friend.id}`} >
+                      <Link key={friend.id} to={`/usersfriends/${friend.friendId}`} >
                         <div className="friend">{friend.username}</div>
                       </Link>
                       )
@@ -148,8 +149,8 @@ const UserProfile = (props) => {
               </Offcanvas>
             </div>
         </div>
-        <Graph /> 
-      </div> 
+        <Graph />
+      </div>
         {/* <div>
           {user ? (
             <div key={user.id}> */}

@@ -233,8 +233,8 @@ cursor: pointer;
     color: var(--rating03);
 }
 
-.Charts{display:flex; flex-direction:row;}
-.Chart2{display:flex; margin-left:10%; margin-right: 10%; padding-left:30px }
+/* .Charts{display:flex; flex-direction:row;}
+.Chart2{display:flex; margin-left:10%; margin-right: 10%; padding-left:30px } */
 
 /* all activities */
 #allActivities>div{

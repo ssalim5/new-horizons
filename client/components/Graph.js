@@ -115,11 +115,16 @@ handleSelect(event) {
   const totalAthletic = athletic.reduce((a,b) => a + b, 0)
   const totalCreative = creative.reduce((a,b) => a + b, 0)
 
+
+
     return (
+
       <div className="component">
         <div className='Charts'>
-         <div><h2> Category of Activities</h2></div>
-         <div className='Chart1'>
+        <div className='categoryCharts'>
+        <div className='Chart1'>
+         <div className='Title'><h2> Category of Activities</h2></div>
+         <div className='ChartInd'>
 <VictoryPie
   colorScale={"heatmap"}
   data={[
@@ -133,8 +138,11 @@ handleSelect(event) {
   style={{ labels: { fill: "white"} }}
 />
 </div>
-<div><h2> Friends Categories </h2></div>
-<div className="App">
+</div>
+<div className='Chart1'>
+<div className='Title'><h2> Friends Categories </h2></div>
+<div>
+<div>
       {friends.length ? (<select onChange={this.handleSelect} name="selectList" id="selectList">
 
       ({friends.map((friends) => {
@@ -143,7 +151,7 @@ handleSelect(event) {
 </select>) : <div>NOTHING </div>}
     </div>
 {/* <div><h2> USER PROFILE</h2></div> */}
-<div className='Chart1'>
+<div className='ChartInd'>
 <VictoryPie
   colorScale={"heatmap"}
   data={[
@@ -166,9 +174,12 @@ handleSelect(event) {
 />
 </div>
 </div>
-<div className='Charts'>
-      <div><h2> Exertion Level of Activities</h2></div>
-      <div className='Chart2'>
+</div>
+</div>
+<div className='activityCharts'>
+<div className='Chart1'>
+      <div className='Title'><h2> Exertion Level of Activities</h2></div>
+      <div className='ChartInd'>
 <VictoryPie
   colorScale={"cool"}
   // startAngle={90}
@@ -183,8 +194,10 @@ handleSelect(event) {
   style={{ labels: { fill: "white"} }}
 />
 </div>
-<div> <h2>Location of Activities</h2></div>
-<div className='Chart2'>
+</div>
+<div className='Chart1'>
+<div className='Title'> <h2>Location of Activities</h2></div>
+<div className='ChartInd'>
 <VictoryPie
 
   colorScale={"qualitative"}
@@ -202,7 +215,12 @@ handleSelect(event) {
   />
 </div>
 </div>
+</div>
 
+        </div>
+        </div>
+
+    )
 
 {/* <div>Activity Venue</div>
         <VictoryChart
@@ -218,8 +236,7 @@ handleSelect(event) {
           // y= "NUMBER"
         />
       </VictoryChart> */}
-      </div>
-    )}}
+    }}
 
 
     const mapState = (state) => {
