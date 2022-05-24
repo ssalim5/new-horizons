@@ -59,6 +59,7 @@ const UserProfile = (props) => {
 
   const handleSubmit = useCallback( async(e) => {
     e.preventDefault()
+    console.log("CLICKED")
     const s3 = new aws.S3()
     const file = fileInput.current.files[0]
     const pictureKey = "photos/profile_picture_" + props.match.params.id + file.name.slice( file.name.indexOf('.') )
@@ -69,6 +70,7 @@ const UserProfile = (props) => {
       ACL: 'public-read'
     };
     const newUrl = `https://new-horizons-app-assets.s3.us-east-1.amazonaws.com/${pictureKey}`
+    console.log(newUrl)
     try {
       const data = await s3.putObject(uploadParams).promise();
       dispatch( updateUser( {...user, imageUrl: newUrl} ) )
@@ -113,7 +115,7 @@ const UserProfile = (props) => {
                     <form onSubmit={handleSubmit}>
                       <label>
                         Upload a file:
-                        <input type="file" ref={fileInput}/>
+                        <input type="file" ref={fileInput} accept=".png, .jpeg, .jpg"/>
                       </label>
                       <button type="submit"> Upload New Picture </button>
                     </form>
