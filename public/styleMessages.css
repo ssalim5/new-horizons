@@ -3,7 +3,7 @@
     flex-direction:row;
     width:90%;
     justify-content: center;
-    height: 75vh;
+    height: 85vh;
 
 }
 
@@ -48,6 +48,7 @@
 
 .active-chat {
     overflow-y: scroll;
+    border: 2px solid var(--light-detail)
 }
 
 div#messages-sidebar {
@@ -65,9 +66,9 @@ div#messages-sidebar {
     border-bottom: 1px solid var(--light-detail);
 }
 
-button.purple.btn.btn-primary {
+/* button.purple.btn.btn-primary {
     margin-left: 0;
-}
+} */
 
 /* .active-chat{
   display: flex;
@@ -111,8 +112,9 @@ button.purple.btn.btn-primary {
   bottom: 0;
 }
 
-.new-message form input[type="text"] {
-    width: 80%;
+.new-message form textarea[type="text"] {
+    width: 95%;
+    margin-top:10px;
 }
 
 .new-message form button {

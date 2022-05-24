@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 // import Message from "./Message";
 export const Chat = (props) =>{
-    console.log(props.chat.messages.sort((a,b)=>{return(a.id-b.id)}))
+    // console.log(props.chat.messages.sort((a,b)=>{return(a.id-b.id)}))
     return(
         <div className="messages">
           {props.chat.messages?props.chat.messages.sort((a,b)=>{

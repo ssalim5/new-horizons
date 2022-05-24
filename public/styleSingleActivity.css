@@ -101,3 +101,12 @@
     color: white;
     background-color: red;
   }
+
+  button.purple.btn.btn-primary {
+    margin-left:10px;
+  }
+
+  .search {
+    margin-left:10px;
+    margin-bottom: 10px;
+  }

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchUsers} from "../store/allUsersStore";
 import { Link } from "react-router-dom";
 import { createFriend } from "../store/friendsStore";
+import {Button} from "react-bootstrap"
 
 export class AddFriends extends React.Component {
   constructor(props) {
@@ -23,13 +24,13 @@ export class AddFriends extends React.Component {
   handleFriend(user){
 
     const userId = this.props.data
-    console.log("USER", userId)
     const select = {
       userId: userId,
       username: user.username,
       friendId: `${user.id}`
 
     }
+    console.log(select)
     this.props.createFriend(select)
   }
 
@@ -56,18 +57,17 @@ export class AddFriends extends React.Component {
   render() {
     const filter = this.state.filteredData
     const {searchWord} = this.state
-    console.log("Filter", filter)
-    console.log("STATE", this.state)
+    //console.log("Filter", filter)
+    //console.log("STATE", this.state)
 
     // console.log("filtered", filteredData)
     const users = this.props.allUsers
     // const handleFilter = this.props.handleFilter
     return (
-      <div className="container">
-        <h1>ADD FRIENDS</h1>
-        <form className="search-activities">
+      <div className="addfriends">
+        <form className="search-friends">
           <input
-            className="search-activities"
+            className="search-friends"
             type="search"
             value={searchWord}
             onChange={this.handleChange}
@@ -81,11 +81,11 @@ export class AddFriends extends React.Component {
             <div className="user" key={user.id}>
                   <h2 className="name">{user.username}</h2>
                   <form onSubmit={(ev) => ev.preventDefault()}>
-        <button type="submit"
+        <Button className="purple" type="submit"
           onClick={() => {this.handleFriend(user)}}
         >
-          SELECT FRIEND
-        </button>
+          SELECT
+        </Button>
         </form>
         </div>
         )})}
@@ -97,11 +97,11 @@ export class AddFriends extends React.Component {
 
                   <h2 className="name">{user.username}</h2>
                   <form onSubmit={(ev) => ev.preventDefault()}>
-        <button type="submit"
+        <Button className="purple" type="submit"
           onClick={() => {this.handleFriend(user)}}
         >
-          SELECT FRIEND
-        </button>
+          SELECT
+        </Button>
         </form>
             </div>
           );

@@ -4,6 +4,7 @@ module.exports = router
 
 //POST: add a new Friend
 router.post("/", async (req, res, next) => {
+  console.log(req.body)
   try {
     res.status(201).send(await Friend.create(req.body));
   } catch (error) {

@@ -9,22 +9,22 @@ const createdUserActivities = require('./script/userActivitiesGenerator')
 
 const users = [{
   username: "Ryan",
-  email: "test1@gmail.com",
+  email: "ryan@newhorizons.com",
 password: 'test'
 },
 {
  username: "Mason",
-email: "test2@gmail.com",
+email: "mason@newhorizons.com",
 password: 'test'
 },
 {
   username: 'Sakib',
-  email: "test3@gmail.com",
+  email: "sakib@newhorizons.comm",
 password: 'test'
 },
 {
 username: 'Mahdi',
-email: "test4@gmail.com",
+email: "mahdi@newhorizons.com",
 password: 'test'
 },
 {username: "Al",

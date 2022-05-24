@@ -7,7 +7,7 @@ const Friend = db.define('friend', {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        unique: true,
+        unique: false,
     },
     userId: {
         type: Sequelize.INTEGER,
@@ -16,7 +16,7 @@ const Friend = db.define('friend', {
     username: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+        unique: false,
         validate: {
           notEmpty: true
         }
