@@ -32,22 +32,19 @@ const UserProfile = (props) => {
   const profilePicture = useRef()
 
   useEffect( () => {
-    console.log(props)
     dispatch(fetchActivities())
     dispatch(fetchUser(props.match.params.id))
     dispatch(fetchFriends(props.match.params.id))
     dispatch(getUserActivities())
   }, [])
 
-  // componentDidMount() {
-  //   this.props.fetchUserData(this.props.match.params.id);
-  //   this.props.fetchFriends(this.props.match.params.id);
-  //   this.props.fetchActivities()
-  //   this.props.getUserActivities()
-  // }
+  // useEffect( () => {
+  //   profilePicture.current.src = fileInput.current.files[0]
+  // }, [fileInput] )
 
   const handleSubmit = useCallback( async(e) => {
     e.preventDefault()
+    console.log("CLICKED")
     const s3 = new aws.S3()
     const file = fileInput.current.files[0]
     const pictureKey = "photos/profile_picture_" + props.match.params.id + file.name.slice( file.name.indexOf('.') )
@@ -58,6 +55,7 @@ const UserProfile = (props) => {
       ACL: 'public-read'
     };
     const newUrl = `https://new-horizons-app-assets.s3.us-east-1.amazonaws.com/${pictureKey}`
+    console.log(newUrl)
     try {
       const data = await s3.putObject(uploadParams).promise();
       dispatch( updateUser( {...user, imageUrl: newUrl} ) )
@@ -68,17 +66,12 @@ const UserProfile = (props) => {
     }
   })
 
-  // const user = this.props.userData;
-  //   const friends = this.props.friends;
-  //   const userActivities = this.props.userActivities.reverse()
-
   return (
       <div>
       <div>
         {user ? (
           <div key={user.id}>
             <div className="singleActivity-image">
-            {/* <img className="resize" src= {user.imageUrl}/> */}
             </div>
             <h2>USER: {user.username}</h2>
             <h2>USER EMAIL: {user.email}</h2>
@@ -86,8 +79,9 @@ const UserProfile = (props) => {
             <form onSubmit={handleSubmit}>
               <label>
                 Upload a file:
-                <input type="file" ref={fileInput}/>
+                <input type="file" ref={fileInput} accept=".jpg, .jpeg, .png"/>
               </label>
+              <br />
               <button type="submit"> Upload New Picture </button>
             </form>
            <h1>5 MOST RECENT ACTIVITIES:</h1>
