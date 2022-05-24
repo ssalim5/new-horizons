@@ -19,9 +19,13 @@ export class AddFriends extends React.Component {
     this.props.fetchUsers();
   }
 
+
   handleFriend(user){
+
+    const userId = this.props.data
+    console.log("USER", userId)
     const select = {
-      userId: this.props.match.params.id,
+      userId: userId,
       username: user.username,
       friendId: `${user.id}`
 
