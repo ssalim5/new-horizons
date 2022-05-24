@@ -71,3 +71,20 @@ button.accordion-button.collapsed {
         margin-top: 5%;
     }
 }
+
+.Chart1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+}
+
+.categoryCharts {
+    display: flex;
+    flex-direction: row;
+}
+
+.activityCharts {
+    display: flex;
+    flex-direction: row;
+}
