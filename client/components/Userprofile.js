@@ -31,7 +31,7 @@ const UserProfile = (props) => {
   const dispatch = useDispatch()
   const user = useSelector( state => state.user )
   const friends = useSelector( state => state.friends )
-  console.log("friends", friends)
+  //console.log("friends", friends)
   const userActivities = useSelector( state => state.userActivities.reverse() )
   const recent5 = userActivities.slice(0,5)
   const [show, setShow] = useState(false);
@@ -73,7 +73,7 @@ const UserProfile = (props) => {
       const data = await s3.putObject(uploadParams).promise();
       dispatch( updateUser( {...user, imageUrl: newUrl} ) )
       profilePicture.current.src = newUrl
-      console.log("Successful Upload", data);
+      //console.log("Successful Upload", data);
     } catch (err) {
       console.log("Error", err);
     }

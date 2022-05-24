@@ -24,13 +24,13 @@ export class AddFriends extends React.Component {
   handleFriend(user){
 
     const userId = this.props.data
-    console.log("USER", userId)
     const select = {
       userId: userId,
       username: user.username,
       friendId: `${user.id}`
 
     }
+    console.log(select)
     this.props.createFriend(select)
   }
 
@@ -57,8 +57,8 @@ export class AddFriends extends React.Component {
   render() {
     const filter = this.state.filteredData
     const {searchWord} = this.state
-    console.log("Filter", filter)
-    console.log("STATE", this.state)
+    //console.log("Filter", filter)
+    //console.log("STATE", this.state)
 
     // console.log("filtered", filteredData)
     const users = this.props.allUsers

@@ -54,7 +54,7 @@ export default function AllActivities(){
             type="search"
             value={input.name}
             onChange={(e) => {
-              console.log(input)
+              // console.log(input)
               setInput(e.target.value)
             }}
             placeholder="Type to search..."

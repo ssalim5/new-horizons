@@ -13,16 +13,16 @@ class FriendsActivities extends React.Component {
 
 
   componentDidMount() {
-    console.log("ID", this.props.match.params.id)
+    // console.log("ID", this.props.match.params.id)
     this.props.fetchUserData(this.props.match.params.id);
     this.props.getFriendActivities(this.props.match.params.id)
   }
 
   render() {
     const user = this.props.userData;
-    console.log("activities", this.props.friendActivities)
+    // console.log("activities", this.props.friendActivities)
     const friend = this.props.friendActivities.activities || ''
-    console.log("activities!!", friend)
+    // console.log("activities!!", friend)
     // const friendActivities = this.props.friendActivities
 
     return (
