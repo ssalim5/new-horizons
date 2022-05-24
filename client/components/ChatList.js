@@ -114,7 +114,7 @@ export const ChatList = (props) =>{
             <div className="new-message">
                 {/* new message in loaded chat */}
                 <form onSubmit={handleSendMessage}>
-                  <input type='text' value={messageText} onChange={handleChangeMessage}></input>
+                  <textarea type='text' value={messageText} onChange={handleChangeMessage}></textarea>
                   <Button className="purple" type="submit">Send</Button>
                 </form>
             </div>

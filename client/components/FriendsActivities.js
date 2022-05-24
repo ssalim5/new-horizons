@@ -6,6 +6,7 @@ import { fetchActivities} from "../store/allActivitiesStore";
 import { getFriendActivities } from "../store/friendsActivitiesStore";
 import {fetchFriends, deleteFriend} from "../store/friendsStore"
 import MappedActivity from "./utilities/MappedActivity";
+import {Image} from 'react-bootstrap'
 
 
 class FriendsActivities extends React.Component {
@@ -24,11 +25,30 @@ class FriendsActivities extends React.Component {
     console.log("activities!!", friend)
     // const friendActivities = this.props.friendActivities
 
-
     return (
-      <div className="module">
-      <div>
-        {user ? (
+      <div className="friendProfile">
+        <div className="userInfo">
+          <div className="userInfoImage">
+            <Image roundedCircle id="userProfileImage" src= {user.imageUrl}/>
+          </div>
+          <div className="userInfoText">
+            <p>username: {user.username}</p>
+            <p>email: {user.email}</p>
+          </div>
+        </div>
+        <div id="home" className="component">
+          <div id="topFive-recommendations" className="module">
+            <h2>{`${user.username}'s Activities`}</h2>
+            <a> </a>
+            <div className="topFive-nav">
+              {/* <button className ="clickable" type="button" onClick={()=>reverseSort("rec")}>reverse</button> */}
+            </div>
+            <MappedActivity data={friend.slice(0,5)}/>
+          </div>
+        </div>
+      </div>
+    )}}
+        {/* {user ? (
           <div>
             <img className="resize" src= {user.imageUrl}/>
             <h2>Friends Username: {user.username}</h2>
@@ -59,7 +79,7 @@ class FriendsActivities extends React.Component {
               )}
               </div>
            </div>
-    )}}
+    )}} */}
 
 
 const mapState = (state) => {

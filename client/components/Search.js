@@ -64,6 +64,7 @@ export default function Search({ panTo }) {
         onChange={handleInput}
         disabled={!ready}
         placeholder="Enter Location..."
+        className="search"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && <ul>{renderSuggestions()}</ul>}

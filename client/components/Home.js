@@ -52,7 +52,6 @@ export default function Home(){
   }
   return(
       <div id="home" className="component">
-
         <div id="topFive-recommendations" className="module">
           <h2>Recommendations</h2>
           <a> </a>

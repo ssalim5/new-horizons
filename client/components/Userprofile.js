@@ -140,7 +140,7 @@ const UserProfile = (props) => {
                     </Accordion>
                     {friends.map((friend)=>{
                       return (
-                      <Link key={friend.id} to={`/usersfriends/${friend.friendId}`} >
+                      <Link className="friendlink" key={friend.id} to={`/usersfriends/${friend.friendId}`} >
                         <div className="friend">{friend.username}</div>
                       </Link>
                       )

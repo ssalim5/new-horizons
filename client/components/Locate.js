@@ -8,7 +8,7 @@ import {Button} from 'react-bootstrap'
 export default function Locate({panTo}) {
   const dispatch = useDispatch()
   return (
-    <Button className="purple" onClick={() => {
+    <Button className="purple locate" onClick={() => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
           const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude }
