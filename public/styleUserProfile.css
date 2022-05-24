@@ -77,6 +77,8 @@ button.accordion-button.collapsed {
     flex-direction: column;
     justify-content: center;
     padding: 50px;
+    border: solid;
+    border-color: white;
 }
 
 .categoryCharts {
