@@ -499,7 +499,7 @@ const activities = [
   {
     id: 1,
     name: "Basketball",
-    description: 'fun activity',
+    description: "A game played between two teams of five players each, the object being to throw a ball through an elevated basket on the opponent's side of a rectangular court. Players may move the ball by dribbling or passing with the hands.",
     exertion: "HIGH",
     creative: '1',
     athletic: '5',
@@ -509,7 +509,7 @@ const activities = [
   },{
     id:2,
     name: "Bowling",
-    description: 'fun activity',
+    description: 'A game in which a heavy ball is rolled down a long, narrow lane toward a group of objects known as pins, the aim being to knock down more pins than an opponent',
     outside: false,
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Bowlerbowling.JPG',
     exertion: "LOW",
@@ -522,7 +522,7 @@ const activities = [
     id:3,
     name: "Chess",
     outside: false,
-    description: 'fun activity',
+    description: "Chess is one of the oldest and most popular board games. It is played by two opponents on a checkered board with specially designed pieces of contrasting colours, commonly white and black. The objective of the game is to capture the opponent's king.",
     imageUrl: 'https://media.npr.org/assets/img/2016/10/24/gettyimages-492378344_wide-cfdc4528733d810b7feb5e2a884f987a981920ff.jpg?s=1400',
     exertion: "LOW",
     creative: '5',
@@ -534,7 +534,7 @@ const activities = [
     id:4,
     name: "Movies",
     outside: false,
-    description: 'fun activity',
+    description: 'A movie – also called a film, motion picture, moving picture, or photoplay – is a work of visual art that simulates experiences and otherwise communicates ideas, stories, perceptions, feelings, beauty, or atmosphere through the use of moving images.',
     exertion: "LOW",
     imageUrl: 'https://nofilmschool.com/sites/default/files/styles/facebook/public/movie_theater.png?itok=B2xAaSj-',
     creative: '1',
@@ -547,7 +547,7 @@ const activities = [
     name: "Cooking Class",
     exertion: "LOW",
     outside: false,
-    description: 'fun activity',
+    description: 'These classes allow you to experience this delicious cuisine, including local cooking techniques and the lore of the region',
     imageUrl: 'https://churchillmanor.com/wp-content/uploads/2016/10/Napa-Cooking-Classes.jpg',
     creative: '5',
     athletic: '1',
@@ -560,7 +560,7 @@ const activities = [
     name: "Painting",
     exertion: "LOW",
     outside: false,
-    description: 'fun activity',
+    description: 'Painting is the practice of applying paint, pigment, color or other medium to a solid surface (called the "matrix" or "support"). The medium is commonly applied to the base with a brush, but other implements, such as knives, sponges, and airbrushes, can be used.',
     imageUrl: 'https://pensacolafruitwinery.com/wp-content/uploads/2018/02/Beyond-The-Grape-Onto-the-Canvas-Paint-and-Sip-Classes.jpg',
     creative: '5',
     athletic: '1',
@@ -571,7 +571,7 @@ const activities = [
   {
   id: 7,
     name: "Archery",
-    description: 'fun activity',
+    description: 'Archery involves using a bow to shoot arrows at a stationary target.',
     imageUrl: 'https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2014/9/2/1409653039272/learning-archery-south-do-011.jpg?width=700&quality=85&auto=format&fit=max&s=169c52ca49e84224d2c5a266af6e52b9',
     creative: '2',
     athletic: '3',
@@ -582,7 +582,7 @@ const activities = [
   {
     id: 8,
       name: "Badminton",
-      description: 'fun activity',
+      description: 'Badminton is a racquet sport played using racquets to hit a shuttlecock across a net.',
       imageUrl: 'https://images.news18.com/ibnlive/uploads/2017/08/badminton_AFP.jpg?impolicy=website&width=510&height=356',
       creative: '1',
     athletic: '5',
@@ -593,7 +593,7 @@ const activities = [
   {
   id: 9,
   name: "Baseball",
-  description: 'fun activity',
+  description: 'Baseball is a bat-and-ball game played between two opposing teams, of nine players each, that take turns batting and fielding.',
   imageUrl: 'https://www.tompsc.com/ImageRepository/Document?documentId=38976',
   creative: '1',
     athletic: '5',
@@ -604,7 +604,7 @@ const activities = [
   {
   id: 10,
   name: "Volleyball",
-  description: 'fun activity',
+  description: "Game played by two teams of six players each, in which an inflated ball is volleyed over a high net. Each team tries to make the ball touch the court within the opposing side's playing areas before it can be returned.",
   imageUrl: 'https://www.tutorialspoint.com/volleyball/images/ball_moves.jpg',
   exertion: "HIGH",
   creative: '1',
@@ -616,7 +616,7 @@ const activities = [
   {
   id: 11,
   name: "Beekeeping",
-  description: 'fun activity',
+  description: 'Beekeeping (or apiculture) is the maintenance of bee colonies, commonly in man-made hives, by humans.',
   imageUrl: 'https://beekeepingabc.com/wp-content/uploads/2019/08/beekeeping-guide.jpg',
   creative: '3',
     athletic: '1',
@@ -628,7 +628,7 @@ const activities = [
   id: 12,
   name: "Birdwatching",
   exertion: "LOW",
-  description: 'fun activity',
+  description: 'Birdwatching, or birding, is the observing of birds, either as a recreational activity or as a form of citizen science. A birdwatcher may observe by using their naked eye, by using a visual enhancement device like binoculars or a telescope, by listening for bird sounds, or by watching public webcams.',
   imageUrl: 'https://ontarionature.org/wp-content/uploads/2013/04/Annual-Gathering-Bird-Watching-Point-Petre-South-Shore-Safari-Mary-Gingritch-%C2%A9-John-Hassell_v2-4.jpg',
   creative: '4',
     athletic: '1',
@@ -639,7 +639,7 @@ const activities = [
   {
   id: 13,
   name: "Bodyboarding",
-  description: 'fun activity',
+  description: 'Bodyboarding is a water sport in which the surfer rides a bodyboard on the crest, face, and curl of a wave which is carrying the surfer towards the shore.',
   imageUrl: 'https://media.istockphoto.com/photos/surf-picture-id171591741?k=20&m=171591741&s=612x612&w=0&h=7EGc_BigihKhe1xma3F0q1jxOT53MZzGG1hGTh4qBIE=',
   exertion: "HIGH",
   creative: '1',
@@ -652,7 +652,7 @@ const activities = [
   id: 14,
   name: "Camping",
   exertion: "LOW",
-  description: 'fun activity',
+  description: 'Camping is an outdoor activity involving overnight stays away from home, either without shelter or using basic shelter such as a tent or a recreational vehicle.',
   imageUrl: 'https://pegsandpitches.co.uk/wild-boar-wood/wp-content/uploads/sites/4/2018/03/Friends-around-the-Campfire-1-776x517.jpg',
   creative: '4',
   athletic: '1',
@@ -663,7 +663,7 @@ const activities = [
   {
   id: 15,
   name: "Canoeing",
-  description: 'fun activity',
+  description: 'Canoeing is a sport where one gets into a little boat made for the sport called a canoe and using a single-bladed paddle to steer the canoe, tries to travel down a stream of a river.',
   imageUrl: 'https://www.tutorialspoint.com/canoeing/images/paddle.jpg',
   exertion: "HIGH",
   creative: '1',
@@ -675,7 +675,7 @@ const activities = [
   {
   id: 16,
   name: "Capture the Flag",
-  description: 'fun activity',
+  description: "Capture the Flag is a classic team game played indoors or outdoors. Two teams each have their own color flag placed in their “home base.” The objective is to steal the other team's flag and take it to their own base. Players can tag or capture opposing players if they enter enemy territory.",
   imageUrl: 'https://scantechgraphics.com/wp-content/uploads/2019/07/capture-the-flag2.jpg',
   exertion: "HIGH",
   creative: '3',
@@ -687,7 +687,7 @@ const activities = [
   {
   id: 17,
   name: "Cricket",
-  description: 'fun activity',
+  description: 'Cricket is a bat-and-ball game played between two teams of eleven players each on a field at the centre of which is a 22-yard (20-metre) pitch with a wicket at each end, each comprising two bails balanced on three stumps.',
   imageUrl: 'https://media.newyorker.com/photos/5f2b2b45d4b98d588c5cdf22/16:9/w_2559,h_1439,c_limit/Caesar-Cricket.jpg',
   creative: '1',
   athletic: '5',
@@ -698,7 +698,7 @@ const activities = [
   {
   id: 18,
   name: "Cross-country Skiing",
-  description: 'fun activity',
+  description: 'Cross-country skiing is a form of skiing where skiers rely on their own locomotion to move across snow-covered terrain, rather than using ski lifts or other forms of assistance.',
   imageUrl: 'https://www.salomon.com/sites/default/files/2021-03/XC-skis-landscape_0.jpg',
   exertion: "HIGH",
   creative: '1',
@@ -1488,7 +1488,7 @@ const seed = async () => {
       //   return UserChats.create(userChat)
       // })
     )
-    
+
     console.log(green('Seeding success!'))
     db.close()
 

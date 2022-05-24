@@ -32,7 +32,7 @@ export default function SingleActivity(props){
                 <div className="singleActivity-text">
                     {/* <div className="singleActivityInfo"> */}
                         {/* <p>Rating: {activity.useractivities.length>0 ? activity.useractivities[0].score : "n/a"}</p> */}
-                        <p>ExertionLevel: {activity.exertionLevel}</p>
+                        <p>ExertionLevel: {activity.exertion}</p>
                         <p>{activity.outside ? "Outdoors" : "Indoors"}</p>
                         <p>Description: {activity.description}</p>
                     {/* </div> */}
