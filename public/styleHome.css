@@ -17,6 +17,25 @@
 .button {
   background-color: #370344 !important;
 }
+
+.topFive-nav .page-link{
+  background-color: var(--light-detail);
+  border-color: var(--lighter-background);
+  color:var(--background)
+}
+
+.topFive-nav .page-item.active .page-link{
+  background-color: var(--rating03);
+  border-color: var(--lighter-background);
+  color:var(--font-color)
+}
+
+.topFive-nav .page-item.disabled .page-link{
+  background-color: grey;
+  border-color: var(--lighter-background);
+  color:var(--background)
+}
+
 /* mapped activity */
 /* #allActivities{
   width:90%;

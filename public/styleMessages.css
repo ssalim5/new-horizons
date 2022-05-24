@@ -1,0 +1,151 @@
+.messaging{
+    display:flex;
+    flex-direction:row;
+    width:90%;
+    justify-content: center;
+    height: 75vh;
+
+}
+
+.offcanvas.offcanvas-end.show {
+    width: 250px;
+    background-color: var(--lighter-background);
+    color: var(--font-color);
+    border-left: 1px solid var(--light-detail);
+}
+
+.offcanvas-header {
+    border-bottom: 2px solid var(--light-detail);
+}
+
+.offcanvas-body>* {
+    border-bottom: 1px solid white;
+}
+
+.offcanvas {
+    transition: none !important;
+  }
+
+.messages-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3%;
+}
+
+/* sidebar */
+.sidebar{
+  color: white;
+  flex-basis: 20%;
+}
+
+/* main chatbox */
+.messages-main{
+  flex-basis: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.active-chat {
+    overflow-y: scroll;
+}
+
+div#messages-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.create-chat, #chat-list>* {
+    margin-bottom: 8%;
+    color: var(--font-color);
+}
+
+#chat-list>* {
+    border-bottom: 1px solid var(--light-detail);
+}
+
+button.purple.btn.btn-primary {
+    margin-left: 0;
+}
+
+/* .active-chat{
+  display: flex;
+  flex-basis: 90%;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  color: white;
+} */
+
+/* .messages-header{
+  display: flex;
+} */
+
+/* .messages-title{
+  flex-basis: 80%;
+} */
+
+/* individual messages */
+
+.msg{
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  color: white;
+  height: 75px;
+}
+
+.messages .msg {
+    border-bottom: 1px solid white;
+}
+
+.msg-user{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50px;
+  height: 50px;
+}
+
+.new-messages{
+  position:absolute;
+  bottom: 0;
+}
+
+.new-message form input[type="text"] {
+    width: 80%;
+}
+
+.new-message form button {
+    width: 20%;
+    min-width: 80px;
+}
+
+.msg-img {
+  height: 50px;
+  width: 50px;
+}
+
+.msg {
+  border-radius: 5px;
+  border-width: 10px;
+  border: blue;
+}
+
+.msg-text{
+  padding-left:10px ;
+  padding-top: 10px;
+}
+
+/* message form */
+
+/* #new-message-form {
+  position: relative;
+}
+
+#new-message-form .form-control {
+  border-width: 3px 1.5px 3px 3px;
+}
+
+#new-message-form.btn {
+  border-width: 3px;
+} */

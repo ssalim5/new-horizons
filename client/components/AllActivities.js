@@ -44,6 +44,7 @@ export default function AllActivities(){
   }
   
   return(
+    <div id="home" className="component">
     <div id="allActivities" className="module">
       <h2>All Activities</h2>
       <div>
@@ -83,6 +84,7 @@ export default function AllActivities(){
         </form> */}
       </div>
       <MappedActivity data={activities}/>
+    </div>
     </div>
   )
 }
