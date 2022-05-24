@@ -1,0 +1,92 @@
+.userProfile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .userInfo{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width:90%;
+    max-height:300px;
+    border: 2px solid var(--rating01);
+    padding: 10px;
+} */
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 2px solid var(--light-detail);
+    padding: 5%;
+    flex-wrap: wrap;
+}
+
+.userInfoImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height:100%;
+}
+
+.userInfoImage>form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top:5%;
+    max-height:20%;
+}
+
+/* #userProfileImage{
+    object-fit: cover;
+    height:80%;
+    width:auto;
+} */
+
+#userProfileImage {
+    object-fit: cover;
+    height: 80%;
+    width: auto;
+    max-height: 200px;
+    margin-bottom: 8%;
+}
+
+button.accordion-button.collapsed {
+    padding: 3px;
+}
+
+/* .userInfoText{
+    margin: 20px;
+} */
+
+.userInfoText {
+    min-width: 250px;
+    padding-left: 5%;
+}
+
+@media screen and (max-width:499px){
+    .userInfoText {
+        margin-top: 5%;
+    }
+}
+
+.Chart1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    border: solid;
+    border-color: white;
+}
+
+.categoryCharts {
+    display: flex;
+    flex-direction: row;
+}
+
+.activityCharts {
+    display: flex;
+    flex-direction: row;
+}

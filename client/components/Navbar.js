@@ -6,7 +6,7 @@ import {Navbar,Nav,Container} from 'react-bootstrap'
 
 const NavigationBar = ({handleClick, isLoggedIn, userId,}) => (
   isLoggedIn ? (
-  <Navbar fixd="top" expand="sm" bg="dark" variant="dark">
+  <Navbar className="nav-custom" fixd="top" expand="sm" bg="dark" variant="dark">
     <Container>
       <Navbar.Brand>New Horizons</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -14,7 +14,7 @@ const NavigationBar = ({handleClick, isLoggedIn, userId,}) => (
         <Nav>
             <Nav.Link as={NavLink} exact to="/">Home</Nav.Link>
             <Nav.Link as={NavLink} to="/activities">Activities</Nav.Link>
-            <Nav.Link as={NavLink} to="/graph">Graph</Nav.Link>
+            {/* <Nav.Link as={NavLink} to="/graph">Graph</Nav.Link> */}
             <Nav.Link as={NavLink} to={`/users/${userId}`}>My Profile</Nav.Link>
             <Nav.Link as={NavLink} to={`/chats`}> Messages</Nav.Link>
             <Nav.Link onClick={handleClick}>Logout</Nav.Link>
