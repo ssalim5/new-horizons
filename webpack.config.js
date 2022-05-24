@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const envKeys = require("config")
+const envKeys = require("./config")
 
 module.exports = {
   resolve: {
