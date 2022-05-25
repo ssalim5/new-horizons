@@ -158,6 +158,7 @@ cursor: pointer;
   width:100%;
   height: 20%;
   margin-bottom: 9px;
+  min-height:80px;
 }
 
 .singleItem>div{
