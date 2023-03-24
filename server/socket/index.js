@@ -1,4 +1,4 @@
-const Message = require('../db/models/message');
+const Message = require('../db/models/Message');
 const Chat = require('../db/models/Chat');
 
 module.exports = function(io){
