@@ -3,7 +3,10 @@ const envKeys = require("./config")
 
 module.exports = {
   resolve: {
-    fallback: { "util": require.resolve("util/") }
+    fallback: { "util": require.resolve("util/"),
+                "os": false,
+                "fs": false,
+                "path": false}
   },
   plugins: [
     new webpack.DefinePlugin(envKeys)

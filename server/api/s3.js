@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const aws = require("aws-sdk");
 const fs = require("fs")
-// const { config } = require("chai");
 require('dotenv').config();
 module.exports = router
 

@@ -2,8 +2,9 @@ const dotenv = require('dotenv');
 const _ = require('lodash')
 
 const envConfig = dotenv.config()
+// console.log(envConfig)
 let envs
-if( !envConfig ){
+if( envConfig ){
   envs = envConfig.parsed
 } else {
   envs = {}

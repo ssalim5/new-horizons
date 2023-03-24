@@ -16,11 +16,6 @@ import axios from "axios";
 import {Accordion, Image, Button, Offcanvas} from 'react-bootstrap'
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
 
-const AWS_ACCESS_KEY_ID="AKIAYQC73EU7UC6KESI5"
-const AWS_DEFAULT_REGION="us-east-1"
-const AWS_SECRET_ACCESS_KEY="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"
-const S3_BUCKET="new-horizons-app-assets"
-
 aws.config.update({
   region: process.env.AWS_DEFAULT_REGION,
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
