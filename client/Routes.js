@@ -18,6 +18,7 @@ import AddFriends from './components/AddFriends'
 import MyActivities from './components/MyActivities';
 import ChatList from './components/ChatList';
 import FriendsActivities from './components/FriendsActivities';
+import About from './components/About';
 
 /**
  * COMPONENT
@@ -64,6 +65,7 @@ componentDidUpdate(prevProps){
             <Route exact path="/myactivities" component={MyActivities} />
             <Route exact path="/chats" component={ChatList} />
             <Route exact path="/usersfriends/:id" component={FriendsActivities} />
+            <Route exact path="/about" component={About} />
 
           </Switch>
         ) : (

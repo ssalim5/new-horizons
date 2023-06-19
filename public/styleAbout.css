@@ -1,0 +1,8 @@
+.about-page{
+  display: flex;
+}
+.heading{
+  display:flex;
+  text-align: center;
+  color:green;
+}
