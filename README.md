@@ -5,7 +5,7 @@ We would also like to expand our database to have even more activities and users
 ## Start
 run npm `run install` to install dependencies from package.json.
 create a local postgres database called new-horizons
-Sync and seed your database by running `npm run seed`. Running `npm run start:dev` will make great things happen!
+Sync and seed your database by running `npm run seed`. Running npm run start:dev or start:dev-win will make great things happen! The server will run on port 8080.
 
 - start:dev will both start your server and build your client side files using webpack
 - start:dev:logger is the same as start:dev, but you will see your SQL queries (can be helpful for debugging)
