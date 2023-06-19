@@ -8,7 +8,7 @@ import {Button} from 'react-bootstrap'
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const {name, displayName, handleSubmit, handleGuest, error} = props
 
   return (
     <div className="module login">
@@ -28,6 +28,9 @@ const AuthForm = props => {
         <div>
           <p>not registered? <Link className="clickable" to="/registration">Sign up here</Link></p>
           <Button className="purple" type="submit">{displayName}</Button>
+        </div>
+        <div>
+          <Button className="purple" onClick={() => {handleGuest()}}>Guest Login</Button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
@@ -65,6 +68,12 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const username = evt.target.username.value
       const password = evt.target.password.value
+      dispatch(authenticate(username, password, formName))
+    },
+    handleGuest(){
+      const formName = "Login"
+      const username = "Guest"
+      const password = "guest"
       dispatch(authenticate(username, password, formName))
     }
   }

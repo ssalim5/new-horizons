@@ -31,6 +31,7 @@ router.get("/activities/rec",async(req,res,next)=>{
       }}
     )
     let indicesToSkip=userActivities.activities.map((element)=>{return element.id-1})
+    console.log(indicesToSkip)
     let recommendedActivities = []
     for (let ind=0;ind<allActivities.length;ind++){
       if (!indicesToSkip.includes(ind)){

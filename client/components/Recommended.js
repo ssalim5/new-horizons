@@ -13,7 +13,7 @@ export class Recommended extends React.Component {
     }
   }
   componentDidMount(){
-    // this.props.fetchRecommended();  
+    this.props.fetchRecommended();
   }
   render() {
     //console.log("RENDERING",this.props.recommended)
@@ -22,7 +22,8 @@ export class Recommended extends React.Component {
         <h2>All Recommendations</h2>
         <p>Based on your previous activity rankings here are some more activities you might like</p>
         <MappedActivity data={this.props.recommended}/>
-        {/* <ul className="activities-container">
+        {
+        <ul className="activities-container">
         {this.props.recommended? this.props.recommended.sort((a,b)=>{
           //console.log ("A",a, "B",b)
           return (a.score>b.score?-1:1)
@@ -38,7 +39,8 @@ export class Recommended extends React.Component {
             </Link>
           )
           }):""}
-        </ul> */}
+        </ul>
+        }
       </div>
     )
   }
